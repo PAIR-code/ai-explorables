@@ -1,0 +1,274 @@
+/* Copyright 2020 Google LLC. All Rights Reserved.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+==============================================================================*/
+
+
+@media (max-width: 925px)  {
+  #graph > div{
+    position: relative;
+    top: 25px;
+  }
+}
+
+
+
+body{
+  --colors-well: rgb(179, 201, 204);
+  --colors-sick: rgb(241, 85, 85);
+  --lcolors-well: rgb(217, 228, 230);
+  --lcolors-sick: rgb(246, 145, 145);
+  --dcolors-well: rgb(63, 70, 71);
+  --dcolors-sick: rgb(84, 30, 30);
+}
+
+
+.tooltip {
+  top: -1000px;
+  position: fixed;
+  padding: 10px;
+  background: rgba(255, 255, 255, .90);
+  border: 1px solid lightgray;
+  pointer-events: none;
+}
+.tooltip-hidden{
+  opacity: 0;
+  transition: all .3s;
+  transition-delay: .1s;
+}
+
+@media (max-width: 590px){
+  div.tooltip{
+    bottom: -1px;
+    width: calc(100%);
+    left: -1px !important;
+    right: -1px !important;
+    top: auto !important;
+    width: auto !important;
+  }
+}
+
+svg{
+  overflow: visible;
+}
+
+.domain{
+  display: none;
+}
+
+text{
+  /*pointer-events: none;*/
+  /*text-shadow: 0 1px 0 #fff, 1px 0 0 #fff, 0 -1px 0 #fff, -1px 0 0 #fff;*/
+}
+
+
+
+#graph > div{
+  margin-top: 20px;
+}
+
+
+#end{
+  height: 600px;
+}
+
+
+.mono{
+  font-family: monospace;
+}
+
+
+
+
+.mini .axis{
+  font-size: 10px;
+  line-height: 12px !important;
+  position: relative;
+  top: 40px;
+}
+
+.axis{
+  font-size: 12px;
+}
+.axis{
+  color: #999;
+}
+.axis text{
+  fill: #999;
+}
+.axis line{
+  stroke: #ccc;
+}
+
+div.axis b{
+  margin-bottom: -10px;
+  display: block;
+}
+
+.init-hidden{
+  opacity: 0;
+}
+
+
+.highlight{
+  color: #fff;
+  padding-left: 3px;
+  padding-right: 3px;
+  padding-top: 1px;
+  padding-bottom: 1px;
+  border-radius: 3px;
+}
+
+.highlight.grey{ background: var(--colors-well); }
+.highlight.box{ 
+  border: 1px solid #000;
+  border-radius: 0px;
+  color: #000;
+  padding-bottom: 2px;
+}
+
+.weepeople {
+  font-family: "WeePeople";
+}
+
+
+wee{
+  font-family: "WeePeople";
+  font-size: 30px;
+  height: 22px;
+  display: inline;
+  position: relative;
+  top: 5px;
+  color: var(--colors-well);
+  padding: 1px;
+  margin: -1px;
+  line-height: 3px;
+}
+wee.sick{
+  color: var(--colors-sick);
+}
+
+wee.bg-sick{
+  background: var(--lcolors-sick);
+}
+wee.bg-well{
+  background: var(--lcolors-well);
+}
+
+bg{
+  background: var(--lcolors-well);
+  padding-left: 2px;
+  padding-right: 2px;
+}
+
+bg.sick{
+  background: var(--lcolors-sick);
+}
+
+wee.sick.bg-well{
+  -webkit-text-stroke: .6px var(--dcolors-sick);
+}
+wee.well.bg-sick{
+  -webkit-text-stroke: .6px var(--dcolors-well);
+}
+
+
+
+.equation{
+  margin: 7px;
+  position: relative;
+}
+
+
+.gated #hidden{
+  visibility: hidden;
+}
+
+.gated.opened #hidden{
+  visibility: unset;
+}
+.gated.opened #default{
+  display: none;
+}
+
+.gated #default{
+  height: 0px;
+}
+
+
+
+
+
+
+
+text.weepeople{
+  stroke: #000;
+  stroke-width: 0;
+  /*stroke-width: .2;*/
+}
+
+
+
+
+.post-summary, .headline{
+  display: none;
+}
+
+
+i{
+  pointer-events: none;
+}
+
+.slider{
+  position: relative;
+  z-index: 100;
+}
+
+
+
+
+
+.cursor{
+  animation-duration: 1s;
+  animation-name: bgblink;
+  display: inline-block;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  cursor: pointer;
+  transition: opacity .5s;
+  stroke: #000;
+} 
+
+@keyframes bgblink {
+  from {
+    /*fill: black;*/
+    stroke-width: 0px;
+  }
+
+  to {
+    /*fill: green;*/
+    stroke-width: 16px;
+  }
+}
+
+.no-blink .cursor{
+  /*background: rgba(255,255,0,0) !important;*/
+  animation: 0;
+}
+
+
+
+#adjust-text{
+  padding-top: 15px;
+  display: block;
+}

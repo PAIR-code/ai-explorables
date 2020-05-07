@@ -1,0 +1,268 @@
+/* Copyright 2020 Google LLC. All Rights Reserved.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+==============================================================================*/
+
+.tooltip {
+  top: -1000px;
+  position: fixed;
+  padding: 10px;
+  background: rgba(255, 255, 255, .90);
+  border: 1px solid lightgray;
+  pointer-events: none;
+  font-family: monospace;
+  font-size: 14px;
+  width: 170px;
+}
+.tooltip-hidden{
+  opacity: 0;
+  transition: all .3s;
+  transition-delay: .1s;
+}
+
+@media (max-width: 590px){
+  div.tooltip{
+    bottom: -1px;
+    width: calc(100%);
+    left: -1px !important;
+    right: -1px !important;
+    top: auto !important;
+    width: auto !important;
+  }
+}
+
+.tooltip span{
+  padding: 2px;
+}
+
+svg{
+  overflow: visible;
+}
+
+.domain{
+  display: none;
+}
+
+text{
+  /*pointer-events: none;*/
+  text-shadow: 0 1px 0 #fff, 1px 0 0 #fff, 0 -1px 0 #fff, -1px 0 0 #fff;
+}
+
+
+
+
+
+
+#container{
+  position: relative;
+  width: auto;
+}
+
+#container h3{
+  font-weight: 500;
+}
+
+#sections{
+  width: 340px;
+}
+
+#sections > div{
+  background: white;
+  opacity: .2;
+  margin-bottom: 200px;
+  line-height: 1.4em;
+}
+#sections > div:last-child{
+  padding-bottom: 80vh;
+}
+#sections > div.graph-scroll-active{
+  opacity: 1;
+}
+
+#graph{
+  margin-left: 40px;
+  width: 500px;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0px;
+  float: right;
+}
+
+@media (max-width: 925px)  {
+  #graph{
+    width: 100%;
+    margin-left: 0px;
+    float: none;
+  }
+
+  #sections{
+    width: auto;
+    position: relative;
+    margin: 0px auto;
+  }
+
+  #sections > div{
+    background: rgba(255,255,255,.5);
+    padding: 10px;
+    border-top: 1px solid;
+    border-bottom: 1px solid;
+    margin-bottom: 80vh;
+  }
+}
+
+
+.mono{
+  font-family: monospace;
+}
+
+
+svg{
+  overflow: visible;
+}
+
+
+
+
+.axis{
+  font-size: 12px;
+}
+.axis{
+  color: #999;
+}
+.axis text{
+  fill: #999;
+}
+.axis line{
+  stroke: #ccc;
+}
+
+div.axis b{
+  margin-bottom: 100px;
+  display: block;
+}
+
+.axis .blink{
+  color: orange;
+}
+
+
+
+
+
+
+.highlight{
+  color: #fff;
+  padding-left: 3px;
+  padding-right: 3px;
+  padding-top: 1px;
+  padding-bottom: 1px;
+  border-radius: 3px;
+}
+
+/*.highlight.blue{ background: blue; }*/
+/*.highlight.orange{ background: orange; }*/
+.highlight.yellow{ background: #ff0; color: #000; }
+.highlight.blue{ background: #8effff; color: #000; }
+.highlight.male{ background: #7DDAD3; color: #000; }
+.highlight.female{ background: #9B86EF; color: #000; }
+
+.annotation .highlight{
+  padding: 0px;
+  padding-left: 2px;
+  padding-right: 2px;
+  margin-left: -2px;
+  margin-right: -2px;
+  border-radius: 3px;
+  /*height: 12px;*/
+  display: inline-block;
+}
+
+
+#graph .highlight.yellow, #graph .highlight.blue{
+  padding-left: 0px;
+  padding: 0px;
+}
+
+
+.circle{
+  background: #eee;
+  border: 1px solid #ccc;
+  font-family: monospace;
+  padding-left: 4.2px;
+  padding-right: 4.2px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+
+  border-radius: 1000px;
+  width: 20px;
+  height: 20px;
+}
+
+
+.strikethrough{
+  text-decoration: line-through;
+  color: #000;
+}
+
+
+.annotation div{
+  font-size: 12px;
+  line-height: 13px;
+  font-family: 'Google Sans', sans-serif;
+}
+
+
+.annotations path{
+  fill: none;
+  stroke: black;
+  stroke-width: .5px;
+}
+
+  
+.img-slide img{
+  width: 30px;
+  transform: rotate(-90deg);
+  margin-left: -10px;
+  margin-right: -4px;
+  position: relative;
+  top: 5px;
+}
+
+.img-slide img:nth-of-type(1){
+  transform: rotate(90deg);
+  margin-left: -10px;
+  margin-right: -4px;
+  top: 0px;
+}
+
+
+
+
+
+div.axis b{
+  margin-bottom: 0px;
+}
+
+div.axis{
+  line-height: 14px;
+}
+
+
+circle:hover{
+  stroke: #000;
+  stroke-width: 2;
+}
+
+
+
+

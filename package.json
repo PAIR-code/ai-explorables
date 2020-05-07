@@ -1,0 +1,17 @@
+{
+  "name": "explorable-ml",
+  "dependencies": {
+    "chokidar": "^1.7.0",
+    "googleapis": "39",
+    "highlight.js": "^9.12.0",
+    "hot-server": "^0.0.18",
+    "lit-node": "^0.0.1",
+    "marked": "^0.3.6",
+    "scrape-stl": "^1.0.3"
+  },
+  "scripts": {
+    "start": "mkdir -p public && node source/third_party/index.js --watch & cd public/ && hot-server --port=2344",
+    "pub": "mkdir -p public && node source/third_party/index.js && gcloud --quiet app deploy --project=google.com:explorable-ml"
+  },
+  "license": "MIT"
+}

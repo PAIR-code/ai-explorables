@@ -1,0 +1,119 @@
+#container{
+  position: relative;
+  width: auto;
+}
+
+#sections{
+  width: 340px;
+}
+
+#sections > div{
+  background: white;
+  opacity: .2;
+  margin-bottom: 400px;
+  line-height: 1.4em;
+  transition: opacity .2s;
+}
+#sections > div:first-child{
+  opacity: 1;
+}
+#sections > div:last-child{
+  /*padding-bottom: 80vh;*/
+  padding-bottom: 80px;
+  margin-bottom: 0px;
+}
+#sections > div:first-child > h1{
+  padding-top: 40px;
+}
+
+#sections > div.graph-scroll-active{
+  opacity: 1;
+}
+
+#graph{
+  margin-left: 40px;
+  width: 500px;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0px;
+  float: right;
+  height: 580px;
+  font-family: 'Google Sans', sans-serif;
+
+}
+
+.slider{
+  font-family: 'Google Sans', sans-serif;
+}
+
+#sections h1{
+  text-align: left !important;
+}
+
+@media (max-width: 1000px) and (min-width: 926px){
+  #sections{
+    margin-left: 20px;
+  }
+}
+
+@media (max-width: 925px)  {
+  #container{
+    margin-left: 0px;
+  }
+
+  #graph{
+    width: 100%;
+    margin-left: 10px;
+    float: none;
+    max-width: 500px;
+    margin: 0px auto;
+  }
+
+  #graph > div{
+    position: relative;
+    top: 0px;
+  }
+  #sections{
+    width: auto;
+    position: relative;
+    margin: 0px auto;
+  }
+
+  #sections > div{
+    background: rgba(255,255,255,.8);
+    padding: 10px;
+    border-top: 1px solid;
+    border-bottom: 1px solid;
+    margin-bottom: 80vh;
+    width: calc(100vw - 20px);
+    margin-left: -5px;
+  }
+
+  #sections > div > *{
+    max-width: 750px;
+  }
+  .mini, .slider, i, .gated{
+    margin: 0px auto;
+  }
+
+  #sections > div:first-child{
+    opacity: 1;
+    margin-top: -140px;
+  }
+
+  #sections > div:last-child{
+    padding-bottom: 0px;
+    margin-bottom: 0px;
+  }
+
+
+  #sections h1{
+    margin: 10px;
+    padding-top: 0px !important;
+  }
+
+  #sections h3{
+    margin-top: .5em;
+  }
+
+}

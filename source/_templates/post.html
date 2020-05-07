@@ -1,0 +1,68 @@
+<!--
+@license
+Copyright 2020 Google. All Rights Reserved.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+
+<!DOCTYPE html>
+
+<html>
+<head>
+	<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>${d.title}</title>
+  <meta property="og:title" content="${d.title}">
+  <meta property="og:url" content="https://pair.withgoogle.com/explorables${d.permalink}/">
+
+  ${d.summary ? `<meta name="og:description" content="${d.summary}">`  : ''}
+  ${d.shareimg ? `<meta property="og:image" content="${d.shareimg}">`  : ''}
+  ${d.shareimg ? `<meta name="twitter:card" content="summary_large_image">` : ''}
+  
+	<link rel="stylesheet" type="text/css" href="../style.css">
+
+  <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,500,700|Roboto:700,500,300' rel='stylesheet' type='text/css'>  
+	<meta name="viewport" content="width=device-width">
+</head>
+<body>
+  <div class='header'>
+    <div class='header-left'>
+      <a href='https://pair.withgoogle.com/'>
+        <img src='../images/pair-logo.svg' style='width: 100px'></img>
+      </a>
+      <a href='../'>Explorables</a> 
+    </div>
+  </div>
+  
+  <h1 class='headline'>${d.title}</h1>
+  <!-- <time>${d.date}</time> -->
+
+  ${d.summary ? `<div class="post-summary">${d.summary}</div>` : ''}
+  <!-- ${d.tags ? `<div class="post-tags">${d.tags}</div>` : ''} -->
+
+  ${d.html}
+</body>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-138505774-1"></script>
+<script>
+  if (window.location.origin === 'https://pair.withgoogle.com'){
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-138505774-1');
+  }
+</script>
+
+
+</html>

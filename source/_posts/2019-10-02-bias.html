@@ -1,0 +1,124 @@
+<!--
+@license
+Copyright 2020 Google. All Rights Reserved.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+---
+template: post.html
+title: Hidden Bias
+summary: Models trained on real-world data can encode real-world bias. Hiding information about protected classes doesn't always fix things—sometimes it can even hurt.
+permalink: /hidden-bias/
+shareimg: https://pair.withgoogle.com/explorables/images/hidden-bias.png
+---
+<link rel="stylesheet" href="style.css">
+
+<div id='container' class='container-1'>
+<div id='graph'></div>
+<div id='sections'>
+
+
+<div>
+<h3>Modeling College GPA</h3>
+
+<p>Let's pretend we're college admissions officers trying to predict the GPA students will have in college (in these examples we'll use simulated data).
+
+<p>One simple approach: predict that students will have the same GPA in college as they did in high school. 
+</div>
+
+
+<div class='img-slide'>
+<p>This is at best a very rough approximation, and it misses a key feature of this data set: students usually have better grades in high school than in college
+
+<p>We're <img src='over.png'><span class='xhighlight blue'>over-predicting</span> college grades more often then we <img src='over.png'><span class='xhighlight orange'>under-predict.</span>
+</div>
+
+
+<div>
+<h3>Predicting with ML</h3>
+<p>If we switched to using a machine learning model and entered these student grades, it would recognize this pattern and adjust the prediction.
+
+<p>The model does this without knowing anything about the real-life context of grading in high school versus college.
+</div>
+
+
+<div>
+<p>Giving the model <span class='highlight blue'>more information</span> about students increases accuracy more...
+</div>
+
+
+<div>
+<p>...and more.
+</div>
+
+
+<div>
+<h3>Models can encode previous bias</h3>
+<p>All of this sensitive information about students is just a long list of numbers to model. 
+
+<p>If a sexist college culture has historically led to lower grades for <span class='f circle'>&nbsp;</span> female students, the model will pick up on that correlation and predict lower grades for women.  
+
+<p>Training on historical data bakes in historical biases. Here the sexist culture has improved, but the model learned from the past correlation and still predicts higher grades for <span class='m circle'>&nbsp;</span> men.
+</div>
+
+<div>
+<h3>Hiding protected classes from the model might not stop discrimination</h3>
+
+<p>Even if we don't tell the model students' genders, it might still score <span class='f circle'>&nbsp;</span> female students poorly.
+
+<p>With detailed enough information about every student, the model can still synthesize a proxy for gender out of other <span class='highlight yellow'>variables.</span>
+</div>
+
+
+<div>
+<h3>Including a protected attribute may even <i>decrease</i> discrimination</h3>
+
+<p>Let's look at a simplified model, one only taking into account the recommendation of an alumni interviewer. 
+</div>
+
+
+<div>
+<p>The interviewer is quite accurate, except that they're biased against students with a <span class='l circle'>&nbsp;</span> low household income. 
+
+<p>In our toy model, students' grades don't depend on their income once they're in college. In other words, we have biased inputs and unbiased outcomes—the opposite of the previous example, where the inputs weren't biased, but the toxic culture biased the outcomes. 
+</div>
+
+
+<div>
+<p>If we also tell the model each student's <span class='highlight blue'>household income</span>, it will naturally correct for the interviewer's overrating of <span class='h circle'>&nbsp;</span> high-income students just like it corrected for the difference between high school and college GPAs. 
+
+<p>By carefully considering and accounting for bias, we've made the model fairer and more accurate. This isn't always easy to do, especially in circumstances like the historically toxic college culture where unbiased data is limited. 
+
+<p>And there are fundamental fairness trade-offs that have to be made. Check out the <a href='../measuring-fairness/'>Measuring Fairness explorable</a> to see how those tradeoffs work.<a href='../measuring-fairness/'><br><img style='width: 100%; max-width: 391px; margin-left: -8px' src='../images/medical-fairness.gif'></a>
+
+
+<br><br>
+
+<p>Adam Pearce // May 2020
+
+<p>Thanks to Carey Radebaugh, Dan Nanas, David Weinberger, Emily Denton, Emily Reif, Fernanda Viégas, Hal Abelson, James Wexler, Kristen Olson, Lucas Dixon, Mahima Pushkarna, Martin Wattenberg, Michael Terry, Rebecca Salois, Timnit Gebru, Tulsee Doshi, Yannick Assogba, Yoni Halpern, Zan Armstrong, and my other colleagues at Google for their help with this piece.
+</div>
+
+</div>
+</div>
+<div id='end'></div>
+
+
+<link rel="stylesheet" href="../measuring-fairness/graph-scroll.css">
+
+<script src="../third_party/seedrandom.min.js"></script>
+<script src='../third_party/d3_.js'></script>
+<script src='../third_party/swoopy-drag.js'></script>
+<script src='../third_party/misc.js'></script>
+<script src='annotations.js'></script>
+<script src='script.js'></script>
