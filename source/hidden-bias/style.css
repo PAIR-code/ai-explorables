@@ -41,6 +41,13 @@ limitations under the License.
   }
 }
 
+/* Ensure the last panel can be activated on tall screens */
+@media (min-height: 1700px){
+  #container{
+    margin-bottom: 900px;
+  }
+}
+
 .tooltip span{
   padding: 2px;
 }
