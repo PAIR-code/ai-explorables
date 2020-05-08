@@ -14,7 +14,6 @@ limitations under the License.
 ==============================================================================*/
 
 
-console.clear()
 var ttSel = d3.select('body').selectAppend('div.tooltip.tooltip-hidden')
 
 var colors = {
