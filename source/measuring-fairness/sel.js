@@ -14,10 +14,6 @@ limitations under the License.
 ==============================================================================*/
 
 
-
-
-
-
 window.makeSel = function(){
   var s = c.width/(nCols -2) -1
 
@@ -46,13 +42,13 @@ window.makeSel = function(){
 
   truthAxis.append('g').translate([45, 22])
     .append('text').text('Sick').parent()
-    .append('text.weepeople').text('d')
+    .append('text.weepeople').text('k')
       .at({fontSize: 34, x: 22, y: 5})
       .st({fill: colors.sick})
 
   truthAxis.append('g').translate([95, 22])
     .append('text').text('Well').parent()
-    .append('text.weepeople').text('e')
+    .append('text.weepeople').text('d')
       .at({fontSize: 34, fill: colors.well, x: 22, y: 5})
       .st({fill: colors.well})
 
