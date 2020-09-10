@@ -21,7 +21,7 @@ limitations under the License.
 		`
 		<url>
 			<priority>0.5</priority>
-			<loc>https://pair.withgoogle.com/explorables${post.permalink}/</loc>
+			<loc>https://pair.withgoogle.com/explorables${post.permalink}</loc>
 			<lastmod>${post.date}</lastmod>
 		</url>
 		`
