@@ -5,7 +5,7 @@ var {exec, execSync} = require('child_process')
 
 var source = `${__dirname}/../../source`
 var public = `${__dirname}/../../public`
-if (!fs.existsSync(public)) fs.mkdir(public)
+if (!fs.existsSync(public)) fs.mkdirSync(public)
 
 function rsyncSource(){
   exec(`rsync -a --exclude _posts --exclude _templates ${source}/ ${public}/`)
