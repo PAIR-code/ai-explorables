@@ -22,6 +22,14 @@ limitations under the License.
 	<meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
+  <script>
+    !(function(){
+      var url = window.location.href
+        window.location = url + '/'
+      }
+    })()
+  </script>
+
   <title>${d.title}</title>
   <meta property="og:title" content="${d.title}">
   <meta property="og:url" content="https://pair.withgoogle.com/explorables${d.permalink}">

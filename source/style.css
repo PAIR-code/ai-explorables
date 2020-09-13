@@ -76,6 +76,8 @@ a{
   /*text-align: center;*/
   vertical-align: middle;
   font-size: 20px;
+  margin: 0px auto;
+  width: 300px;
 }
 .header-left img{
   width: 100px;
