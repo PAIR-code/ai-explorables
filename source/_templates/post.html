@@ -34,7 +34,7 @@ limitations under the License.
   <meta property="og:title" content="${d.title}">
   <meta property="og:url" content="https://pair.withgoogle.com/explorables${d.permalink}">
 
-  ${d.summary ? `<meta name="og:description" content="${d.summary}">`  : ''}
+  ${d.socialsummary || d.summary ? `<meta name="og:description" content="${d.socialsummary || d.summary}">`  : ''}
   ${d.shareimg ? `<meta property="og:image" content="${d.shareimg}">`  : ''}
   ${d.shareimg ? `<meta name="twitter:card" content="summary_large_image">` : ''}
   
@@ -56,10 +56,8 @@ limitations under the License.
   </div>
   
   <h1 class='headline'>${d.title}</h1>
-  <!-- <time>${d.date}</time> -->
-
+  
   ${d.summary ? `<div class="post-summary">${d.summary}</div>` : ''}
-  <!-- ${d.tags ? `<div class="post-tags">${d.tags}</div>` : ''} -->
 
   ${d.html}
 </body>
