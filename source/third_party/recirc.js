@@ -28,9 +28,7 @@ d3.loadData('../posts.json', (err, res) => {
       marginRight: isMobile ? 0 : 30,
       textDecoration: 'none',
     })
-    .at({
-      href: d => d.permalink//.slice(1)
-    })
+    .at({href: d => '..' + d.permalink})
 
 
   postSel.append('div.img')
