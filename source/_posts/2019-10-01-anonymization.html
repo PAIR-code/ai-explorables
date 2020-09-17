@@ -1,0 +1,184 @@
+<!--
+@license
+Copyright 2020 Google. All Rights Reserved.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+---
+template: post.html
+title: How randomized response can help collect sensitive information responsibly
+summary: Giant datasets are revealing new patterns in <a href='https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5070532/'>cancer</a>, <a href='https://opportunityinsights.org/national_trends/'>income inequality</a> and other important areas. However, the widespread availability of fast computers that can cross reference public data is making it harder to collect private information without inadvertently violating people's privacy. Modern randomization techniques can help preserve anonymity. 
+socialsummary: The availability of giant datasets and faster computers is making it harder to collect and study private information without inadvertently violating people's privacy.
+shareimg: https://pair.withgoogle.com/explorables/images/anonymization.png
+permalink: /anonymization/
+
+---
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style-graph-scroll.css">
+
+<div id='container' class='container-1'>
+<div id='graph'></div>
+<div id='sections'>
+<div>
+
+<h3>Anonymous Data</h3>
+
+<p>Let's pretend we're analysts at a small college, looking at anonymous survey data about plagiarism.
+
+<p>We've gotten responses from the entire student body, reporting if they've ever <span class='highlight purple'>plagiarized</span> or <span class='highlight grey'>not</span>. To encourage them to respond honestly, names were not collected. 
+<p>
+
+<p class='note'>The data here has been randomly generated</p>
+</div>
+
+
+<div>
+<p>On the survey students also report several bits of information about themselves, like their age...  
+</div>
+
+
+<div>
+<p>...and what state they're from. 
+
+<p>This additional information is critical to finding potential patterns in the data—why have so many first-years from New Hampshire plagiarized?  
+</div>
+
+
+<div>
+<h3>Revealed Information</h3>
+<p>But granular information comes with a cost. 
+
+<p>One student has a <span class='highlight box square orange'>unique</span> age/home state combination. By searching another student database for a 19-year old from Vermont we can identify one of the plagiarists from supposedly anonymous survey data.
+</div>
+
+
+<div>
+<p>Increasing granularity exacerbates the problem. If the students reported slightly more about their ages by including what season they were born in, we'd be able to <span class='highlight box square orange'>identify</span> about a sixth of them. 
+
+<p>This isn't just a hypothetical:  A <a href="https://cpg.doc.ic.ac.uk/individual-risk/">birthday / gender / zip code combination</a> uniquely identifies 83% of the people in the United States. 
+
+<p>With the spread of large datasets, it is increasingly difficult to release detailed information without inadvertently revealing someone's identity. A week of a person's location data could <a href='https://www.nytimes.com/interactive/2018/12/10/business/location-data-privacy-apps.html'>reveal</a> a home and work address—possibly enough to find a name using public records.
+</div>
+
+
+<div>
+<h3>Randomization</h3>
+<p>One solution is to randomize responses so each student has plausible deniability. This lets us buy privacy at the cost of some uncertainty in our estimation of plagiarism rates.
+
+<p><b>Step 1:</b> Each student flips a coin and looks at it without showing anyone.
+</div>
+
+
+<div>
+<p><b>Step 2:</b> Students who flip heads <span class='highlight purple-box box'>report plagiarism</span>, even if they haven't plagiarized. 
+
+<p>Students that flipped tails report the truth, secure with the knowledge that even if their response is linked back to their name, they can claim they flipped heads.
+</div>
+
+
+<div>
+<p>With a little bit of math, we can approximate the rate of plagiarism from these randomized responses. We'll skip the algebra, but doubling the reported non-plagiarism rate gives a good estimate of the actual non-plagiarism rate.    
+
+<p class='rand-text'></p>
+
+<div class='button-outer'>
+<div class='button-container flip-coins-once'>
+Flip coins
+</div>
+</div>
+
+</div>
+
+
+<div>  
+<h3>How far off can we be?</h3>
+
+<p>If we simulate this coin flipping lots of times, we can see the distribution of errors. 
+
+<p>The estimates are close most of the time, but errors can be quite large.  
+
+<div class='button-outer'>
+<div class='button-container flip-coins'>
+Flip coins 200 times
+</div>
+</div>
+
+</div>
+
+
+<div>    
+<p>Reducing the random noise (by reducing the number of students who flip heads) increases the accuracy of our estimate, but risks leaking information about students.  
+
+<p>If the coin is heavily weighted towards tails, identified students can't credibly claim they reported plagiarizing because they flipped heads.  
+
+<div class="slider-outer">
+<div class="slide-container-heads-prob"></div>
+<div class='pointer'><div></div></div>
+</div>
+
+</div>
+
+
+<div>    
+<p>One surprising way out of this accuracy-privacy tradeoff: carefully collect information from even more people. 
+
+<p>If we got students from other schools to fill out this survey, we could accurately measure plagiarism while protecting everyone's privacy. With enough students, we could even start comparing plagiarism across different age groups again—safely this time.     
+ 
+<div class="slider-outer">
+<div class="slide-container-population"></div>
+&nbsp;
+<div class="slide-container-heads-prob"></div>
+</div>
+</div>
+
+
+
+</div>
+</div>
+
+<h3>Conclusion</h3>
+
+<p>Aggregate statistics about private information are valuable, but can be risky to collect. We want researchers to be able to study things like the connection between demographics and health outcomes without revealing our entire medical history to our neighbors. The coin flipping technique in this article, called <a href='https://en.wikipedia.org/wiki/Randomized_response'>randomized response</a>, makes it possible to safely study private information.  
+
+<p>You might wonder if coin flipping is the only way to do this. It's not—<a href='https://desfontain.es/privacy/differential-privacy-in-more-detail.html'>differential privacy</a> can add targeted bits of random noise to a dataset and guarantee privacy. More flexible than randomized response, the 2020 Census will use it to <a href='https://www.youtube.com/watch?v=pT19VwBAqKA'>protect respondents' privacy</a>. In addition to randomizing responses, differential privacy also limits the impact any one response can have on the released data.
+
+
+<h3>Credits</h3>
+
+<p>Adam Pearce and Ellen Jiang // September 2020
+
+<p>Thanks to Carey Radebaugh, Fernanda Viégas, Emily Reif, Hal Abelson, Jess Holbrook, Kristen Olson, Mahima Pushkarna, Martin Wattenberg, Michael Terry, Miguel Guevara, Rebecca Salois, Yannick Assogba, Zan Armstrong and our other colleagues at Google for their help with this piece.
+
+</div>
+
+
+<div id='end'></div>
+
+<script src='../third_party/seedrandom.min.js'></script>
+<script src='../third_party/d3_.js'></script>
+<script src='../third_party/d3-scale-chromatic.v1.min.js'></script>
+<script src='../third_party/swoopy-drag.js'></script>
+<script src='../third_party/misc.js'></script>
+<script src='annotations.js'></script>
+
+
+
+
+<script src='make-axii.js'></script>
+<script src='make-students.js'></script>
+<script src='make-sel.js'></script>
+<script src='make-estimates.js'></script>
+<script src='make-sliders.js'></script>
+<script src='make-slides.js'></script>
+<script src='make-gs.js'></script>
+<script src='init.js'></script>

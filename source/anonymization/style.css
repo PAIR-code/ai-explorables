@@ -1,0 +1,340 @@
+
+.tooltip {
+  top: -1000px;
+  position: fixed;
+  padding: 10px;
+  background: rgba(255, 255, 255, .90);
+  border: 1px solid lightgray;
+  pointer-events: none;
+  font-size: 14px;
+  width: 267px;
+}
+.tooltip-hidden{
+  opacity: 0;
+  transition: all .3s;
+  transition-delay: .1s;
+}
+
+@media (max-width: 590px){
+  div.tooltip{
+    bottom: -1px;
+    width: calc(100%);
+    left: -1px !important;
+    right: -1px !important;
+    top: auto !important;
+    width: auto !important;
+  }
+}
+
+
+.domain{
+  display: none;
+}
+
+text{
+  /*pointer-events: none;*/
+  /*text-shadow: 0 1px 0 #fff, 1px 0 0 #fff, 0 -1px 0 #fff, -1px 0 0 #fff;*/
+}
+
+
+
+.note{
+  font-size: 12px;
+  color: #999;
+  margin-top: 60px;
+}
+
+h1{
+	font-weight: 100;
+	font-size: 34px;
+	margin-bottom: .5em;
+  line-height: 1.3em;
+  margin-top: 1.4em;
+  text-align: center;
+  font-family: "Google Sans", sans-serif;
+}
+
+.mono{
+  font-family: monospace;
+}
+
+
+svg{
+  overflow: visible;
+}
+
+
+
+
+.axis{
+  font-size: 12px;
+  pointer-events: none;
+}
+.axis{
+  color: #888;
+
+}
+.axis text, .slider-label-container{
+  fill: #888;
+  color: #888;
+  font-family: 'Roboto', Helvetica, sans-serif;
+  font-size: 12px;
+}
+
+.axis text.bold, .slider-label-container{
+  color: #3C4043;
+  fill: #3C4043;
+  font-weight: 500;
+
+}
+.axis line{
+  stroke: #ccc;
+}
+
+div.axis b{
+  margin-bottom: -10px;
+  display: block;
+}
+
+.init-hidden{
+  opacity: 0;
+}
+
+.slider-label-container{
+  font-weight: 500;
+}
+
+
+
+.highlight{
+  color: #fff;
+  padding-left: 3px;
+  padding-right: 3px;
+  padding-top: 1px;
+  padding-bottom: 1px;
+  border-radius: 3px;
+}
+
+.highlight.blue{ background: blue; }
+.highlight.orange{ background: #ffd890; }
+.highlight.yellow{ background: #ff0; color: #000; }
+.highlight.purple{ background: #CB10CB; }
+.highlight.purple{ background: #FF7AFF; color: #000;}
+.highlight.grey{ background: #ccc; color: #000;}
+.highlight.box{ 
+  border: 1px solid #ff6200;
+  border-radius: 5px;
+  color: #000;
+  padding-bottom: 2px;
+  white-space: nowrap;
+}
+.highlight.purple-box{
+  border: 1px solid #b0b;
+}
+.highlight.grey-box{
+  border: 1px solid #ccc;
+}
+.highlight.box.square{
+  border-radius: 0px;
+}
+.highlight.blue-box{ border: 2px solid #007276; }
+
+
+
+.circle{
+  background: #eee;
+  border: 1px solid #ccc;
+  font-family: monospace;
+  padding-left: 4px;
+  padding-right: 4px;
+  padding-top: 1px;
+  padding-bottom: 1px;
+
+  border-radius: 100px;
+}
+
+
+.strikethrough{
+  text-decoration: line-through;
+  color: #000;
+}
+
+
+.annotations path{
+  fill: none;
+  stroke: black;
+}
+
+
+
+rect.unique{
+  stroke: #ff6200;
+  stroke-width: 1px;
+  fill: #ffd890;
+
+  animation-duration: 1s;
+  animation-name: xstrokeblink;
+  display: inline-block;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+
+@keyframes strokeblink {
+  from {
+    /*fill: black;*/
+    stroke-width: 1px;
+  }
+
+  to {
+    /*fill: green;*/
+    stroke-width: 1px;
+  }
+}
+
+
+
+
+
+.inline-line{
+  border: 1px #f0f solid;
+  width: 20px;
+  display: inline-block;
+  position: relative;
+  top: -5px;
+}
+
+.slider-label-container{
+  width: 240px;
+}
+.slider-label{
+  font-size: smaller;
+  margin-left: 2px;
+}
+
+.slider-text-label{
+  margin-left: 5px;
+  white-space: nowrap;
+}
+
+
+g.student:hover circle{
+  stroke-width: 2px;
+}
+
+g{
+  /*opacity: 1 !important;*/
+}
+
+.inactive{
+  opacity: 0 !important;
+  pointer-events: none;
+}
+
+input[type="range" i] {
+  background-color:#def5ef;
+  -webkit-appearance: none;
+  height:20px;
+  width:240px;
+  overflow: hidden;
+}
+
+input[type='range']::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 16px;
+  height: 20px;
+  cursor: ew-resize;
+  background: #007276;
+  box-shadow: -200px 0 0 200px #7ed3c9;
+  border: 1px solid #333;
+}
+
+input:focus {
+  outline-width: 0;
+}
+
+
+
+
+.estimate{
+  opacity: 0;
+  pointer-events: none
+}
+
+.estimate.active{
+  opacity: .70;
+  pointer-events: all;
+}
+
+.est-text{
+  text-shadow: 0 2px 0 rgba(255,255,255,1), 2px 0 0 rgba(255,255,255,1), 0 -2px 0 rgba(255,255,255,1), -2px 0 0 rgba(255,255,255,1);
+}
+
+
+
+
+@media (max-width: 590px){
+  text{
+    font-size: 120% !important;
+  }
+}
+
+
+.button-container{
+  border: 1px solid #888;
+  display: inline-block;
+  padding: 10px 20px; 
+  cursor: pointer;
+  text-align: center;
+  border-radius: 10px;
+  user-select: none;
+  margin: 0px auto;
+/*  color: #888;
+  font-family: 'Roboto', Helvetica, sans-serif;
+  font-size: 12px;
+  font-weight: 500;*/
+  position: relative;
+  left: -20px;
+
+
+}
+
+.button-container:hover{
+  background: #ddd;
+}
+
+.button-outer{
+  text-align: center;
+  margin-top: 20px;
+}
+
+.pointer{
+  height: 0px;
+  position: relative;
+}
+.pointer div {
+  overflow: visible;
+  content: "";
+  background-image: url(https://pair-code.github.io/interpretability/bert-tree/pointer.svg);
+  width: 27px;
+  height: 27px;
+  position: absolute;
+  left: 165px;
+  top: -35px;
+}
+
+a{
+  color: rgb(60, 64, 67);
+}
+a:hover{
+  color: #000;
+}
+
+
+
+
+
+
+
+
+

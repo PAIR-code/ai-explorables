@@ -20,8 +20,7 @@ function addVec([a0, a1], [b0, b1]){
   return [a0 + b0, a1 + b1]
 }
 
-function phyllotaxis(i, initialRadius = 10){
-  var initialAngle = Math.PI*(3 - Math.sqrt(5))
+function phyllotaxis(i, initialRadius=10, initialAngle=Math.PI*(3 - Math.sqrt(5))){
   i = i + Math.random()/20
 
   var r = initialRadius*Math.sqrt(Math.random() + i)
