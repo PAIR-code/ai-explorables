@@ -300,6 +300,39 @@ h1{
 
 
 
+#recirc{
+}
+
+#recirc .img{
+  outline: 1px solid #ccc;
+}
+
+#recirc .post:hover .img{
+  outline: 1px solid #333;
+}
+
+#recirc .title{
+  /*color: #00695C;*/
+  font-size: 18px;
+  font-weight: 500;
+  margin-bottom: -10px;
+  /*height: 10px !important;*/
+  /*opacity: 0;*/
+}
+
+#recirc .post:hover .title{
+  text-decoration: underline !important;
+}
+
+#recirc .post{
+  margin-bottom: 30px;
+}
+
+
+
+
+
+
 
 
 
@@ -420,6 +453,4 @@ a:visited {
   color: #4a4a4a;
   text-align: right;
 }
-
-
 
