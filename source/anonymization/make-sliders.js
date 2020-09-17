@@ -67,10 +67,11 @@ window.makeSliders = function(){
 
     var sliderSel = d3.selectAll('.slide-container-population,.slide-container-heads-prob').html('')
       .data(sliders)
+      .classed('slider', true)
       .st({
         display: 'inline-block',
         width: width,
-        // paddingRight: 60,
+        paddingRight: (d, i) => i == 1 ? 40 : 0,
         marginTop: 20,
       })
 

@@ -280,6 +280,11 @@ input:focus {
 }
 
 
+.slider{
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
 .button-container{
   border: 1px solid #888;
   display: inline-block;
@@ -288,6 +293,7 @@ input:focus {
   text-align: center;
   border-radius: 10px;
   user-select: none;
+  -webkit-tap-highlight-color: transparent;
   margin: 0px auto;
 /*  color: #888;
   font-family: 'Roboto', Helvetica, sans-serif;
@@ -295,8 +301,6 @@ input:focus {
   font-weight: 500;*/
   position: relative;
   left: -20px;
-
-
 }
 
 .button-container:hover{
