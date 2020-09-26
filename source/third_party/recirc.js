@@ -17,8 +17,9 @@ limitations under the License.
 
 
 d3.loadData('../posts.json', (err, res) => {
-  var posts = res[0].filter(d => !window.location.href.includes(d.permalink))
-
+  var posts = res[0]
+    .filter(d => !window.location.href.includes(d.permalink))
+    .filter(d => d.shareimg.includes('http'))
   var isMobile = innerWidth < 900 
   var postSel = d3.select('#recirc').html('').appendMany('a.post', posts)
     .st({
@@ -50,7 +51,7 @@ d3.loadData('../posts.json', (err, res) => {
     })
 
   postSel.append('p.summary')
-    .text(d => d.summary)
+    .text(d => d.socialsummary || d.summary)
 
 
 })
