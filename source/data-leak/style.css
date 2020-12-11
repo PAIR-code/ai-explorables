@@ -1,0 +1,176 @@
+body{
+
+}
+
+
+p{
+  margin-left: 0px auto;
+  margin-right: 0px auto;
+  margin: 0px auto;
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+h3, .post-summary, h1x, p{
+  max-width: 650px;
+}
+
+#recirc{
+  max-width: 760px;
+}
+
+
+.white{
+  stroke: #fff;
+  fill: none;
+  stroke-width: 1;
+}
+
+.player{
+	cursor: pointer;
+  stroke: #000;
+  stroke-width: 2;
+}
+
+.button{
+  border: .5px solid #000;
+  /*border-bottom-width: 4px;*/
+  /*border-right-width: 4px;*/
+  border-radius: 8px;
+  padding: 4px;
+  margin: 2px;
+  cursor: pointer;
+  display: inline-block;
+  /*font-family: monospace;*/
+  /*font-family: 'Roboto Slab', serif;*/
+  /*font-size: 16px;*/
+  user-select: none;
+  font-family: 'Google Sans', sans-serif;
+  font-family: 'Roboto', Helvetica, sans-serif;
+
+  /*font-weight: 300;*/
+}
+
+@media (min-width: 800px){
+  .button{
+    margin-bottom: -100px;
+  }
+}
+
+.inline-button{
+  display: inline;
+}
+
+.button:hover{
+  background: #eee !important;
+}
+
+.button:active{
+}
+
+canvas{
+  opacity: .9;
+}
+
+svg{
+  overflow: visible;
+}
+
+.axis{
+  font-size: 12px;
+
+}
+.axis{
+  color: #000;
+}
+.axis text{
+  fill: #999;
+  font-family: 'Roboto', Helvetica, sans-serif;
+}
+.axis text.chart-title{
+  fill: #000;
+  font-size: 16px;
+}
+.axis line{
+  stroke: #ccc;
+  display: none;
+}
+
+.domain{
+  stroke: #ccc;
+  display: none;
+}
+
+text, .chart-title{
+  user-select: none;
+  /*pointer-events: none;*/
+}
+
+
+.field{
+  font-family: 'Google Sans', sans-serif;
+  font-family: 'Roboto', Helvetica, sans-serif;
+  margin-top: 10px;
+}
+
+.chart-title span{
+  padding: 4px;
+}
+
+.chart-title span:last-child{
+  color: #fff;
+}
+
+.chart-title span:first-child{
+  color: #000;
+}
+
+#field-regression .white, #field-regression-leak .white{
+	stroke: #ccc;
+}
+
+#field-grass .button, #field-prediction .button{
+  display: none;
+}
+
+.face-container{
+  max-width: 400px;
+
+  margin: 0px auto;
+}
+.face-container img{
+  width: 100%;
+}
+
+.post-summary {
+  margin-bottom: 40px;
+}
+
+p {
+  margin: 10 auto;
+}
+
+
+
+.pointer{
+  height: 0px;
+  position: relative;
+}
+.pointer div {
+  overflow: visible;
+  content: "";
+  background-image: url(https://pair-code.github.io/interpretability/bert-tree/pointer.svg);
+  width: 27px;
+  height: 27px;
+  position: absolute;
+  left: -35px;
+  top: 0px;
+}
+
+
+.face-container:after{
+  content: "M. Fredrikson, S. Jha, and T. Ristenpart, “Model inversion attacks that exploit confidence information and basic countermeasures,” in CCS, 2015.";
+  font-size: 12px;
+  color: #888;
+  line-height: 14px;
+  display: block;
+}
