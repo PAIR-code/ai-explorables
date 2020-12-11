@@ -408,30 +408,14 @@ h1{
 a:visited {
   color: #7B1FA2;
 }
-*/.nav-links a {
+*/
+.nav-links a {
   color: inherit;
   text-decoration: none;
   margin: 50px 0 0 50px;
   display: inline-block;
 }
 
-@media (min-width: 840px){
-  .mdl-grid {
-    padding: 8px;
-  }
-  .mdl-cell--1-col, .mdl-cell--1-col-desktop.mdl-cell--1-col-desktop {
-    width: calc(8.3333333333% - 16px);
-  }
-  .mdl-cell--3-col, .mdl-cell--3-col-desktop.mdl-cell--3-col-desktop {
-    width: calc(25% - 16px);
-  }
-  .mdl-cell {
-    margin: 8px;
-    width: calc(33.3333333333% - 16px);
-  }
-  .mdl-cell--8-col, .mdl-cell--8-col-desktop.mdl-cell--8-col-desktop {
-    width: calc(66.6666666667% - 16px);
-}
 
 @media screen and (max-width: 1035px){
   .nav-links {
