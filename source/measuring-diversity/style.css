@@ -223,7 +223,7 @@ text{
   display: none;
 }
 
-.top text{
+#pick-metric .top text, #coat-v-gender .top text {
   font-weight: 300 !important;
 }
 
