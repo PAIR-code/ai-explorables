@@ -25,9 +25,9 @@ Another diversity metric we care about is the percentage of dots... how close to
 
 <div id='pick-triangle' class='shapes'></div>
 
-If we can only return a single subset, how should we consider multiple diversity metrics? Sometimes it isn't possible to reduce the difference of every metric to zero. One natural approach: find the selection with the lowest **mean difference** across all the metrics to get as close as possible to all the targets. 
+If we can only return a single subset, how should we consider multiple diversity metrics? Sometimes it isn't possible to reduce the difference of every metric to zero. One natural approach: find the selection with the **lowest mean difference** across all the metrics to get as close as possible to all the targets. 
 
-In other circumstances, like picking a panel of speakers, avoiding badly representing any single category might be more important. This can be done by finding the subset with the lowest **max difference**. Try minimizing both below:  
+In other circumstances, like picking a panel of speakers, avoiding badly representing any single category might be more important. This can be done by finding the subset with the **lowest max difference**. Try minimizing both below:  
 
 <div id='pick-metric' class='shapes' style='margin-bottom: 0px'></div>
 
