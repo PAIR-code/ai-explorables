@@ -65,15 +65,9 @@ a{
   font-size: 20px;
   margin: 0px auto;
   margin-top: 15px;
-  margin-left: calc(50% - 50vw);
-  margin-right: calc(50% - 50vw);
   padding-left: 20px;
-  /*max-width: 750px;*/
-  /*background: #FF6D00;*/
 }
 .header-left{
-	/*float: middle;*/
-  /*text-align: center;*/
   vertical-align: middle;
   font-size: 20px;
   margin: 0px auto;
