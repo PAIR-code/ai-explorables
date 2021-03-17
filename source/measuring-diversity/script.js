@@ -1,5 +1,6 @@
 // Seeded random number generator
 window.random = new Math.seedrandom('aaaa')
+window.randomIndex = new Math.seedrandom('7b')
 
 window.numRows = 20
 window.shapes = window.shapes || d3.range(21).map(i => randomShape(i, random))
@@ -8,6 +9,7 @@ window.random2 = new Math.seedrandom('7')
 // window.columnShapes = window.columnShapes || d3.range(window.numRows).map(i => d3.range(10).map(i =>randomShape(i, random2)))
 window.columnShapes = d3.range(window.numRows).map(i => d3.range(10).map(i =>randomShape(i, random2, true)))
 
+console.log(window.random3)
 function randomShape(i, random, colTargets){
   var color2fill = {
     green: '#5A9F8A',
@@ -34,10 +36,11 @@ function randomShape(i, random, colTargets){
     shape = 'triangle'
   }
 
-
+  var displayIndex = randomIndex()
 
   return {
     i,
+    displayIndex,
     color,
     fill: color2fill[color],
     dFill: d3.color(color2fill[color]).darker(1),
@@ -292,7 +295,7 @@ function drawShape(id, initFn=d => e => e){
   var s = 110
 
   var topSel = sel.append('div.top')
-  var shapeSel = sel.appendMany('div.shape', shapes)
+  var shapeSel = sel.appendMany('div.shape', _.sortBy(shapes, d => d.displayIndex))
     .st({width: s, height: s})
     .on('click', d => {
       active[d.i] = !active[d.i]
