@@ -65,7 +65,7 @@ We saw how a small switch from mean to max made a huge difference in what abstra
 
 ### More Reading
 
-The [Diversity and Inclusion Metrics](https://arxiv.org/pdf/2002.03256.pdf) has a [Colab](https://colab.research.google.com/github/PAIR-code/ai-explorables/blob/master/source/measuring-diversity/diversity-and-inclusion.ipynb) with a detailed desciption of the metrics, additional visualizations and a reference Python implementation.  
+The [Diversity and Inclusion Metrics](https://arxiv.org/pdf/2002.03256.pdf) paper has a [Colab](https://colab.research.google.com/github/PAIR-code/ai-explorables/blob/master/source/measuring-diversity/diversity-and-inclusion.ipynb) with a detailed desciption of the metrics, additional visualizations and a reference Python implementation.  
 
 The difficulties of [measuring fairness](https://pair.withgoogle.com/explorables/measuring-fairness/) in general have been well studied; subset selection is still an active area of research. [Fairness of Exposure in Rankings](https://www.cs.cornell.edu/~tj/publications/singh_joachims_18a.pdf) proposes a ranking algorithm that incorporates fairness constraints. [Toward creating a fairer ranking in search engine results](https://www.ilab.cs.rutgers.edu/~rg522/publication/gao-2020-ipm/gao-2020-ipm.pdf) measures diversity bias in actual search results. 
 
