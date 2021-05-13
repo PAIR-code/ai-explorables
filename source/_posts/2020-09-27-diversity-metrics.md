@@ -5,6 +5,7 @@ titlex: Diversity and Inclusion Metrics
 summary: Search results that reflect historic inequities can amplify stereotypes and perpetuate under-representation. Carefully measuring diversity in data sets can help.
 shareimg: https://pair.withgoogle.com/explorables/images/measuring-diversity.png
 permalink: /measuring-diversity/
+date: 2021-03-01
 ---
 
 <link rel="stylesheet" href="style.css">

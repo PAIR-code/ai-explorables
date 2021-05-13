@@ -19,11 +19,11 @@ limitations under the License.
 <rss version="2.0">
 <channel>
 	<title>Explorable AI</title>
-	<link>https://pair.withgoogle.com/explorable</link>
+	<link>https://pair.withgoogle.com/explorables</link>
 	<description>Big ideas in machine learning, simply explained</description>
 	<image>
 		<title>roadtolarissa</title>
-		<link>https://pair.withgoogle.com/explorable</link>
+		<link>https://pair.withgoogle.com/explorables</link>
 	</image>
 	${d.filter(post => post.draft != 'true').reverse().map(post => 
 		`
@@ -38,7 +38,7 @@ limitations under the License.
 					]]>
 				</description>
 			` : ''}
-			<link>https://pair.withgoogle.com/explorable${post.permalink}</link>
+			<link>https://pair.withgoogle.com/explorables${post.permalink}</link>
 			<pubDate>${(new Date(post.date)).toUTCString()}</pubDate>
 		</item>
 		`
