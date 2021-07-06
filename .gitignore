@@ -5,3 +5,5 @@ node_modules
 yarn.lock
 watch-doc/credentials.json
 watch-doc/token.json
+
+server-side/fill-in-the-blank/cache/
