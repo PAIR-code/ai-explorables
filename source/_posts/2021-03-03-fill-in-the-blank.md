@@ -1,7 +1,7 @@
 ---
 template: post.html
 title: What Have Language Models Learned?
-summary: By asking language models to fill in the blank, we can see what they have learned.
+summary: By asking language models to fill in the blank, we can probe their understanding of the world.
 shareimg: https://pair.withgoogle.com/explorables/images/fill-in-the-blank.png
 permalink: /fill-in-the-blank/
 date: 2021-07-28
