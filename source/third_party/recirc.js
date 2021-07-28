@@ -22,6 +22,8 @@ d3.loadData('../posts.json', (err, res) => {
     .filter(d => d.shareimg.includes('http'))
   posts = d3.shuffle(posts)
 
+  console.log(posts)
+
 
   var isMobile = innerWidth < 900 
   var postSel = d3.select('#recirc').html('').appendMany('a.post', posts)
@@ -36,11 +38,10 @@ d3.loadData('../posts.json', (err, res) => {
 
 
   postSel.append('div.img')
-    .at({src: d => d.shareimg})
     .st({
       width: '100%', 
       height: 200,
-      backgroundImage: d => `url(${d.shareimg})`,
+      backgroundImage: d => `url(${d.shareimgabstract || d.shareimg})`,
       backgroundSize: 'cover',
       backgroundPosition: 'center',
     })
