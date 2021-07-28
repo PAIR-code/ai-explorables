@@ -7,3 +7,10 @@ watch-doc/credentials.json
 watch-doc/token.json
 
 server-side/fill-in-the-blank/cache/
+server-side/fill-in-the-blank/env/
+server-side/fill-in-the-blank/py/bert-large-uncased-whole-word-masking/pytorch_model.bin
+server-side/fill-in-the-blank/py/zari-bert-cda/pytorch_model.bin
+server-side/fill-in-the-blank/py/bert-large-uncased/pytorch_modecl.bin
+server-side/fill-in-the-blank/zari-convert/raw
+
+*.pytorch_modecl.bin
