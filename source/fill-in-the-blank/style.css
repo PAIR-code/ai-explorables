@@ -35,6 +35,12 @@
 }
 
 @media (max-width: 590px){
+  .footend{
+    margin-left: 0px;
+    width: 10px;
+  }
+
+
   div.tooltip{
     transition: all 0s !important;
     transition-delay: 0s !important;
