@@ -1,7 +1,7 @@
 console.clear()
 d3.select('body').selectAppend('div.tooltip.tooltip-hidden')
 
-var colors = ["#c0584b", "#649398"]
+var colors = ["#ba6a38", "#008670"]
 
 d3.loadData('https://roadtolarissa.com/colab/gender-over-time-colab/processed_vocab.json', (err, res) => {
   window.vocab = res[0]
