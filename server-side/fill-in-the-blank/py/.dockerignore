@@ -1,0 +1,11 @@
+Dockerfile
+README.md
+*.pyc
+*.pyo
+*.pyd
+__pycache__
+.pytest_cache
+
+*.bin
+zari-bert-cda/pytorch_model.bin
+bert-large-uncased-whole-word-masking/pytorch_model.bin
