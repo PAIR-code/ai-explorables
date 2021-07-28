@@ -302,13 +302,13 @@ window.initPair = function(pair){
         .at({textAnchor: 'middle'})
         .st({fill: '#000'})
 
+      c.svg.selectAll('g.rotate-only.sent-1,g.rotate-only.sent-1').remove()
       c.svg.selectAppend('g.rotate-only.sent-1')
         .translate([c.width + 20, c.height/2])
         .append('text')
         .text(`Higher likelihood, ${pair.label1 ? pair.label1 + ' sentence ' : 'sentence one'}  →`)
         .at({textAnchor: 'start', transform: 'rotate(-90)', x: 20})
         .st({fill: util.colors[1]})
-
 
       c.svg.selectAppend('g.rotate-only.sent-1')
         .translate([c.width + 20, c.height/2 + 0])
