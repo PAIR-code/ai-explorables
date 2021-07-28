@@ -1,0 +1,718 @@
+@media (max-width: 1100px){
+  body{
+    /*overflow-x: hidden;*/
+  }
+}
+
+
+.tooltip {
+  top: -1000px;
+  position: absolute;
+  padding: 10px;
+  background: rgba(255, 255, 255, .8);
+  border: 0px solid lightgray;
+  
+  width: 300px;
+  font-size: 14px;
+  line-height: 1.4em;
+  background: rgba(0, 0, 0, .8);
+  color: #fff;
+  pointer-events: all !important;
+}
+.tooltip a{
+  color:  #fff !important;
+}
+.tooltip:hover{
+/*  opacity: 1;
+  pointer-events: all !important;
+*/}
+
+.tooltip-hidden{
+  opacity: 0;
+  transition: all .3s;
+  transition-delay: .2s;
+  pointer-events: none !important;
+}
+
+@media (max-width: 590px){
+  div.tooltip{
+    transition: all 0s !important;
+    transition-delay: 0s !important;
+
+    display: none;
+    position: fixed;
+    bottom: -1px;
+    width: calc(100%);
+    left: -1px !important;
+    right: -1px !important;
+    top: auto !important;
+    width: auto !important;
+  }
+}
+
+svg{
+  overflow: visible;
+}
+
+.domain{
+  display: none;
+}
+
+.tick{
+  display: none;
+}
+
+.bg-tick{
+  stroke: #eee;
+}
+
+text{
+  pointer-events: none;
+  /*fill: #fff;*/
+  text-shadow: 0 1px 0 #fff, 1px 0 0 #fff, 0 -1px 0 #fff, -1px 0 0 #fff;
+}
+
+.pair{
+  width: 820px;
+  /*height: 550px;*/
+  margin: 0px auto;
+  margin-top: 25px !important
+}
+
+.nurse-name-zari-cda{
+  margin-bottom: 35px;
+}
+
+.pair > div{
+  display: inline-block;
+  vertical-align: top;
+}
+
+.pair .graph{
+  width: 500px;
+}
+
+.pair .options{
+  width: 250px;
+  padding-right: 20px;
+}
+
+.pair .warning{
+  width: 250px;
+  /*border: 1px solid orange;*/
+  /*background: #fff9e4;*/
+  /*padding: 10px;*/
+  margin-top: 15px;
+  padding-left: 0px;
+  font-size: 14px;
+  line-height: 1.25em;
+  opacity: 0;
+  transition: all .2s;
+}
+
+.pair .reset{
+  width: 58px;
+  /*border: 1px solid orange;*/
+  /*background: #fff9e4;*/
+  /*padding: 10px;*/
+  margin-top: 15px;
+  font-size: 14px;
+  line-height: 1.25em;
+  opacity: 0;
+  transition: opacity .2s;
+  cursor: pointer;
+  user-select: none; 
+  outline: 1px solid #ccc;
+  padding: 5px;
+
+}
+.pair .reset span{
+  position: relative;
+  top: -1px;
+  padding-right: 4px;
+  padding-left: 1px;
+  /*font-size: ;*/
+}
+
+.pair .reset:hover{
+  background: #eee;
+  color:  #000;
+  outline: 1px solid #000;
+}
+
+.options > *{
+  margin-right: 10px;
+}
+
+.options b{
+  display: block;
+  margin-bottom: 5px;
+  margin-top: 10px;
+}
+
+
+
+
+.flex-row{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  column-gap: 10px
+}
+
+.flex-row > *{
+  flex-grow: 1;
+  margin-right:  0px !important;
+}
+
+.options > *{
+  margin-right:  0px;
+}
+
+.pair textarea{
+  width: 100%;
+}
+
+.flex-row-textarea{
+  display: block;
+}
+
+@media (max-width: 820px){
+  .pair{
+    width: 100%;
+    height: auto;
+    max-width: 500px;
+    margin: 0px auto;
+  }
+
+  .flex-row{
+    margin-bottom: -10px;
+  }
+
+  .flex-row-textarea{
+    display: flex;
+    margin-bottom: 10px;
+  }
+
+
+  .pair .options{
+    width: auto;
+    padding-right: 0px;
+  }
+
+  .warning{
+    display: none !important;
+  }
+
+  .reset{
+    display: none !important;
+  }
+
+  .pair .graph{
+    width: 100%;
+  }
+
+  .annotations{
+    display: none;
+  }
+}
+
+
+
+.pair.difference{
+  width: 1000px;
+  margin-left: 0px;
+}
+
+.pair.difference .pair-container{
+}
+
+.pair .options.wide{
+  width: 100%;
+  margin-bottom: 20px;
+}
+.pair .options.wide > div{
+  display: inline-block;
+}
+
+.options.wide .option-type .button{
+  width: 78px !important;
+}
+
+.options.wide .option-model .button{
+  width: 40px !important;
+}
+
+.options.wide .update.button{
+  width: 80px !important;
+}
+
+textarea{
+  font-family: 'Roboto', Helvetica, sans-serif;
+  font-weight: 300;
+  line-height: 1.55em;
+  font-size: 16px;
+  font-weight: bold;
+  border: 1px #ccc solid;
+  resize: none;
+}
+
+.button.update{
+  /*height: 20px;*/
+  /*position: relative;*/
+  /*top: -30px;*/
+  /*margin-bottom: -10px;*/
+  /*vertical-align: center;*/
+  margin-top: 25px;
+  width: 252px;
+  text-align: center;
+  font-weight: 500;
+}
+.button{
+  display: inline-block;
+  outline: 1px solid #ccc;
+  padding: 5px;
+  margin-top: 10px;
+  margin-right: 10px;
+  position: relative;
+  top: -12px;
+  cursor: pointer;
+  user-select: none; 
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .button:hover{
+    outline-color: #000;
+  }
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0) and @media (max-width: 900px) { 
+  select,
+  textarea,
+  input {
+    font-size: 16px !important;
+  }
+
+  textarea{
+    height: 80px !important;
+  }
+}
+
+
+.button.active{
+  background: #eee;
+  color: #000;
+  /*font-weight: 500;*/
+}
+
+
+.button.loading i{
+  opacity: 1;
+}
+
+.button.loading{
+  pointer-events: none;
+  /*opacity: .6;*/
+}
+.p-button{
+  /*position: relative;*/
+  /*top: -3px;*/
+  /*line-height:  10px;*/
+  /*line-height: */
+  display: inline-block;
+  margin-right: 15px;
+}
+.p-button-link{
+  text-decoration: underline;
+  cursor: pointer;
+  padding-right: 10px;
+}
+.interesting-pair-alts .p-button-link{
+  display: block;
+  text-decoration: none;
+}
+.interesting-pair-alts .p-button-link div{
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  outline: 1px solid #ccc;
+  margin-top: 5px;
+  margin-bottom:  5px;
+  margin-left:  10px;
+
+}
+.difference-difference-alts .p-button-link:hover div{
+  outline: 1px solid #000;
+}
+
+.difference-difference-alts .p-button-link{
+  display: block;
+  text-decoration: none;
+}
+.difference-difference-alts .p-button-link div{
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  outline: 1px solid #ccc;
+  margin-top: 5px;
+  margin-bottom:  5px;
+  margin-left:  10px;
+
+}
+.difference-difference-alts .p-button-link:hover div{
+  outline: 1px solid #000;
+}
+
+
+.wide .flex-row{
+  width: 220px;
+}
+
+.wide > *{
+  margin-right: 40px;
+}
+
+.wide textarea{
+  position: relative;
+  top: 12px;
+}
+
+
+@media (max-width: 1100px){
+  .pair-container-overflow{
+    overflow-x: scroll;
+    width: 100% !important;
+  }
+
+  .pair.difference{
+    width: auto;
+    max-width: 2000px;
+  }
+
+  .pair.difference .options{
+    margin: 0px auto;
+    margin-left: max(50vh - 500px, 0px);
+    width: min(500px, 100%);
+  }
+
+}
+
+.pair-container{
+  width: 1000px;
+}
+
+
+
+
+
+.checkbox{
+  display: inline-block;
+  position: relative;
+  top: -10px;
+  margin-left: 10px;
+
+}
+
+circle:hover{
+  stroke: blue;
+}
+
+
+
+.hover text{
+  fill: #000;
+  font-weight: 300;
+  /*stroke-width: 2px;*/
+  /*text-shadow: 0 2px 0 #000, 2px 0 0 #000, 0 -2px 0 #000, -2px 0 0 #000;*/
+}
+
+#graph > div{
+  display: inline-block;
+}
+
+text.tiny{
+  font-size: 9px;
+  font-family: monospace;
+  /*fill: #555;*/
+}
+
+
+
+
+
+svg{
+  overflow: visible;
+}
+
+
+input{
+  font-family: monospace;
+  width: 900px;
+  overflow: hidden;
+  background-color: rgba(0,0,0,0);
+  border: 0px;
+}
+
+textarea{
+  font-family: monospace;
+  font-size: 14px;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.top-sents::-webkit-scrollbar {
+  /*display: none;*/
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.top-sents {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.sent{
+  margin-top: -15px;
+}
+
+
+
+.post-summary{
+  display: none;
+}
+
+
+.token-container{
+  text-align: center;
+  line-height: 2em;
+}
+
+.token{
+  display: inline-block;
+  padding: 5px;
+  margin: 10px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  font-size: 20px;
+  font-family: monospace;
+  outline: 1px solid #ccc;
+  color: #000;
+  cursor: pointer;
+  background: #fff;
+  border: 0px;
+}
+
+.token:hover, .token.active{
+  outline: 1px solid #000;
+}
+
+
+.xy-only, .rotate-only{
+  opacity: 0;
+  transition: all .2s;
+}
+
+.annotations{
+  transition: opacity .2s;
+}
+
+.is-xy .xy-only{
+  opacity: 1 !important;
+}
+.is-rotate .rotate-only{
+  opacity: 1 !important;
+}
+
+.hamlet{
+  min-height: 304px;
+  margin-bottom: 20px;
+}
+
+.hamlet-edit .button{
+  color: #ccc;
+  pointer-events: none;
+}
+.hamlet-edit.changed .button{
+  color: #000;
+  pointer-events: all;
+}
+
+@media (max-width: 500px){
+  .hamlet-edit .button{
+    display: block;
+    text-align: center;
+    top: 0px !important;
+    margin: 0px auto !important;
+    margin-top: 5px !important;
+    width: 100%;
+  }
+}
+
+
+
+.pair .update{
+  color: #ccc;
+  pointer-events: none;
+}
+.pair.changed .update{
+  color: #000;
+  pointer-events: all;
+}
+
+
+
+
+.difference-difference-list{
+  display: none;
+}
+
+.pair-container{
+  width:  900px;
+}
+.pair-container > div{
+  display: inline-block;
+}
+
+
+.difference-difference textarea{
+  height: 52px;
+}
+
+.not-is-color-by .y-axis-label text, .not-is-color-by .sent-1 text, .not-is-color-by .x-axis-label{
+  fill: #444 !important;
+}
+
+.is-color-by .y-axis-label text, .is-color-by .sent-1 text, .is-color-by .x-axis-label{
+  font-weight: 400;
+  /*text-decoration: underline;*/
+}
+
+
+
+.time-token.active path{
+  stroke:  #f0f;
+  opacity:  1;
+}
+.time-token.active text{
+  fill: #f0f !important;
+  opacity: 1 !important;
+  font-size: 14px;
+}
+
+
+.token{
+
+}
+
+.gender-over-time{
+  width:  1100px;
+  margin: 0px auto;
+  font-size:  14px;
+  margin-left: -91px;
+}
+
+.gender-over-time .tick{
+  display: block;
+}
+
+.gender-over-time .axis{
+  opacity:  .7;
+}
+
+.gender-over-time .sentence{
+  /*position: relative;*/
+  width: 32%;
+}
+
+.gender-over-time .sentence .sentence-title{
+  right: 42px;
+  position: relative;
+  text-align: right;
+  font-family: monospace;
+  
+}
+.gender-over-time .sentence.is-bear .sentence-title{
+  /*text-align: center;*/
+  right: 115px;
+}
+
+.gender-over-time .g-caption{
+  line-height: 18px;
+  margin-bottom: 30px;
+  margin-top: 5px;
+  width: 290px;
+  font-size: 13px;
+  left: 365px;
+  position: relative;
+}
+
+@media (max-width: 1100px){
+  .gender-over-time{
+    width: 100%;
+    margin-left: 0px;
+    max-width: 500px;
+    margin:  0px auto;
+  }
+
+  .gender-over-time .sentence{
+    width: 100% !important;
+    margin-bottom: 20px;
+  }
+
+  .gender-over-time .g-caption{
+    left: 0px;
+    width: 100%;
+  }
+}
+
+.time-token text{
+  font-family: monospace;
+  pointer-events: all !important;
+  cursor: default;
+}
+
+
+
+img[src*="img/wiki-years.png"] {
+  width: 300px;
+}
+
+
+#more-explorables{
+  margin-top: 100px;
+}
+
+
+
+
+/*html{
+  font-smooth: never;
+  -webkit-font-smoothing: none;
+  background: transparent;
+}
+
+path{
+  display: none;
+}*/
+
+
+button {
+  display: inline-block;
+  border: none;
+  margin: 0;
+  text-decoration: none;
+  background: #fff;
+  color: #ffffff;
+  font-size: 1em;
+  cursor: pointer;
+  text-align: center;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  font-family : inherit;
+
+}
+
+button:active {
+    transform: scale(0.99);
+}
+
