@@ -10,9 +10,9 @@ server side
 
 colab
 
-- upload to github
-- check in frontend code (reference directly?)
-- change link
+x upload to github
+x check in frontend code (reference directly?)
+x change link
 
 update readme
 

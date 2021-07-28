@@ -49,7 +49,7 @@ window.initGenderOverTime = async () => {
   blockSel.filter((d, i) => !i).append('div.g-caption').html(`
     The top 150 “he” and “she” completions in years from 1860-2018 are shown
     with the y position encoding he_logit - she_logit.
-    <a href="https://colab.sandbox.google.com/drive/1b9kUd__-XAL2V9BPQ-iMPDrA46fDW8FO?resourcekey=0-LKCNZyXusyFNiLtbbYb7DA">Run in Colab →</a>`)
+    <a href="https://colab.research.google.com/github/PAIR-code/ai-explorables/blob/master/server-side/fill-in-the-blank/gender-over-time-colab/gender-over-time.ipynb">Run in Colab →</a>`)
 
 
 
