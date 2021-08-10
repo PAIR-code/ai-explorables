@@ -68,3 +68,17 @@ text{
 p{
   max-width: 650px;
 }
+
+
+.bg-tick{
+  stroke: #ccc;
+}
+
+.tick{
+  display: none;
+}
+
+text.tiny{
+  font-size: 9px;
+  font-family: monospace;
+}

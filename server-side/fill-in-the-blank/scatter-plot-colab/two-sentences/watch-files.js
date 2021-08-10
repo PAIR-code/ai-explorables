@@ -32,7 +32,12 @@
     check()
   }
 
-  ;['style.css', 'script.js'].forEach(filename => {
+  ;[
+    'style.css', 
+    'init-scatter.js', 
+    'init-util.js', 
+    'init.js'
+  ].forEach(filename => {
     var root = document.currentScript.src.replace('watch-files.js', '').split('?')[0]
     var path = root + filename
 
@@ -53,5 +58,6 @@
     }
   })
 })()
+
 
 
