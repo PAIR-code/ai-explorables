@@ -36,6 +36,7 @@
     'style.css', 
     'init-scatter.js', 
     'init-util.js', 
+    'init-pair.js', 
     'init.js'
   ].forEach(filename => {
     var root = document.currentScript.src.replace('watch-files.js', '').split('?')[0]
