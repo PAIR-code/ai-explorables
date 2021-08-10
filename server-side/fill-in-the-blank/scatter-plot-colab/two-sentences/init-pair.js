@@ -91,7 +91,7 @@ window.initPair = function(pair, sel){
 
     c.svg.selectAppend('text.x-axis-label.xy-only')
       .translate([c.width/2, c.height + 24])
-      .text(pair.label0 ? ' __ likelihood, ' + pair.label0 + ' sentence →' : '__ likelihood, sentence two →')
+      .text(pair.label0 + ' →')
       .st({fill: util.colors[0]})
       .at({textAnchor: 'middle'})
 
@@ -99,7 +99,7 @@ window.initPair = function(pair, sel){
     c.svg.selectAppend('g.y-axis-label.xy-only')
       .translate([c.width + 20, c.height/2])
       .selectAppend('text')
-      .text(pair.label1 ? ' __ likelihood, ' + pair.label1 + ' sentence →' : '__ likelihood, sentence one →')
+      .text(pair.label1 + ' →')
       .st({fill: util.colors[1]})
       .at({textAnchor: 'middle', transform: 'rotate(-90)'})
   }
