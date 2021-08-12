@@ -82,3 +82,19 @@ text.tiny{
   font-size: 9px;
   font-family: monospace;
 }
+
+circle.sentence.active{
+  fill: #f0f;
+}
+
+div.sentence{
+  color:  #333;
+}
+div.sentence.active{
+  background: rgba(255,0,255,.1);
+} 
+
+.list{
+  border:  1px solid #555;
+  padding:  10px;
+}
