@@ -1,7 +1,7 @@
+window.hoverCBs = []
 window.initScatter = function(){
 
   function draw(c, data){
-    var hoverCBs = []
 
     var [svgbot, ctx, svg] = c.layers
     if (!ctx || !ctx.fillRect) return
@@ -27,7 +27,8 @@ window.initScatter = function(){
     svg.append('rect')
       .at({width: c.width, height: c.height, fill: 'rgba(0,0,0,0)'})
 
-    svg.appendMany('text.tiny', data.filter(d => d.show))
+    svg
+      .appendMany('text.tiny', data.filter(d => d.show))
       .text(d => d.prettyWord)
       .translate(d => [d.x, d.y])
       .at({
@@ -36,6 +37,7 @@ window.initScatter = function(){
         textAnchor: d => d.show[1] == 'r' ? '' : 'end',
         fill: d => d.fill,
       })
+      .st({pointerEvents: 'none'})
 
 
     svg
@@ -50,7 +52,7 @@ window.initScatter = function(){
           return dx*dx + dy*dy
         })
 
-        // if (curHover != match.word)
+        // if (curHover != match.word) return
 
         hoverCBs.forEach(fn => fn(match.word))
       })
@@ -61,7 +63,7 @@ window.initScatter = function(){
 
     function setHover(word){
       var d = _.find(data, {word})
-      if (!d){
+      if (!d || isNaN(d.dif)){
         hoverSel.st({opacity: 0})
         hoverTextSel.text('')
         return 

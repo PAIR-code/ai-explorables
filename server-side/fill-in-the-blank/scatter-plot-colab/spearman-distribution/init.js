@@ -89,7 +89,7 @@ window.init = function(){
     var sentenceSel = sel.st({height: 500, overflowY: 'scroll', cursor: 'default'})
       .appendMany('div.sentence', _.sortBy(bySentence, d => d.corrA))
       .on('mouseover', setSentenceAsPair)
-      .st({padding: 2})
+      .st({padding: 2, fontSize: 12})
 
     sentenceSel.append('span')
       .text(d => (d3.format('+.2f')(d.corrA)).replace('0.', '.'))
@@ -115,7 +115,7 @@ window.init = function(){
     s.label0 = s.s0
     s.label1 = s.s1
     s.vocab = python_data.vocab
-    s.count = python_settings.count
+    s.count = python_settings.count || 150
     s.isDifference = python_settings.isDifference
 
     var sel = d3.select('.pair').html('').st({width: 400})
@@ -126,7 +126,7 @@ window.init = function(){
 
     d3.selectAll('div.sentence').filter(d => d == s)
       .each(function(){
-        this.scrollIntoView({ block: 'nearest', inline: 'start' })
+        this.scrollIntoView({ block: 'nearest', inline: 'nearest'})
       })
   }
 

@@ -80,6 +80,8 @@ window.initPair = function(pair, sel){
       return {x, y, s, dif, fill, word, show, isVisible}
     })
 
+    c.svg.append('path').at({d: `M 0 ${c.height} L ${c.width} 0`, stroke: '#ccc'})
+
     var textCandidates = _.sortBy(scatterData.filter(d => d.isVisible), d => d.dif)
     d3.nestBy(textCandidates.slice(0, 1000), d => Math.round(d.y/10))
       .forEach(d => d[0].show = 'uf')
@@ -94,7 +96,6 @@ window.initPair = function(pair, sel){
       .text(pair.label0 + ' →')
       .st({fill: util.colors[0]})
       .at({textAnchor: 'middle'})
-
 
     c.svg.selectAppend('g.y-axis-label.xy-only')
       .translate([c.width + 20, c.height/2])
