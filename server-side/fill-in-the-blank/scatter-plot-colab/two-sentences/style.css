@@ -1,0 +1,84 @@
+body{
+  font-family: menlo, Consolas, 'Lucida Console', monospace; 
+  margin: 10px;
+  margin-left:  20px;
+  width:  1130px;
+  background: #fff;
+}
+
+.tooltip {
+  top: -1000px;
+  position: fixed;
+  padding: 10px;
+  background: rgba(255, 255, 255, .90);
+  border: 1px solid lightgray;
+  pointer-events: none;
+}
+.tooltip-hidden{
+  opacity: 0;
+  transition: all .3s;
+  transition-delay: .1s;
+}
+
+@media (max-width: 590px){
+  div.tooltip{
+    bottom: -1px;
+    width: calc(100%);
+    left: -1px !important;
+    right: -1px !important;
+    top: auto !important;
+    width: auto !important;
+  }
+}
+
+svg{
+  overflow: visible;
+}
+
+.domain{
+  display: none;
+}
+
+.axis{
+  opacity:  .7;
+}
+
+text{
+  /*pointer-events: none;*/
+  text-shadow: 0 1.5px 0 #fff, 1.5px 0 0 #fff, 0 -1.5px 0 #fff, -1.5px 0 0 #fff;
+}
+
+
+#graph > div{
+  /*display: inline-block;*/
+}
+
+.active path{
+  stroke:  #f0f;
+  /*stroke-width:  2;*/
+  opacity:  1;
+}
+.active text{
+  fill: #f0f;
+  opacity: 1 !important;
+  font-size: 14px;
+
+}
+
+p{
+  max-width: 650px;
+}
+
+
+.bg-tick{
+  stroke: #ccc;
+}
+
+.tick{
+  display: none;
+}
+
+text.tiny{
+  font-size: 9px;
+  font-family: monospace;
+}
