@@ -1,8 +1,14 @@
-[BERT Difference Plots Colab](https://colab.research.google.com/drive/1xfPGKqjdE635cVSi-Ggt-cRBU5pyJNWP?usp=sharing)
+[BERT Difference Plots Colab](https://colab.research.google.com/github/PAIR-code/ai-explorables/blob/master/server-side/fill-in-the-blank/scatter-plot-colab/BERT_Difference_Plots.ipynb
+)
 
 ### Dev
 
-Hot reload JS
+To edit the charts:
+
+- Enable `isDev` in the python notebook `jsViz(data, {'type': 'two-sentences', 'isDev': 1})` 
+- use `entr` and `rsync` to update the js/css in a location accessible to colab.
+
+Example: 
 
 ````
 find . | entr rsync -a --omit-dir-times --no-perms --exclude node_modules --exclude .git "$PWD" demo@roadtolarissa.com:../../usr/share/nginx/html/colab/
