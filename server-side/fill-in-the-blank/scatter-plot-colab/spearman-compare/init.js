@@ -61,10 +61,10 @@ window.init = function(){
       <div class='pair-ab'></div>
     </div>
   `)
-    .st({width: 1100})
+    .st({width: 1400})
   d3.selectAll('.list,.scatter').st({width: 430, display: 'inline-block', verticalAlign: 'top'})
 
-  d3.selectAll('.pair-a, .pair-b, pair-ab').st({width: 400, display: 'inline-block', verticalAlign: 'top'})
+  d3.selectAll('.pair-a,.pair-b,.pair-ab').st({width: 400, display: 'inline-block', verticalAlign: 'top'})
 
   function initScatter(bySentence, sel){
     var c = d3.conventions({
@@ -125,7 +125,7 @@ window.init = function(){
       .st({padding: 2, fontSize: 12})
       .html(d => `
         <td class='num'>${util.corrFmt(d.a.corr)}</td>
-        <td class='num'>${util.corrFmt(d.a.corr)}</td>
+        <td class='num'>${util.corrFmt(d.b.corr)}</td>
         <td>${d.orig.replace('[', '').replace(']', '')}</td>
       `)
 
@@ -133,28 +133,42 @@ window.init = function(){
   initList(bySentence, d3.select('.list'))
 
 
-
   function setSentenceAsPair(s){
     function drawScatter(type){
-      var st = s[type]
-      st.e0 = d3.range(python_data.vocab.length).map(d => -Infinity)
-      st.e1 = d3.range(python_data.vocab.length).map(d => -Infinity)
-      st.forEach(d => {
-        st.e0[d.tokenIndex] = d.e0
-        st.e1[d.tokenIndex] = d.e1
-      })
+      var st = s
+      if (type.length == 2){
+        st.e0 = s.a.e0.map((e0, i) => e0 - s.a.e1[i])
+        st.e1 = s.b.e0.map((e0, i) => e0 - s.b.e1[i])
 
-      st.label0 = st.s0
-      st.label1 = st.s1
+        st.label0 = python_data.slug_A + ' dif'
+        st.label1 = python_data.slug_B + ' dif'
+        st.isDifference = false
+        st.count = (python_settings.count || 150)*2
+        
+      } else {
+        st = s[type]
+        st.e0 = d3.range(python_data.vocab.length).map(d => -Infinity)
+        st.e1 = d3.range(python_data.vocab.length).map(d => -Infinity)
+        st.forEach(d => {
+          st.e0[d.tokenIndex] = d.e0
+          st.e1[d.tokenIndex] = d.e1
+        })
+
+        st.label0 = st.s0
+        st.label1 = st.s1
+      
+        st.isDifference = python_settings.isDifference
+        st.count = python_settings.count || 150
+      }
+      
       st.vocab = python_data.vocab
-      st.count = python_settings.count || 150
-      st.isDifference = python_settings.isDifference
 
       var sel = d3.select('.pair-' + type).html('').st({width: 400, marginRight: 40})
       initPair(st, sel.append('div'))
     }
     drawScatter('a')
     drawScatter('b')
+    drawScatter('ab')
 
     d3.selectAll('.sentence').classed('active', d => d == s)
 

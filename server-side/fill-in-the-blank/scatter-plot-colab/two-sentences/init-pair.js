@@ -93,14 +93,14 @@ window.initPair = function(pair, sel){
 
     c.svg.selectAppend('text.x-axis-label.xy-only')
       .translate([c.width/2, c.height + 24])
-      .text(pair.label0 + ' →')
+      .text(pair.label0 + (pair.label0.includes(' dif') ? '' : ' →'))
       .st({fill: util.colors[0]})
       .at({textAnchor: 'middle'})
 
     c.svg.selectAppend('g.y-axis-label.xy-only')
       .translate([c.width + 20, c.height/2])
       .selectAppend('text')
-      .text(pair.label1 + ' →')
+      .text(pair.label1 + (pair.label0.includes(' dif') ? '' : ' →'))
       .st({fill: util.colors[1]})
       .at({textAnchor: 'middle', transform: 'rotate(-90)'})
   }
