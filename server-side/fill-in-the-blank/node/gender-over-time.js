@@ -152,10 +152,6 @@ async function parseSentence(sentence){
     var s1 = (start + t1 + end).replace('_', '[MASK]')
   }
 
-  console.log([s0, s1])
-
-  return;
-
   async function fetchYear(year){
     var e0 = await getSentenceEmbed('embed', s0.replace('$year', year))
     var e1 = await getSentenceEmbed('embed', s1.replace('$year', year))
