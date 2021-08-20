@@ -1,5 +1,4 @@
-[BERT Difference Plots Colab](https://colab.research.google.com/github/PAIR-code/ai-explorables/blob/master/server-side/fill-in-the-blank/scatter-plot-colab/BERT_Difference_Plots.ipynb
-)
+[BERT Difference Plots Colab](https://colab.research.google.com/drive/1xfPGKqjdE635cVSi-Ggt-cRBU5pyJNWP)
 
 ### Dev
 
