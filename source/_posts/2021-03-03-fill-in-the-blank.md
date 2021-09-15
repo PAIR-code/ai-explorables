@@ -41,7 +41,7 @@ This technique can also probe what associations BERT has learned about different
 
 <div class='pair age-name'></div>
 
-It's also learned that people named Jim have more [typically masucline](https://flowingdata.com/2017/09/11/most-female-and-male-occupations-since-1950/) jobs than people named Jane: 
+It's also learned that people named Jim have more [typically masculine](https://flowingdata.com/2017/09/11/most-female-and-male-occupations-since-1950/) jobs than people named Jane: 
 
 <div class='pair jim-jane'></div>
 
