@@ -40,9 +40,14 @@ window.init = function(){
       sent.s1 = sentences[sent.sentenceIndex].s1
       sent.orig = sentences[sent.sentenceIndex].orig
 
-      sent.corr = ss.sampleCorrelation(sent.map(d => d.i0), sent.map(d => d.i1))
+      sent.corr = ss.sampleCorrelation(
+        sent.map(d => Math.min(d.i0, 300)), 
+        sent.map(d => Math.min(d.i1, 300))
+      )
       // sent.corr = ss.sampleCorrelation(sent.map(d => d.e0), sent.map(d => d.e1))
     })
+
+    console.log(bySentence[0].length)
 
     return bySentence
   }
