@@ -59,15 +59,16 @@ window.init = function(){
   function initBeeswarm(bySentence, sel){
     var c = d3.conventions({
       sel: sel.append('div'),
-      height: 100,
+      height: 80,
       totalWidth: 400,
-      margin: {left: 0}
+      margin: {left: 0, top: 18}
     })
 
     c.x.domain(d3.extent(bySentence.map(d => +d.corrA))).nice()
     // c.x.domain([0, 1])
     c.xAxis.ticks(5)
     d3.drawAxis(c)
+    util.ggPlotBg(c)
     c.svg.select('.y').remove()
     c.svg.selectAll('.tick').st({display: 'block'})
 
@@ -81,7 +82,7 @@ window.init = function(){
 
     c.svg.append('text').text('text')
       .text('Distribution of Spearman Correlation Coefficients')
-      .at({dy: 10, fontWeight: 600})
+      .at({dy: -5, fontWeight: 600})
 
     c.svg.appendMany('circle.sentence', bySentence)
       .translate(d => [d.x, d.y])
@@ -109,7 +110,7 @@ window.init = function(){
     //   .text(d => d.orig.replace('[', '').replace(']', ''))
 
     var tableSel = sel
-      .st({height: 300 + 17, overflowY: 'scroll', cursor: 'default', position: 'relative'})
+      .st({height: 470 + 17, overflowY: 'scroll', cursor: 'default', position: 'relative', left: -40})
       .append('table')
       .st({fontSize: 12})
 
