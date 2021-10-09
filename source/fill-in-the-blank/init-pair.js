@@ -50,7 +50,9 @@ window.initPair = function(pair){
 
   var countSel = optionSel.append('div')
     .append('b').text('Number of Tokens')
-    .parent()
+    .append('info').text('ⓘ').call(addLockedTooltip)
+    .datum('The scales are set using the top N tokens for each sentence. <br><br>"Likelihoods" will show more than N tokens if a top completion for one sentence is unlikely for the other sentence.')
+    .parent().parent()
     .append('div.flex-row')
     .appendMany('div.button', [30, 200, 1000, 5000, 99999])
     .text(d => d > 5000 ? 'All' : d)
@@ -62,7 +64,9 @@ window.initPair = function(pair){
 
   var typeSel = optionSel.append('div')
     .append('b').text('Chart Type')
-    .parent()
+    .append('info').text('ⓘ').call(addLockedTooltip)
+    .datum('"Likelihoods" shows the logits from both models plotted directly with a shared linear scale.<br><br> To better contrast the outputs, "Differences" shows <code>logitA - logitB</code> on the y-axis and <code>mean(logitA, logitB)</code> on the x-axis with separate linear scales.')
+    .parent().parent()
     .append('div.flex-row')
     .appendMany('div.button', ['Likelihoods', 'Differences'])
     .text(d => d)

@@ -317,6 +317,35 @@ window.init = async function(){
 })()
 
 
+window.addLockedTooltip = function(sel){
+  sel
+    .on('mouseover', function(d, i){
+      ttSel
+        .html(d)
+        .select('.footend').remove()
+
+      var x = this.offsetLeft,
+          y = this.offsetTop,
+          bb = ttSel.node().getBoundingClientRect(),
+          left = d3.clamp(20, (x-bb.width/2), window.innerWidth - bb.width - 20),
+          top = innerHeight + scrollY > y + 20 + bb.height ? y + 20 : y - bb.height - 10;
+
+      ttSel.st({left, top}).classed('tooltip-hidden', false)
+    })
+
+  sel.on('mousemove',mouseover).on('mouseout', mouseout)
+  ttSel.on('mousemove', mouseover).on('mouseout', mouseout)
+  function mouseover(){
+    if (window.__ttfade) window.__ttfade.stop()
+  }
+  function mouseout(){
+    if (window.__ttfade) window.__ttfade.stop()
+    window.__ttfade = d3.timeout(() => {
+      ttSel.classed('tooltip-hidden', true)
+    }, 250)
+  }
+}
+
 // Footnotes
 !(function(){
   var footnums = '¹²³⁴⁵⁶⁷⁸⁹'
@@ -339,39 +368,14 @@ window.init = async function(){
           href: '#footend-' + i,
         })
         .text(footnums[i])
+        .datum(footendSel.data()[i])
         .parent().at({id: 'footstart-' + i})
     })
-    .on('mouseover', function(d, i){
-      ttSel
-        .html(footendSel.data()[i])
-        .select('.footend').remove()
-
-      var x = this.offsetLeft,
-          y = this.offsetTop,
-          bb = ttSel.node().getBoundingClientRect(),
-          left = d3.clamp(20, (x-bb.width/2), window.innerWidth - bb.width - 20),
-          top = innerHeight + scrollY > y + 20 + bb.height ? y + 20 : y - bb.height - 10;
-
-      ttSel.st({left, top}).classed('tooltip-hidden', false)
-    })
-
-    footstartSel.on('mousemove',mouseover).on('mouseout', mouseout)
-    ttSel.on('mousemove', mouseover).on('mouseout', mouseout)
-    function mouseover(){
-      if (window.__ttfade) window.__ttfade.stop()
-    }
-    function mouseout(){
-      if (window.__ttfade) window.__ttfade.stop()
-      window.__ttfade = d3.timeout(() => {
-        ttSel.classed('tooltip-hidden', true)
-      }, 250)
-    }
-
-
-
-  d3.selectAll('#sections wee, #graph .weepeople').attr('aria-hidden', true)
+    .call(addLockedTooltip)
 
 })()
+
+
 
 
 

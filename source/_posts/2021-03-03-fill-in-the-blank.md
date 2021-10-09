@@ -64,7 +64,7 @@ Last year a version of BERT called [Zari](https://ai.googleblog.com/2020/10/meas
 
 <div class='pair nurse-name-zari-cda'></div>
 
-Unlike BERT, Zari assigns nurses and doctors an equal probability of being a "she" or a "he" after being trained on the swapped sentences. This approach hasn't removed all the gender correlations; because names weren't swapped, Zari's association between masculine names and doctors has only slightly decreased from BERT's. And the retraining doesn't change how the model understands nonbinary gender.    
+Unlike BERT, Zari assigns nurses and doctors an equal probability of being a "she" or a "he" after being trained on the swapped sentences. This approach hasn't removed all the gender correlations; because names weren't swapped, Zari's association between masculine names and doctors has only slightly decreased from BERT's.<a class='footstart'></a> And the retraining doesn't change how the model understands nonbinary gender.    
 
 Something similar happened with [other attempts](https://arxiv.org/abs/1607.06520) to remove gender bias from models' representations of words. It's possible to mathematically define bias and perform "brain surgery" on a model to remove it, but language is steeped in gender. Large models can have billions of parameters in which to learn stereotypes — slightly different measures of bias have found the retrained models only [shifted the stereotypes](https://www.aclweb.org/anthology/N19-1061/) around to be undetectable by the initial measure.
 
@@ -83,6 +83,8 @@ Thanks to Ben Wedin, Emily Reif, James Wexler, Fernanda Viégas, Ian Tenney, Kel
 <a class='footend'></a> The BERT model used on this page is the Hugging Face version of [bert-large-uncased-whole-word-masking](https://huggingface.co/bert-large-uncased-whole-word-masking). "BERT" also refers to a type of model architecture; hundreds of BERT models have been [trained and published](https://huggingface.co/models?filter=bert). The model and chart code used here are available on [GitHub](https://github.com/PAIR-code/ai-explorables). 
 
 <a class='footend'></a> Notice that "1800", "1900" and "2000" are some of the top predictions, though. People aren't actually more likely to be born at the start of a century, but in BERT's training corpus of books and Wikipedia articles round numbers are [more common](https://blocks.roadtolarissa.com/1wheel/cea123a8c17d51d9dacbd1c17e6fe601). <br><br><img aria-label='Scatter plot showing the frequency of numbers between 1400 and 1800 in Wikipedia; round number of large peaks.' src='img/wiki-years.png'></img> 
+
+<a class='footend'></a>Comparing BERT and Zari in this interface requires carefully tracking tokens during a transition. The [BERT Difference Plots](https://colab.research.google.com/drive/1xfPGKqjdE635cVSi-Ggt-cRBU5pyJNWP) colab has ideas for extensions to systemically look at differences between the models' output. 
 
 <a class='footend'></a> This analysis shouldn't stop once a model is deployed — as language and model usage shifts, it's important to continue studying and mitigating potential harms. 
 

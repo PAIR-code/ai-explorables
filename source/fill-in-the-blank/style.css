@@ -721,3 +721,17 @@ button {
 button:active {
     transform: scale(0.99);
 }
+
+
+info{
+  font-weight: 300;
+  font-size: 12px;
+  line-height: 0em;
+  position: relative;
+  left: 7px;
+  top: -1px;
+  cursor: default;
+}
+info:hover{
+  font-weight: 600;
+}
