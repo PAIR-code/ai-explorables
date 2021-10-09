@@ -14,7 +14,7 @@ limitations under the License.
 ==============================================================================*/
 
 
-console.clear()
+// console.clear()
 
 window.init = function(){
   var initFns = [window.initUtil, window.initScatter, window.initPair]
@@ -96,19 +96,37 @@ window.init = function(){
 
 
   function initList(bySentence, sel){
-    var sentenceSel = sel.st({height: 500, overflowY: 'scroll', cursor: 'default'})
-      .appendMany('div.sentence', _.sortBy(bySentence, d => d.corrA))
+    // var sentenceSel = sel.st({height: 500, overflowY: 'scroll', cursor: 'default'})
+    //   .appendMany('div.sentence', _.sortBy(bySentence, d => d.corrA))
+    //   .on('mouseover', setSentenceAsPair)
+    //   .st({padding: 2, fontSize: 12})
+
+    // sentenceSel.append('span')
+    //   .text(d => (d3.format('+.2f')(d.corrA)).replace('0.', '.'))
+    //   .st({marginRight: 10, color: '#aaa'})
+
+    // sentenceSel.append('span')
+    //   .text(d => d.orig.replace('[', '').replace(']', ''))
+
+    var tableSel = sel
+      .st({height: 300 + 17, overflowY: 'scroll', cursor: 'default', position: 'relative'})
+      .append('table')
+      .st({fontSize: 12})
+
+    tableSel.append('tr.header')
+      .html(`
+        <th class='num'>corr</th>
+        <th>template</th>
+      `)
+
+    var rowSel = tableSel
+      .appendMany('tr.sentence', _.sortBy(bySentence, d => d.corrA))
       .on('mouseover', setSentenceAsPair)
       .st({padding: 2, fontSize: 12})
-
-    sentenceSel.append('span')
-      .text(d => (d3.format('+.2f')(d.corrA)).replace('0.', '.'))
-      .st({marginRight: 10, color: '#aaa'})
-
-    sentenceSel.append('span')
-      .text(d => d.orig.replace('[', '').replace(']', ''))
-
-
+      .html(d => `
+        <td class='num'>${(d3.format('+.2f')(d.corrA)).replace('0.', '.')}</td>
+        <td>${d.orig.replace('[', '').replace(']', '')}</td>
+      `)
   }
   initList(bySentence, d3.select('.list'))
 

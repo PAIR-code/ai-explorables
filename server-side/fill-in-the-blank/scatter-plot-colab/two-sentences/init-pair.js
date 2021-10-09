@@ -117,6 +117,16 @@ window.initPair = function(pair, sel){
       .text(pair.label1 + (pair.label0.includes(' dif') ? '' : ' →'))
       .st({fill: util.colors[1]})
       .at({textAnchor: 'middle', transform: 'rotate(-90)'})
+
+    if (pair.topLabel){
+      console.log(pair.topLabel)
+      c.svg.selectAppend('text.x-axis-label.top')
+        .translate([c.width/2, -10])
+        .text(pair.topLabel)
+        .st({fill: '#000'})
+        // .st({fill: util.colors[0]})
+        .at({textAnchor: 'middle'})
+    }
   }
 
   function drawRotated(){

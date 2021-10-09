@@ -3,7 +3,7 @@ body{
   margin: 10px;
   margin-left:  20px;
   width:  1130px;
-  background: #fff;
+  /*background: #f0f;*/
 }
 
 .tooltip {
@@ -95,6 +95,10 @@ div.sentence.active{
 } 
 
 .list{
-  border:  1px solid #555;
-  padding:  10px;
+  /*border:  1px solid #555;*/
+  /*padding:  10px;*/
 }
+
+
+
+

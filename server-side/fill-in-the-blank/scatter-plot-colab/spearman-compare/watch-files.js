@@ -49,6 +49,7 @@ limitations under the License.
   }
 
   ;[
+    'list.css', 
     'style.css', 
     '../two-sentences/init-scatter.js', 
     '../two-sentences/init-util.js', 
@@ -70,6 +71,7 @@ limitations under the License.
       if (path.includes('.css')){
         Array.from(document.querySelectorAll('link'))
           .filter(d => d.href.includes(path) || d.href.includes('__hs_placeholder'))
+          .filter((d, i) => i == 0)
           .forEach(d => d.href = path + '?' + Math.random())
       }
     }

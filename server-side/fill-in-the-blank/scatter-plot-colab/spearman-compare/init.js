@@ -47,8 +47,6 @@ window.init = function(){
       // sent.corr = ss.sampleCorrelation(sent.map(d => d.e0), sent.map(d => d.e1))
     })
 
-    console.log(bySentence[0].length)
-
     return bySentence
   }
 
@@ -158,7 +156,6 @@ window.init = function(){
         st.label1 = python_data.slug_B + ' dif'
         st.isDifference = false
         st.count = (python_settings.count || 150)*2
-        
       } else {
         st = s[type]
         st.e0 = d3.range(python_data.vocab.length).map(d => -Infinity)
@@ -173,6 +170,8 @@ window.init = function(){
       
         st.isDifference = python_settings.isDifference
         st.count = python_settings.count || 150
+
+        st.topLabel = type == 'a' ? python_data.slug_A : python_data.slug_B
       }
       
       st.vocab = python_data.vocab
@@ -180,8 +179,8 @@ window.init = function(){
       var sel = d3.select('.pair-' + type).html('').st({width: 400, marginRight: 40})
       initPair(st, sel.append('div'))
     }
-    drawScatter('a')
     drawScatter('b')
+    drawScatter('a')
     drawScatter('ab')
 
     d3.selectAll('.sentence').classed('active', d => d == s)
@@ -191,7 +190,6 @@ window.init = function(){
         this.scrollIntoView({ block: 'nearest', inline: 'nearest'})
       })
   }
-
   setSentenceAsPair(bySentence[0])
 
 }

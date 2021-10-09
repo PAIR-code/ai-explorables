@@ -1,0 +1,46 @@
+.list{
+  padding: 0px !important;
+  line-height: 16px;
+  background: #eee;
+}
+.list table{
+  -webkit-border-vertical-spacing: 0px;
+  -webkit-border-horizontal-spacing: 0px;
+  width: 100%;
+}
+.list tr{
+  padding-bottom: 4px !important;
+}
+.list .header{
+  text-align: left;
+  position: sticky;
+  top: 0px;
+  background: #000;
+  padding-top: 0px;
+}
+th{
+  border-spacing: 0px;
+  margin-top: px;
+  padding-top: 0px;
+  font-weight: 500;
+  color: #fff;
+
+}
+
+td.num{
+  padding-right: 20px;
+  color: #999;
+}
+
+tr.sentence{
+  color:  #333;
+  scroll-margin-top: 17px
+}
+tr.sentence.active{
+  background: rgba(255,0,255,.1);
+} 
+
+tr td{
+  border-bottom: 3px solid #eee;
+}
+
