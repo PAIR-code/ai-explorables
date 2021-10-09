@@ -31,16 +31,19 @@ limitations under the License.
         lastStr = nextStr
 
         if (path.includes('.js')){
-          console.log('js', new Date())
+          // console.log('js', new Date())
           Function(nextStr.replace('\n', ';').replace('\n', ';'))()
         }
 
         if (path.includes('.css')){
-          console.log('css', new Date())
+          // console.log('css', new Date())
 
           Array.from(document.querySelectorAll('link'))
             .filter(d => d.href.includes(path) || d.href.includes('__hs_placeholder'))
+          .filter((d, i) => i == 0)
             .forEach(d => d.href = path + '?' + Math.random())
+
+          throw 'up'
         }
       })
 
