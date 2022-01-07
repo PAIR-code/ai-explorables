@@ -1,0 +1,307 @@
+html{
+  min-width: 830px;
+  overflow-x: auto;
+}
+
+.highlight-yellow{
+  margin-top: -30px;
+  margin-bottom: 20px;
+}
+.highlight-yellow a{
+  background: yellow;
+  padding: 5px;
+}
+
+.tooltip{
+  width: 112px;
+}
+
+.tooltip-footnote {
+  top: -1000px;
+  position: absolute;
+  padding: 10px;
+  background: rgba(255, 255, 255, .8);
+  border: 0px solid lightgray;
+  
+  width: 300px !important;
+  font-size: 14px;
+  line-height: 1.4em;
+  background: rgba(0, 0, 0, .8);
+  color: #fff;
+  pointer-events: all !important;
+}
+.tooltip-footnote a{
+  color:  #fff !important;
+
+}
+.tooltip-footnote:hover{
+/*  opacity: 1;
+  pointer-events: all !important;
+*/}
+
+.tooltip-footnote-hidden{
+  opacity: 0;
+  transition: opacity .3s;
+  transition-delay: .2s;
+  pointer-events: none !important;
+}
+
+.tooltip-hidden{
+  pointer-events: none !important;
+}
+
+@media (max-width: 590px){
+  .footend{
+    margin-left: 0px;
+    width: 10px;
+  }
+
+
+  div.tooltip-footnote{
+    transition: all 0s !important;
+    transition-delay: 0s !important;
+
+    display: none;
+    position: fixed;
+    bottom: -1px;
+    width: calc(100%);
+    left: -1px !important;
+    right: -1px !important;
+    top: auto !important;
+    width: auto !important;
+  }
+}
+
+.footstart{
+  padding-left: 2px;
+  height: 8px !important;
+  /*background: red;*/
+  /*display: inline-block;*/
+  line-height: 0em;
+}
+
+
+svg{
+  overflow: visible;
+}
+
+.domain{
+  display: none;
+}
+
+circle.point{
+  stroke: #000;
+  stroke-width: .5;
+  fill-opacity: .5;
+  cursor: pointer;
+}
+
+circle.point.swapped{
+  stroke-width: 2;
+}
+
+path.boundry-line{
+  pointer-events: none;
+  opacity: .1;
+}
+
+.dragging{
+  cursor: pointer;
+}
+
+.sliders{
+  position: relative;
+  top: 10px;
+  padding-top:  5px;
+}
+
+.slider-container{
+  height: 30px;
+}
+
+.graph{
+  width:  900px;
+}
+
+
+.chart-title{
+  font-size: 14px;
+  font-weight: 600;
+  text-align: center;
+  margin-top: 25px;
+  /*padding-top: 5px;*/
+}
+
+.epoch-graph{
+  max-width: 700px;
+  margin: 0px auto;
+}
+
+.decision-boundry{
+  max-width: 320px;
+  margin: 0px auto;
+}
+
+
+
+.digit-button-container{
+  max-width: 400px;
+  margin:  0px auto;
+  display: flex;
+  gap: 10px;
+}
+
+
+.button{
+  text-align: center;
+  flex-grow: 1;
+  flex-basis: 0;
+  padding: 5px;
+  cursor: pointer;
+  user-select: none; 
+
+  outline: 1px solid #ccc;
+
+  position: relative;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .button:hover{
+    /*border-color: #000;*/
+    /*border-left-width: 1px;*/
+    outline: 1px solid #000 !important;
+    z-index: 100;
+  }
+}
+
+
+.button.active{
+  background: #000;
+  color: #fff;
+  outline: 0px;
+  /*font-weight: 500;*/
+}
+
+
+.button-row > div{
+  display: inline-block;
+}
+
+.accuracy-line{
+  stroke: #888;
+}
+.accuracy-line.active{
+  stroke-width: 3px;
+  stroke: #000;
+  /*stroke: rgb(219, 61, 17);*/
+}
+
+.accuracy-circle{
+  fill: #888;
+  /*opacity: .5;*/
+}
+.accuracy-circle text{
+  pointer-events: none;
+}
+.accuracy-circle.active{
+  opacity: 1;
+  fill: #000;
+
+  /*fill: rgb(219, 61, 17);*/
+}
+
+.accuracy-label.active text{
+  font-weight: 600 !important;
+}
+
+.digit-button-container{
+  margin-bottom: 30px;
+}
+
+
+
+.slider-native {
+  -webkit-appearance: none;
+  /*width: 100%;*/
+  width: 180px;
+  height: 15px;
+  background: #d3d3d3;
+  outline: none;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+  position: relative;
+  left: 1em;
+  top: 2px;
+}
+
+.slider-native::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%; 
+  background: #000;
+  cursor: pointer;
+}
+.slider-native:hover {
+  opacity: 1; 
+}
+
+svg{
+  user-select: none;
+}
+
+
+.axis .tick text{
+  fill: #555;
+}
+
+.annotation{
+  font-size: 12px;
+}
+
+
+
+ul{
+  margin-top: -1em;
+  list-style: none;
+
+}
+
+li{
+  margin-left: 10px;
+}
+
+
+
+.info-box .post:hover .img{
+  outline: 1px solid #333 !important;
+}
+.info-box .post:hover .title{
+  text-decoration: underline !important;
+}
+
+.post-summary{
+  display: none;
+}
+
+
+.x .tick.active path{
+  stroke: rgba(255,255,0,.5) !important;
+  stroke-width: 9;
+}
+
+
+.active circle{
+  stroke-width: 2;
+  stroke: #000;
+}
+
+.accuracy-rect.active rect:first-child{
+  stroke: yellow !important;
+  fill: #ccc !important;
+  fill-opacity: 1;
+  stroke-width: 5;
+  paint-order: stroke;
+
+}
