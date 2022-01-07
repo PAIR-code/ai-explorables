@@ -98,7 +98,7 @@ Thanks to Abhradeep Thakurta, Andreas Terzis, Andy Coenen, Asma Ghandeharioun, B
 
 ### Appendix: Subgroup Size and Accuracy
 
-How, exactly, does the amount of training data, the privacy level and the percentage of data from a subgroup impact accuracy? Using MNIST digits rotated 90**° ** as a stand-in for a smaller subgroup, we can see how the accuracy of a series of simple [models](https://colab.corp.google.com/drive/1ALHiDQRyUWStJCDwz7DhqR-AG-z9hb_3?resourcekey=0-MedhAkMjUtmawdqPyOSNwQ#scrollTo=Zu3JJna0joDF) that classify "1"s and "7"s change based on these attributes. 
+How, exactly, does the amount of training data, the privacy level and the percentage of data from a subgroup impact accuracy? Using MNIST digits rotated 90**° ** as a stand-in for a smaller subgroup, we can see how the accuracy of a series of simple models that classify "1"s and "7"s change based on these attributes. 
 
 On the far left, models without any rotated digits in the training data never classify those digits more accurately than random guessing. By rotating 5% of the training digits, a small slice of models with lots of training data and low privacy can accurately classify rotated digits. 
 
