@@ -22,9 +22,6 @@ d3.loadData('../posts.json', (err, res) => {
     .filter(d => d.shareimg.includes('http'))
   posts = d3.shuffle(posts)
 
-  console.log(posts)
-
-
   var isMobile = innerWidth < 900 
   var postSel = d3.select('#recirc').html('').appendMany('a.post', posts)
     .st({

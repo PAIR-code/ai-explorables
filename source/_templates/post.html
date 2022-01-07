@@ -31,7 +31,7 @@ limitations under the License.
   <script>
     !(function(){
       var url = window.location.href
-      if (url.slice(-1) != '/' && !url.includes('.html')) window.location = url + '/'
+      if (url.split('#')[0].split('?')[0].slice(-1) != '/' && !url.includes('.html')) window.location = url + '/'
     })()
   </script>
 
