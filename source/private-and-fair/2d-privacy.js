@@ -66,7 +66,6 @@ drawBatch(
 
 
 function drawColorType(ct){
-  console.clear()
   function calcBatches(){
     var buckets = d3.nestBy(pointData, d => Math.floor(d.bucketX))
     buckets = _.sortBy(buckets, d => +d.key)

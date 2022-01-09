@@ -1,5 +1,3 @@
-console.clear()
-
 var state = {
   dataset_size: 15000,
   threshold: .8,

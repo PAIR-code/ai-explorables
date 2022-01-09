@@ -1,5 +1,3 @@
-console.clear()
-
 !(async function(){
   var isLock = false
 
