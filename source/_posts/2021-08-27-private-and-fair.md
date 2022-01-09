@@ -41,7 +41,7 @@ On the lower left, you can see digits labeled as "3" in the training data that l
 
 The right side shows more canonical digits which are classified correctly even with high levels of privacy because they're quite similar to other digits in the training data.<a class='footstart'></a>
 ### The Accuracy Tradeoff 
-Limiting how much a model can learn from a single example does have a downside: it can also decrease the model's accuracy. With <tp class='tp75'>7,500 training points</tp>, 90% accuracy on MNIST digits is only achievable with an extremely low level of privacy protection; increasing privacy quickly lowers the model's accuracy. 
+Limiting how much a model can learn from a single example does have a downside: it can also decrease the model's accuracy. With <tp class='tp75'>7,500 training points</tp>, 90% accuracy on MNIST digits is only [achievable](https://colab.research.google.com/github/PAIR-code/ai-explorables/blob/master/server-side/private-and-fair/MNIST_DP_Model_Grid.ipynb) with an extremely low level of privacy protection; increasing privacy quickly lowers the model's accuracy. 
 
 Collecting more training data offers a way out of this accuracy/privacy tradeoff. With <tp class='tp60'>60,000 training points,</tp> 90% accuracy can be reached with a higher privacy level than almost all [real-world deployments](https://desfontain.es/privacy/real-world-differential-privacy.html) of differential privacy. 
 
@@ -80,7 +80,7 @@ These questions are also significant outside of machine learning. [Allocating re
 
 Adam Pearce // January 2022
 
-Thanks to Abhradeep Thakurta, Andreas Terzis, Andy Coenen, Asma Ghandeharioun, Brendan McMahan, Ellen Jiang, Emily Reif, Fernanda Viégas, James Wexler, Kevin Robinson, Matthew Jagielski, Martin Wattenberg, Meredith Morris, Miguel Guevara and Nicolas Papernot for their help with this piece.
+Thanks to Abhradeep Thakurta, Andreas Terzis, Andy Coenen, Asma Ghandeharioun, Brendan McMahan, Ellen Jiang, Emily Reif, Fernanda Viégas, James Wexler, Kevin Robinson, Matthew Jagielski, Martin Wattenberg, Meredith Morris, Miguel Guevara, Nicolas Papernot and Nithum Thain for their help with this piece.
 
 ### Footnotes
 
@@ -98,7 +98,7 @@ Thanks to Abhradeep Thakurta, Andreas Terzis, Andy Coenen, Asma Ghandeharioun, B
 
 ### Appendix: Subgroup Size and Accuracy
 
-How, exactly, does the amount of training data, the privacy level and the percentage of data from a subgroup impact accuracy? Using MNIST digits rotated 90**° ** as a stand-in for a smaller subgroup, we can see how the accuracy of a series of simple models that classify "1"s and "7"s change based on these attributes. 
+How, exactly, does the amount of training data, the privacy level and the percentage of data from a subgroup impact accuracy? Using MNIST digits rotated 90° as a stand-in for a smaller subgroup, we can see how the accuracy of a series of simple [models](https://colab.research.google.com/github/PAIR-code/ai-explorables/blob/master/server-side/private-and-fair/MNIST_Generate_UMAP.ipynb) that classify "1"s and "7"s change based on these attributes. 
 
 On the far left, models without any rotated digits in the training data never classify those digits more accurately than random guessing. By rotating 5% of the training digits, a small slice of models with lots of training data and low privacy can accurately classify rotated digits. 
 

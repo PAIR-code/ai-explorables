@@ -1,6 +1,6 @@
 Colabs that generate data for [Can a Model Be Differentially Private and Fair?](https://pair.withgoogle.com/explorables/private-and-fair/).
 
 
-- [MNIST_Generate_UMAP](): Parses privacy rankings and projects MNIST digits with UMAP. 
-- [MNIST DP - Model Grid](): Trains a series of differentially private models with different levels of privacy and training data to generate the accuracy tradeoff line charts. 
-- [MNIST DP - Rotated](): Trains model with rotated digits for the [Subgroup Size and Accuracy Appendix](https://pair.withgoogle.com/explorables/private-and-fair/#appendix-subgroup-size-and-accuracy) .
+- [MNIST_Generate_UMAP](https://colab.research.google.com/github/PAIR-code/ai-explorables/blob/master/server-side/private-and-fair/MNIST_Generate_UMAP.ipynb): Parses privacy rankings and projects MNIST digits with UMAP. 
+- [MNIST DP - Model Grid](https://colab.research.google.com/github/PAIR-code/ai-explorables/blob/master/server-side/private-and-fair/MNIST_DP_Model_Grid.ipynb): Trains a series of differentially private models with different levels of privacy and training data to generate the accuracy tradeoff line charts. 
+- [MNIST DP - Rotated](https://colab.research.google.com/github/PAIR-code/ai-explorables/blob/master/server-side/private-and-fair/MNIST_DP_Rotated.ipynb): Trains model with rotated digits for the [Subgroup Size and Accuracy Appendix](https://pair.withgoogle.com/explorables/private-and-fair/#appendix-subgroup-size-and-accuracy) .
