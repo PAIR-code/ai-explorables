@@ -31,7 +31,7 @@ window.util = (function(){
 
     var {label, labelIndex} = digitMetadata[index]
 
-    if (!label) debugger
+    if (!label) console.log('missing ', index)
     var rawdigits = await util.getFile(`cns-cache/mnist_train_raw_${label}.npy`)
     if (!rawdigits) return console.log('digits not loaded')
 
