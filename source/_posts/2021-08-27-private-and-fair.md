@@ -3,7 +3,7 @@ template: post.html
 title: Can a Model Be Differentially Private and Fair?
 summary: Training models with differential privacy stops models from inadvertently leaking sensitive data, but there's an unexpected side-effect: reduced accuracy on underrepresented subgroups.
 shareimg: https://pair.withgoogle.com/explorables/images/private-and-fair.png
-shareimgabstract: https://pair.withgoogle.com/explorables/images/fill-in-the-blank-abstract.png
+shareimgabstract: https://pair.withgoogle.com/explorables/images/private-and-fair-abstract.png
 permalink: /private-and-fair/
 ---
 
