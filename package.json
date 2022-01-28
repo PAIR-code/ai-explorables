@@ -6,7 +6,8 @@
     "googleapis": "39",
     "highlight.js": "^9.12.0",
     "hot-server": "^0.0.18",
-    "marked": "^0.3.6"
+    "marked": "^0.3.6",
+    "scrape-stl": "^1.0.3"
   },
   "scripts": {
     "start": "mkdir -p public && node source/third_party/index.js --watch & sleep 1 && cd public/ && hot-server --port=2344",

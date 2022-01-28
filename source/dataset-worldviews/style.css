@@ -1,0 +1,260 @@
+:root {
+	--shaded-shape-color: #9e9e9e;
+	--not-shaded-shape-color: white;
+	--classifier-bg-color: #e6e6e6;
+}
+
+.right {
+	float: right;
+}
+.left {
+	float: left;
+}
+
+.gt-shaded {
+	fill: var(--shaded-shape-color);
+	stroke: black;
+	stroke-width: 1;
+}
+
+.gt-unshaded {
+	fill: var(--not-shaded-shape-color);
+	stroke: black;
+	stroke-width: 1;
+}
+
+.shape-label-group {
+	opacity: 0;
+}
+.shape-label-group.visible {
+	opacity: 100;
+}
+
+.incorrect.is-classified {
+	stroke-width: 2;
+	transition: stroke-width 0.5s;
+	transition-timing-function: cubic-bezier(0, 7, 0, 7);
+	stroke: #d15830;
+}
+
+.correct.is-classified {
+	stroke-width: 1;
+	stroke: green;
+}
+
+.shape-label-rect {
+	opacity: 50;
+	fill: white;
+	stroke: none;
+}
+
+.shape-label-text {
+	color: black;
+}
+
+.source {
+	text-decoration: none;
+	font-size: 10px;
+}
+
+.newspaper-image {
+	width: 450px;
+}
+
+.interface-image {
+	width: 450px;
+}
+.summary-text {
+	opacity: 0;
+	padding-top: 0px;
+	padding-bottom: 20px;
+	text-indent: 50px;
+}
+
+.summary-text.is-classified {
+	transition: opacity 1000ms;
+	transition-delay: 2500ms;
+	opacity: 100;
+}
+
+.classifier {
+	/*	fill:#c2c2c2;
+	stroke-width: 0;*/
+	opacity: 0;
+}
+
+.classifier.is-classified {
+	transition: opacity 1000ms;
+	transition-delay: 1500ms;
+	opacity: 100;
+	fill: #c2c2c2;
+	stroke-width: 2;
+}
+
+.classifier-text {
+	text-anchor: middle;
+	/*alignment-baseline: central;*/
+	font-size: 30px;
+}
+
+.classifier-caption {
+	width: 800px;
+	text-align: center;
+	position: relative;
+	left: 50%;
+	margin-left: -400px;
+	font-size: 12px;
+	/*right: 50%;*/
+}
+
+.classifier-bg-shaded {
+	fill: var(--classifier-bg-color);
+	stroke-width: 0;
+}
+
+.classifier-bg-unshaded {
+	fill: var(--classifier-bg-color);
+}
+
+.item-text.invisible {
+	fill-opacity: 10;
+}
+.item-text {
+	fill-opacity: 100;
+}
+
+.explainer-label-text {
+	padding-left: 2px;
+	padding-right: 2px;
+	padding-top: 1px;
+	padding-bottom: 1px;
+}
+
+mark {
+	padding-left: 2px;
+	padding-right: 2px;
+	padding-top: 1px;
+	padding-bottom: 1px;
+	outline: 1px solid #000000;
+}
+
+img.interface {
+	padding-top: 20px;
+	padding-right: 20px;
+	padding-bottom: 20px;
+	padding-left: 20px;
+}
+
+.classifier-button {
+	padding: 10px 20px;
+	text-align: center;
+	font-family: "Google Sans", sans-serif;
+	margin-left: 20px;
+	margin-right: 20px;
+}
+
+.classifer-bg-text {
+	font-family: "Consolas", "monaco", "monospace";
+}
+
+.emphasis {
+	font-weight: 500;
+}
+
+.dropdown {
+	padding: 8px 7px;
+	min-width: 200px;
+	background-color: #f9f9f9;
+	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+	font-family: "Google Sans", sans-serif;
+	font-size: 14px;
+}
+
+.fake-dropdown {
+	padding-top: 10px;
+	padding-bottom: 10px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+.monospace {
+	font-family: "Consolas", "monaco", "monospace";
+	font-size: 14px;
+	font-weight: 500;
+}
+
+.monospace.shaded {
+	background-color: var(--shaded-shape-color);
+	outline: 1px solid #000000;
+	padding: 1px;
+	font-size: 14px;
+}
+
+.monospace.not-shaded {
+	background-color: var(--not-shaded-shape-color);
+	outline: 1px solid #000000;
+	padding: 1px;
+	font-size: 14px;
+}
+
+.classifier-info-blurb {
+	font-style: italic;
+	font-size: 11;
+}
+
+.photo-button {
+	cursor: pointer;
+}
+
+.photo-button rect {
+	fill: #ffffff;
+}
+
+.photo-button.is-active-button rect {
+	stroke: #000;
+}
+
+.explainer-button {
+	cursor: pointer;
+}
+
+.explainer-button rect {
+	fill: #f9f9f9;
+	stroke: #000000;
+}
+
+.explainer-button.explainer-active-button rect {
+	fill: #fefefe;
+	stroke-width: 3;
+}
+
+.tooltip {
+	width: 180px;
+	text-align: center;
+}
+
+.tooltip .correct-row span {
+	outline: 1px solid red;
+	padding: 2px;
+}
+
+.tooltip .correct-row.is-correct-tooltip span {
+	outline: 1px solid green;
+}
+
+#row.row-highlighted {
+	opacity: 0.2;
+}
+
+.shape-row-unhighlighted {
+	opacity: 0.2;
+}
+
+.results-table {
+	text-align: center;
+}
+
+.results-table tr.active {
+	background-color: var(--classifier-bg-color);
+	outline: 1px solid;
+}
