@@ -1,0 +1,89 @@
+svg{
+  overflow: visible;
+}
+
+text{
+  fill: #202124;
+  user-select: none;
+}
+
+.domain{
+  display: none;
+}
+
+.thresholds, .threshold > g{
+  cursor: pointer;
+}
+
+svg{
+  user-select: none;
+}
+
+text.axis-label .legend-text{
+  font-family: 'Roboto';
+  font-style: normal;
+  font-size: 16px;
+  line-height: 20px;
+  /* identical to box height, or 125% */
+  
+  fill: #000;
+}
+
+.axis text{
+  font-size: 10px;
+}
+
+text{
+  text-shadow: 0 1px 0 #fff, 1px 0 0 #fff, 0 -1px 0 #fff, -1px 0 0 #fff;
+}
+
+
+
+
+.bucket text{
+  /*text-shadow: 0 1px 0 #000, 1px 0 0 #000, 0 -1px 0 #000, -1px 0 0 #000;*/
+  /*fill:  #fff;*/
+  font-size: 11px;
+}
+
+
+.big-text{
+  font-variant-numeric: tabular-nums;
+  font-size: 16px;
+}
+
+#card{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 24px 24px;
+  gap: 6px;
+
+  background: #EDF4EC;
+  border: 1px solid #34A853;
+  box-sizing: border-box;
+  border-radius: 4px;
+}
+
+text.val-text{
+  background: #DFE9E1;
+  border: 1px solid #476C63;
+  box-sizing: border-box;
+  border-radius: 4px;
+  fill: #2A4C4A;
+  text-shadow: none;
+}
+
+.val-box{
+  fill: #DFE9E1;
+  stroke: #476C63;
+  opacity: 1;
+}
+
+.legend-title{
+  fill: #002622;
+}
+
+h3 {
+  color: #00695C;
+}
