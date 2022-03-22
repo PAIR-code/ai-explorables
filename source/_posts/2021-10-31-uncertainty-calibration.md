@@ -94,7 +94,7 @@ If a machine learning model tells you that it’s going to rain tomorrow with a 
 
 <p> Nithum Thain, Adam Pearce, Jasper Snoek & Mahima Pushkarna // March 2022
 
-<p> Thanks to Balaji Lakshminarayanan, Emily Reif, Lucas Dixon, Martin Wattenberg, Fernanda Viegas, Ian Kivlichan, Nicole Mitchell, and Meredith Morris for their help with this piece.
+<p> Thanks to Balaji Lakshminarayanan, Emily Reif, Lucas Dixon, Martin Wattenberg, Fernanda Viégas, Ian Kivlichan, Nicole Mitchell, and Meredith Morris for their help with this piece.
 
 <h3> Footnotes </h3>
 
