@@ -75,5 +75,32 @@ limitations under the License.
   }
 </script>
 
+<script>
+  // Tweaks for displaying in an iframe
+  if (window !== window.parent){
+    
+    // Open links in a new tab
+    Array.from(document.querySelectorAll('a'))
+      .forEach(e => {
+        // skip anchor links
+        if (e.href && e.href[0] == '#') return
+
+        e.setAttribute('target', '_blank')
+        e.setAttribute('rel', 'noopener noreferrer')
+      })
+
+    // Remove recirc h3
+    Array.from(document.querySelectorAll('h3'))
+      .forEach(e => {
+        if (e.textContent != 'More Explorables') return
+
+        e.parentNode.removeChild(e)
+      })
+
+    // Remove recirc container
+    var recircEl = document.querySelector('#recirc')
+    recircEl.parentNode.removeChild(recircEl)
+  }
+</script>
 
 </html>
