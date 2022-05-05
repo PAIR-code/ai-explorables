@@ -103,10 +103,12 @@ If a machine learning model tells you that it’s going to rain tomorrow with a 
 <p> <a class='footend'></a> Applying a strictly <a href="https://en.wikipedia.org/wiki/Monotonic_function" target="_blank">monotonic function</a> to the model always keeps the order of scores the same. 
  
 <p> <a class='footend'></a> In this example, we adjust the model scores by changing the model scores of elements within a bucket to the mean of the bucket.  
-<h3> More Explorables </h3>
+  
+<p id='feedback-form'></p>
+
+<h3>More Explorables</h3>
 
 <p id='recirc'></p>
-
 
 
 

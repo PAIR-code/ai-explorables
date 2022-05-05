@@ -54,5 +54,17 @@ d3.loadData('../posts.json', (err, res) => {
   postSel.append('p.summary')
     .text(d => d.socialsummary || d.summary)
 
+  d3.selectAll('h3')
+    .filter(function(){ return d3.select(this).text() == 'More Explorables'})
+    .classed('more-explorables-h3', true)
+
+  d3.selectAll('.recirc-feedback-form').remove()
+
+  var height = innerWidth < 800 ? 760 : 660
+  d3.select('body').insert('div.recirc-feedback-form', '.more-explorables-h3')
+    .st({marginTop: 40})
+    .append('p')
+    .html(`<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSf9S2enUtgI0ujZfPr93AU8f0DMi7B5NaXOFj49v1qs3pUngw/viewform?embedded=true" width="100%" height="${height}" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>`)
+
 
 })

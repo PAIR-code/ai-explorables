@@ -81,10 +81,11 @@ Adam Pearce, Dylan Baker, Ellen Jiang, Meg Mitchell\* and Timnit Gebru\* // Marc
 Thanks to Alex Hanna, Carey Radebaugh, Emily Denton, Fernanda Viégas, James Wexler, Jess Holbrook, Ludovic Peran, Martin Wattenberg, Michael Terry, Yannick Assogba and Zan Armstrong for their help with this piece.
 
 
+<p id='feedback-form'></p>
+
 <h3>More Explorables</h3>
 
 <p id='recirc'></p>
-
 
 
 

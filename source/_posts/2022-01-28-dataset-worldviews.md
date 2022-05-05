@@ -176,8 +176,13 @@ date: 2022-01-28
 <div class='preload-dropdown-img' style='display: none;'></div>
 
 
-<h3 id="more-explorables">More Explorables</h3>
-<p><p id='recirc'></p></p>
+<p id='feedback-form'></p>
+
+<h3>More Explorables</h3>
+
+<p id='recirc'></p>
+
+
 <p><link rel="stylesheet" href="style.css"></p>
 <script src='../third_party/d3_.js'></script>
 <script src='../third_party/d3-scale-chromatic.v1.min.js'></script>
