@@ -19,17 +19,16 @@ limitations under the License.
 html{
 	background-color: #fff;
 	font-weight: normal;
+  font-family: 'Roboto', Helvetica, sans-serif;
+  font-weight: 300;
+	line-height: 1.55em;
+	font-size: 16px;
 }
 
 
 body{
 	max-width: 850px;
 	margin: 0px auto;
-	font-family: 'Roboto Slab', serif;
-  font-family: 'Roboto', Helvetica, sans-serif;
-  font-weight: 300;
-	line-height: 1.55em;
-	font-size: 16px;
 	margin-top: 5px;
 	margin-bottom: 80px;
   color: #3C4043;

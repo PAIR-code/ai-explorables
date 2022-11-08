@@ -59,7 +59,9 @@
         .append('g')
           .call(translate, function(d){ return [x(d), y(d)] })
 
-      var textSel = annotationSel.append('text')
+      var textSel = annotationSel
+          .filter(d => d.text)
+          .append('text')
           .call(translate, ƒ('textOffset'))
           .text(ƒ('text'))
 

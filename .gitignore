@@ -18,3 +18,11 @@ server-side/dp-model/cns-cache
 *.pytorch_modecl.bin
 *.DS_Store
 .vscode/*
+
+source/saliency/tfjs/
+server-side/saliency/images/
+
+server-side/uncertainty-ood/tfjs_models/
+source/uncertainty-ood/tfjs_models/
+
+server-side/segmentation-saliency/images/

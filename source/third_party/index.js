@@ -12,10 +12,10 @@ function rsyncSource(){
 }
 rsyncSource()
 
-var hljs = require('highlight.js')
+// var hljs = require('highlight.js')
 var marked = require('marked')
 marked.setOptions({
-  highlight: (code, lang) => hljs.highlight(lang || 'html', code).value,
+  // highlight: (code, lang) => hljs.highlight(lang || 'html', code).value,
   smartypants: true
 })
 

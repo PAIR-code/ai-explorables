@@ -19,6 +19,7 @@
         .datum(ogHTML)
     })
 
+
   footendSel.parent().parent().selectAll('br').remove()
 
   var footstartSel = d3.selectAll('.footstart')
@@ -32,7 +33,6 @@
         .parent().at({id: 'footstart-' + i})
     })
     .call(addLockedTooltip)
-
 
   function addLockedTooltip(sel){
     sel
