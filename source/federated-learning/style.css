@@ -1,0 +1,66 @@
+.info-box .post:hover .img{
+  outline: 1px solid #333 !important;
+}
+.info-box .post:hover .title{
+  text-decoration: underline !important;
+}
+
+.post-summary{
+  display: none;
+}
+
+
+.annotation-container{
+  position: absolute;
+  pointer-events: none;
+}
+.annotation-container.is-draggable{
+  pointer-events: all;
+}
+
+.annotation-container path{
+  stroke: #000;
+  fill:  none;
+}
+
+.annotation-container div{
+  font-style: italic;
+  font-family: sans-serif;
+  padding: 2px;
+  padding-right: 5px;
+  line-height: 1.05em;
+  font-size: 14px;
+  /*outline:  1px solid #000;*/
+  /*background: yellow;*/
+}
+
+.annotation-container svg{
+  position: relative;
+}
+
+.annotation-container div ni{
+  display: inline-block;
+  font-family: sans-serif;
+  font-style: normal;
+  font-size: 10px;
+}
+
+
+dark-ul{
+  display: inline-block;
+/*  text-decoration: underline;
+  text-decoration-color: #000;
+  text-decoration-thickness: 3px;
+  text-shadow: none;
+*/  
+
+  box-shadow: 0 2px 0 #000;
+}
+
+body{
+  /*overflow-x:  hidden;*/
+}
+
+* > * {
+  /*outline: 1px solid #f0f;*/
+}

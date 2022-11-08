@@ -1,0 +1,362 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Emoji:wght@600&family=Noto+Sans:wght@100&display=swap');
+
+
+.federate-playground{
+  /*font-family: monospace;*/
+  font-family: sans-serif;
+  width: 720px;
+  margin: 0px auto;
+  font-size:  13px;
+  line-height: 1.5em;
+  margin-top: 35px;
+  margin-bottom: 35px;
+  position: relative;
+}
+.federate-playground-graph{
+  /*width: 300px;*/
+  /*margin-left: 20px;*/
+  line-height: 0px;
+}
+.federate-playground-graph > div{
+  display: inline-block;
+}
+
+.playground-controls{
+  width: 100%;
+  position: relative;
+  margin-bottom: 10px;
+}
+.playground-controls > div{
+  display: inline-block;
+}
+
+.playground-controls > .buttons{
+  display: flex;
+  vertical-align: middle;
+  width: 300px;
+}
+.buttons > div{
+  display: inline-block;
+  /*width: 100px;*/
+  margin-right:  1px;
+  padding-left: 5px;
+  padding-right: 5px;
+  outline: 1px solid #ccc;
+  cursor: pointer;
+  user-select: none;
+
+  /*display: none;*/
+  height: 25px;
+  line-height: 25px;
+}
+.buttons > div:hover{
+  outline: 1px solid #000;
+  z-index: 100;
+  position: relative;
+}
+i.material-icons{
+  font-size: 20px;
+  position: relative;
+  top: 3px;
+}
+
+.reset-buttons{
+  margin-top: 17px;
+}
+.reset-buttons div{
+  margin: 0px;
+}
+.reset-buttons div:last-child{
+  margin-left: 1px;
+}
+
+.local-step{
+  visibility: hidden;
+}
+.is-paused .local-step{
+  visibility: visible;
+}
+
+.count-display{
+  position: absolute;
+  right: 12px;
+  top:  5px;
+}
+.count-display > span{
+  display: inline-block;
+  margin-right: 20px;
+}
+
+.only-count{
+  display: flex;
+  justify-content: center;
+}
+.only-count .count-display{
+  margin: 0 auto;
+  position: relative;
+}
+
+svg{
+  overflow: visible;
+}
+
+.domain{
+  display: none;
+}
+
+body{
+  min-height: 1000px;
+}
+
+.axis text{
+  fill: #666;
+  user-select: none;
+  font-size: 10px;
+}
+
+
+
+.option{
+  margin-bottom: 10px;
+  user-select: none;
+}
+
+.option-title{
+  font-weight: 500;
+  margin-bottom: 2px;
+  cursor: pointer;
+}
+.option-title:hover span{
+  text-decoration: underline;
+}
+
+.option-title.active{
+  font-weight: 700;
+}
+
+.option-value{
+  display: inline-block;
+  width: 20px;
+  outline:  1px solid #ccc;
+  text-align: center;
+  margin-right: 1px;
+  cursor: pointer;
+  color:  #000;
+}
+.option-value:hover{
+  outline:  1px solid #000 !important;
+  z-index: 100;
+  position: relative;
+}
+
+.option-value.active{
+  background: #000;
+  color:  #fff;
+}
+
+.top-container{
+  text-align: top;
+}
+.hyperparm-options{
+  width: 140px;
+  vertical-align: top;
+  display: inline-block;
+}
+
+.line-chart{
+  width: 400px;
+  display: block;
+  margin: 0px auto;
+}
+.playground-full .line-chart{
+  width: 400px;
+  display: inline-block;
+  margin: 0px auto;
+}
+
+.axis text{
+  /*font-family: monospace;*/
+}
+
+div.dataset{
+  margin-left: 4px;
+  margin-left: 4px;
+}
+
+
+.playground-step div.dataset.global{
+  outline: 2px solid cyan;
+  background: cyan;
+
+}
+.playground-step div.dataset.hovered{
+  outline: 2px solid #f0f;
+  position: relative;
+  z-index: 100;
+  background: #f0f;
+}
+
+path.dataset.hovered{
+  stroke: #f0f !important;
+  stroke-width: 1.5px;
+}
+circle.dataset.hovered{
+  fill: #f0f;
+}
+dark-ul.hovered{
+  box-shadow: 0 2px 0 #f0f;
+}
+
+circle.dataset.global{
+  stroke: cyan;
+  fill: #000;
+}
+circle.dataset.global.hovered{
+  /*fill-opacity: 0;*/
+  fill: #000;
+  stroke: #f0f !important;
+}
+circle.global-acc{
+  stroke: cyan;
+  fill: #000;
+  r: 5;
+  stroke-width: 2.5;
+  cx: 5;
+  cy: 5;
+}
+global-circle{
+  /*font-style: normal;*/
+  /*font-weight: 1000;*/
+}
+global-circle.hovered circle.global-acc{
+  stroke: #f0f;
+  fill: #000;
+}
+
+path.dataset.global{
+  stroke: cyan;
+  fill: none;
+  /*stroke-dasharray: 2 2;*/
+  /*stroke-width: 2;*/
+}
+path.dataset.global.hovered{
+  stroke: #f0f;
+}
+
+
+
+.dataset.is-outlier{
+  /*outline: 4px solid #71E695;*/
+  position: relative;
+  z-index: 100;
+  /*background: #71E695;*/
+}
+.dataset.is-disabled {
+  filter: grayscale(90%) brightness(70%);
+  /*filter: grayscale(20%) ;*/
+    /*z-index: 99;*/
+  /*opacity: .8;*/
+}
+.dataset.clickable {
+  cursor: pointer;
+}
+
+.legend{
+  user-select: none;
+}
+
+.data-map{
+  /*transform: scale(2.0);*/
+}
+
+.black-shadow{
+  text-shadow: 0 .5px 0 #000, .5px 0 0 #000, 0 -.5px 0 #000, -.5px 0 0 #000;
+}
+
+.is-merging .mergeline{
+  transition: all 0s linear !important;
+  stroke-width: 5px;
+  opacity: .4;
+}
+.mergeline{
+  opacity: 0;
+  transition: all .3s linear;
+  stroke-width: 30px;
+  stroke:  #000;
+}
+.playground-top .mergeline{
+  transition: all 1s linear;
+}
+
+
+.reset-buttons > div{
+  font-family: Noto Emoji,'Roboto', Helvetica, sans-serif;
+}
+
+
+
+.global-model{
+  position: absolute;
+  width: 120px;
+  height: 120px;
+  top: 346px;
+  left: 10px;
+}
+
+
+
+.playground-top .caption{
+  text-align: center;
+}
+
+.playground-top .buttons{
+  display: inline-block;
+  margin-left: 10px;
+}
+
+.playground-top .dataset .dataset{
+  padding: 13px;
+  margin: 4px;
+  border: 1px solid #ddd;
+  border-radius: 40px;
+  line-height: 0px;
+  margin-top: 0px;
+}
+
+
+
+
+
+
+
+
+@media (min-width: 900px){
+  .playground-top{
+    min-height: 290px;
+  }
+}
+
+
+.playground-full{
+  /*outline: 1px solid #ddd;*/
+}
+
+.wavy-line{
+  color:  #000;
+  stroke: red;
+  -webkit-text-stroke: 1px black;
+  position: relative;
+  /*top: 6px;*/
+}
+.wavy-line.hidden{
+  opacity: 0;
+}
+
+.global-circle{
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  background: #ddd;
+  border: 2px solid #000;
+  border-radius: 20px;
+}

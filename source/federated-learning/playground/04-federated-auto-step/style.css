@@ -1,0 +1,21 @@
+.federate-auto-playground{
+  margin: 0px auto;
+  /*width: 300px;*/
+}
+.federate-auto-playground-graph{
+  /*width: 300px;*/
+  /*margin-left: 20px;*/
+}
+.federate-auto-playground-graph > div{
+  display: inline-block;
+}
+
+.federate-auto-playground .buttons > div{
+  display: inline-block;
+  /*width: 100px;*/
+  margin:  20px;
+  padding: 5px;
+  outline: 1px solid #000;
+  cursor: pointer;
+  user-select: none;
+}

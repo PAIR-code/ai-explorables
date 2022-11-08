@@ -1,0 +1,89 @@
+
+.tooltip-footnote {
+  top: -1000px;
+  position: absolute;
+  padding: 10px;
+  background: rgba(255, 255, 255, .8);
+  border: 0px solid lightgray;
+  
+  width: 300px !important;
+  font-size: 14px;
+  line-height: 1.4em;
+  background: rgba(0, 0, 0, .8);
+  color: #fff;
+  pointer-events: all !important;
+  z-index: 1000;
+}
+.tooltip-footnote a{
+  color: #fff !important;
+}
+.tooltip-footnote:hover{
+/*  opacity: 1;
+  pointer-events: all !important;
+*/}
+
+.tooltip-footnote-hidden{
+  opacity: 0;
+  transition: opacity .3s;
+  transition-delay: .2s;
+  pointer-events: none !important;
+}
+
+@media (max-width: 590px){
+  .footend{
+    margin-left: 0px;
+    width: 10px;
+  }
+
+  div.tooltip-footnote{
+    transition: all 0s !important;
+    transition-delay: 0s !important;
+
+    display: none;
+    position: fixed;
+    bottom: -1px;
+    width: calc(100%);
+    left: -1px !important;
+    right: -1px !important;
+    top: auto !important;
+    width: auto !important;
+  }
+}
+
+/*@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@100&display=swap');*/
+
+
+.footstart, .footend{
+  font-family: 'Lucida Grande', Tahoma, Verdana, Arial, sans-serif;
+  /*letter-spacing: -4px;*/
+  color: #555;
+
+}
+
+.footend{
+  position: relative;
+}
+
+.footstart-p{
+  position: relative;
+}
+
+@media (min-width: 830px){
+  .footend{
+    position: absolute;
+    transform: translate(-100%, 0%);
+    margin-left: -3px;
+    width:  auto;
+  }
+}
+
+
+
+.footstart{
+  position: relative;
+  height: 8px !important;
+  line-height: 0em;
+  /*font-family: 'Noto Sans' !important;*/
+}
+
+

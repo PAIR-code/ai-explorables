@@ -1,0 +1,110 @@
+.num-container{
+  height: 30px;
+    outline: rgb(187, 187, 187) solid 0px;
+    text-align: center;
+}
+.num{
+  text-align: center;
+  display: inline-block;
+  position: relative;
+  top: 4px;
+  width: 31px;
+  height: 20px;
+  padding-bottom: 2px;
+  margin-left: 4px;
+  margin-right: 4px;
+  /*font-family: monospace;*/
+  font-size: 14px;
+}
+
+.secure-aggregation{
+  width: 990px;
+  margin: 0px auto;
+  vertical-align: top;
+  user-select: none;
+  margin-top: 35px !important;
+  margin-bottom: 35px !important;
+}
+.full-width .secure-aggregation .container > div{
+  display: inline-block;
+  margin-right: 30px;
+  overflow: visible;
+  vertical-align: top;
+}
+
+.full-width .secure-aggregation .container > div:last-child{
+  margin-right: 0px;
+}
+.secure-aggregation .diagram-container{
+  outline:  1px solid #ccc;
+}
+
+
+.full-width{
+  overflow: visible;
+}
+
+.caption, .caption p{
+  font-size:  14px;
+  padding: 10px;
+  line-height: 1.2em;
+}
+
+hn{
+  background: #000;
+  color: #fff;
+  padding-left: 2px;
+  padding-right: 2px;
+}
+
+total{
+  padding-left: 2px;
+  padding-right: 2px;
+  outline: 1px solid #000;
+  color: #000;
+}
+
+total-container{
+  position: relative;
+  width: 40px;
+  display: inline-block;
+  height: 10px;
+  /*background: red;*/
+  verticalAlign: 'middle';
+  color: #000;
+  
+}
+
+total.num{
+  position: absolute;
+  top: -10px;
+  left: -2px;
+  display: inline-block;
+  line-height: 23px;
+}
+
+hn.green{
+  background-color: #24773d;
+  color: #fff;
+}
+
+
+.num.hovered{
+  animation: bold-blink-animation 1s steps(2, start) infinite;
+  font-weight: 800;
+  /*outline:  2px solid #f0f;*/
+}
+
+@keyframes bold-blink-animation {
+  to {
+    font-weight: 800;
+  }
+}
+
+
+.is-dragging .num{
+  pointer-events: none;
+}
+
+
+
