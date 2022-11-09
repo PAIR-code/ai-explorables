@@ -321,7 +321,6 @@ path.dataset.global.hovered{
 }
 
 
-
 .playground-top .caption{
   text-align: center;
 }
@@ -340,7 +339,20 @@ path.dataset.global.hovered{
   margin-top: 0px;
 }
 
-
+.playground-top .count-display{
+  position: absolute;
+  height: 0px;
+  width: 200px;
+  text-align: right;
+  top: 237px;
+  right: -2px;
+  font-size: 11px;
+  line-height: 1em;
+  color: #555;
+}
+.playground-top .count-display span:last-child{
+  display: none;
+}
 
 
 

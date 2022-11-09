@@ -109,11 +109,14 @@ window.showModelTraining = async function(modelSettings, sharedConfig, finishCal
     if (sharedConfig.isPaused) return
 
     datasets.counts.ms = ms
-    tfUtil.localStep(datasets)
-    tfUtil.localStep(datasets)
-    // if (!sharedConfig.stepSpeed){
-    //   tfUtil.localStep(datasets)
-    // }
+    if (sharedConfig.slug == 'top'){
+      if (datasets.counts.local % modelSettings.mergeRate == 0 || Math.random() < .5){
+        tfUtil.localStep(datasets)
+      }
+    } else{
+      tfUtil.localStep(datasets)
+      tfUtil.localStep(datasets)
+    }
 
     if (datasets.counts.local % modelSettings.mergeRate == 0){
       if (sharedConfig.mergeAnimation){

@@ -21,12 +21,12 @@ window.initPlaygroundTop = async function(slug){
     <div class='federate-playground-graph'></div>
 
     <div class='caption'>Twelve people periodically merge their models to collaboratively <br>train a shared model — all without sharing their data. 
-    <div class='buttons'><div class='reset-models'>Reset</div>
+    <div class='count-display'></div>
   `)
   if (!sel.node()) return console.log('missing .playground-' + slug)
 
   var modelSettings = {
-    mergeRate: 1000, 
+    mergeRate: 250, 
     numTrainingPoints: 3, 
     trainAvoidMid: false,
     forcePair: false,
@@ -44,7 +44,7 @@ window.initPlaygroundTop = async function(slug){
     initialWeights: weights[slug],
     log: [],
     allModelSettings: [modelSettings],
-    learningRate: .01,
+    learningRate: .04,
     mergeAnimation: 2000,
     // onResetModels,
   }
@@ -59,21 +59,6 @@ window.initPlaygroundTop = async function(slug){
   var globalSel = d3.select('.global-model').html('')
 
   showModelTraining(modelSettings, sharedConfig)
-
-  // TODO: pass reset fn?
-  var resetFn = sel.select('.buttons').st({display: 'none'}).select('.reset-models').on('click')
-
-  window.__topResetInterval?.stop()
-  window.__topResetInterval = d3.interval(() => {
-    // sel.transition().duration(1000)
-    //   .st({opacity: .5})
-
-    // setTimeout(() => {
-    //   sel.st({opacity: 1})
-    // }, 1000)
-
-    // resetFn()
-  }, 40000)
   
 
 }
