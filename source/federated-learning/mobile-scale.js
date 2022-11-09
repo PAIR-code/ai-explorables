@@ -99,16 +99,32 @@ window.initMobileScaling = function(){
       })
 
       // if (scale == 1) return
-      // var svgTextSel = d.sel.selectAll('.axis,text').st({fontSize: 'auto'}).at({fontSize: 'auto'})
+      var svgTextSel = d.sel.selectAll('.axis,text').st({fontSize: 'auto'}).at({fontSize: 'auto'})
       // window.__textInterval?.stop()
       // window.__textInterval = d3.interval(() => d.sel.selectAll('text').st({fontSize: 10}), 200)
     })
   }
   graphics.rescale()
   d3.select(window).on('resize', _.debounce(graphics.rescale, 200))
-  d3.select(window).on('focus', _.debounce(graphics.rescale, 200))
+  d3.select(window).on('focus', () => {
+    graphics.rescale()
+    d3.text('mobile-scale.js', (err, str) => {
+      eval(str)
+    })
+  })
 }
 window.initMobileScaling()
+
+setTimeout(() => {
+  Array.from(document.querySelectorAll('link'))
+    .filter(d => d.href.includes('playground/style.css'))
+    .forEach(d => d.href = d.href.split('?')[0] + '?' + Math.random())  
+
+  setTimeout(() => {
+    window.initMobileScaling()
+  }, 50)
+}, 100)
+
 
 
 // if (innerWidth < 800){
