@@ -33,8 +33,8 @@ window.annotations = [
       "left": -150,
       "width": 150
     },
-    maxWidth: 950,
-    "path": "M 2,1 A 95.13 95.13 0 0 0 140.00006103515625,107.99996948242188",
+    "maxWidth": 950,
+    "path": "M 2,1 A 95.13 95.13 0 0 0 140.00006103515625,107.99996948242188"
   },
   {
     "parent": ".secure-aggregation .container > div:last-child .diagram-container",
@@ -55,24 +55,24 @@ window.annotations = [
       "width": 170
     },
     "path": "M -9,-37 A 122.525 122.525 0 0 1 -10,-267",
-    maxWidth: 800,
+    "maxWidth": 800
   },
   {
     "parent": ".playground-step .line-chart",
-    "html": `Some users train models that closely match the actual pattern in temperatures; other users train very inaccurate models
-    <br><br>The <dark-ul class='dataset'>average accuracy</dark-ul> of all the users' models is also plotted to show how overall performance improves after merging models
-    <br><br><span class='global-annotation'>The result of federated training is the latest global model&ensp;<global-circle><svg width="10" height="10"><circle class="global-acc"></circle></svg></global-circle>&ensp; updated on each merge</span>`,
+    "html": "Some users train models that closely match the actual pattern in temperatures; other users train very inaccurate models\n    <br><br>The <dark-ul class='dataset'>average accuracy</dark-ul> of all the users' models is also plotted to show how overall performance improves after merging models\n    <br><br><span class='global-annotation'>The result of federated training is the latest global model&ensp;<global-circle><svg width=\"10\" height=\"10\"><circle class=\"global-acc\"></circle></svg></global-circle>&ensp; updated on each merge</span>",
     "st": {
       "top": 30,
       "left": 400,
       "width": 215
     },
-    mobileSt: {width: 160},
+    "mobileSt": {
+      "width": 160
+    },
     "path": "M 0 0"
   },
   {
     "parent": ".playground-outlier",
-    "html": `Click the <span class="outlier" style="background: rgb(85, 45, 132); padding: 0px 2px; color: rgb(255, 255, 255);font-style: normal;">outlier</span> users reporting only cold temperatures to retrain without them`,
+    "html": "Click the <span class=\"outlier\" style=\"background: rgb(85, 45, 132); padding: 0px 2px; color: rgb(255, 255, 255);font-style: normal;\">outlier</span> users reporting only cold temperatures to retrain without them",
     "st": {
       "top": 200,
       "left": 0,
@@ -99,11 +99,10 @@ window.annotations = [
       "top": 340,
       "width": 150
     },
-    maxWidth: 800,
-    "path": "M -6,-22 A 67.557 67.557 0 0 1 -20,-155"
-  },
+    "maxWidth": 800,
+    "path": "M -6,-22 A 75.299 75.299 0 0 1 -14,-170"
+  }
 ]
-
 
 
 function initSwoopy(){
