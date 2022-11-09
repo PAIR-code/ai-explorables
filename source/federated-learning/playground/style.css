@@ -369,6 +369,12 @@ path.dataset.global.hovered{
   }
 }
 
+@media (max-width: 900px){
+  .playground-top .count-display{
+    display: none;
+  }
+}
+
 
 .playground-full{
   /*outline: 1px solid #ddd;*/
