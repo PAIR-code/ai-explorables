@@ -370,7 +370,7 @@ path.dataset.global.hovered{
 }
 
 @media (max-width: 900px){
-  .playground-top .count-display{
+  .playground-top .count-display, .playground-top text{
     display: none;
   }
 }
