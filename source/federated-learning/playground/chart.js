@@ -130,6 +130,7 @@ window.chart = (function(){
       cursorSel.append('circle').at({r: 16, fillOpacity: 0, strokeWidth: 0})
 
       legendSel
+        .st({cursor: 'pointer'})
         .on('click', function(){
           var v = legendScale.invert(d3.mouse(this)[0])
 

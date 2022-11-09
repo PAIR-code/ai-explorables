@@ -353,7 +353,11 @@ path.dataset.global.hovered{
 .playground-top .count-display span:last-child{
   display: none;
 }
-
+.playground-top text{
+  font-size: 11px;
+  fill: #555;
+  font-family: sans-serif;
+}
 
 
 
