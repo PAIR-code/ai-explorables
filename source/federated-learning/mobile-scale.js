@@ -107,10 +107,12 @@ window.initMobileScaling = function(){
   graphics.rescale()
   d3.select(window).on('resize', _.debounce(graphics.rescale, 200))
   d3.select(window).on('focus', () => {
-    graphics.rescale()
-    d3.text('mobile-scale.js', (err, str) => {
-      eval(str)
-    })
+    // graphics.rescale()
+    setTimeout(() => {
+      d3.text('mobile-scale.js', (err, str) => {
+        eval(str)
+      })
+    }, 200)
   })
 }
 window.initMobileScaling()
@@ -120,9 +122,9 @@ setTimeout(() => {
     .filter(d => d.href.includes('playground/style.css'))
     .forEach(d => d.href = d.href.split('?')[0] + '?' + Math.random())  
 
-  setTimeout(() => {
-    window.initMobileScaling()
-  }, 50)
+  // setTimeout(() => {
+  //   window.initMobileScaling()
+  // }, 50)
 }, 100)
 
 
