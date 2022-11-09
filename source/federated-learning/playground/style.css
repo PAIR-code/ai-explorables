@@ -349,7 +349,7 @@ path.dataset.global.hovered{
   font-size: 11px;
   line-height: 1em;
   color: #555;
-  opacity: 0;
+  /*opacity: 0;*/
 }
 .playground-top .count-display span:last-child{
   display: none;
@@ -358,6 +358,7 @@ path.dataset.global.hovered{
   font-size: 11px;
   fill: #555;
   font-family: sans-serif;
+  opacity: 0;
 }
 
 

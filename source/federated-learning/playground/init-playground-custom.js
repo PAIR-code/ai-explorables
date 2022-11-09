@@ -30,7 +30,7 @@ window.initPlaygroundTop = async function(slug){
     numTrainingPoints: 3, 
     trainAvoidMid: false,
     forcePair: false,
-    numClients: 18, 
+    numClients: 24, 
     numOutliers: 0, 
     x: 0,
     dpNoise: 0,
