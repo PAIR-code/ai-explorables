@@ -104,7 +104,7 @@ function drawCentral(){
   })
 
   midBotToMidLeft(tableSel, wordWeightSel.parent(), c, 0)
-  divSel.append('div.caption').html(`With <b>centralized training</b>, each user's data is uploaded to a server where a single model is trained.`).st({marginTop: 10, maxWidth: 320})
+  divSel.append('div.caption').html(`With <b>centralized training</b>, each user's data is uploaded to a server where a single model is trained.`).st({maxWidth: 320})
 }
 drawCentral()
 
@@ -124,7 +124,7 @@ function drawLocal(){
   peopleSel.each(function(d, i){
     midRightToMidLeft(d3.select(this), d3.select(peopleModelSel._groups[0][i]), c, 0, 2, 0)
   })
-  divSel.append('div.caption').html('Each user <b>locally trains</b> a spam model independently — no information is shared with a server.').st({maxWidth: 350, marginTop: -10})
+  divSel.append('div.caption').html('Each user <b>locally trains</b> a spam model independently — no information is shared with a server.').st({maxWidth: 350})
 }
 drawLocal()
 
