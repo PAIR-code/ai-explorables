@@ -20,17 +20,17 @@ window.initPlaygroundTop = async function(slug){
 
     <div class='federate-playground-graph'></div>
 
-    <div class='caption'>Twelve people periodically merge their models to collaboratively <br>train a shared model — all without sharing their data. 
+    <div class='caption'>Eighteen people periodically merge their models to collaboratively <br>train a shared model — all without sharing their data. 
     <div class='count-display'></div>
   `)
   if (!sel.node()) return console.log('missing .playground-' + slug)
 
   var modelSettings = {
-    mergeRate: 250, 
+    mergeRate: 200, 
     numTrainingPoints: 3, 
     trainAvoidMid: false,
     forcePair: false,
-    numClients: 12, 
+    numClients: 18, 
     numOutliers: 0, 
     x: 0,
     dpNoise: 0,

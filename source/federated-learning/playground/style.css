@@ -344,11 +344,12 @@ path.dataset.global.hovered{
   height: 0px;
   width: 200px;
   text-align: right;
-  top: 239px;
+  top: 357px;
   right: -2px;
   font-size: 11px;
   line-height: 1em;
   color: #555;
+  opacity: 0;
 }
 .playground-top .count-display span:last-child{
   display: none;
