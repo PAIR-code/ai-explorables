@@ -14,24 +14,47 @@ limitations under the License.
 ==============================================================================*/
 
 
-window.util = (function(){
 
-  function genDataDiagonal(modelIndex){
-    const n = 100
+
+tf.setBackend('cpu')
+
+window.tfUtil  = (function(){
+
+  var pad = .03
+
+  // Generate training data
+  function genDataDiagonal(modelSettings, isOutlier, random=Math.random){
+    var n = 100
 
     let data = d3.range(n).map(i => {
-      const x = [Math.random(), Math.random()]
-      const y = x[0] < x[1]
+      var xOrig = [random()*(1 - pad*2) + pad, random()*(1 - pad*2) + pad]
+      var y = xOrig[0] < xOrig[1]
+      if (isOutlier) y = 0
 
-      return {x, y}
+      var dpNoise = [random()*(1 - pad*2) + pad, random()*(1 - pad*2) + pad]
+      var x = calcDpNoise(xOrig, dpNoise, modelSettings)
+
+      return {xOrig, x, y, dpNoise}
     })
 
-    data = data.filter(d => modelIndex/10 <= d.x[0] && d.x[0] <= (modelIndex + 3)/10)
+    if (modelSettings.trainAvoidMid){
+      data = data.filter(d => Math.abs(d.x[0] - d.x[1]) > .1)
+    }
+    if (modelSettings.forcePair){
+      data = _.flatten(d3.nestBy(data, d => d.y).map(d => d.slice(0, 2)))
+    }
+    // data = data.filter(d => datasetIndex/12 <= d.x[0] && d.x[0] <= (datasetIndex + 3)/12)
+
+    if (!isOutlier){
+      data = data.filter((d, i) => i < modelSettings.numTrainingPoints)
+    } else {
+      data = data.filter((d, i) => i < modelSettings.numTrainingPoints)//*5)
+    }
 
     const rv = {
       data, 
       xTrain: data.map(d => d.x), 
-      yTrain: data.map(d => d.y), 
+      yTrain: data.map(d => d.y), // TODO: 0 predictions are more unstable
     }
 
     rv.xTrainTensor = tf.tensor2d(rv.xTrain, [rv.xTrain.length, 2])
@@ -40,89 +63,167 @@ window.util = (function(){
     return rv
   }
 
-
-  async function initChart(model, dataset, sel, size=80){
-    var color = d3.interpolatePuOr
-    var colors = [color(.2), color(1 - .2)]
-
-    var c = d3.conventions({
-      sel: sel ? sel.append('div') : d3.select('.graph').append('div'),
-      height: size,
-      width: size,
-      margin: {top: 2, left: 4, bottom: 2, right: 4},
-      layers: 'cs',
-    })
-    var ctx = c.layers[0]
-
-
-    var gs = 20
-    var testPoints = d3.cross(d3.range(0, 1 + 1E-9, 1/gs), d3.range(0, 1 + 1E-9, 1/gs))
-    var predictions = model.predict(tf.tensor2d(testPoints)).dataSync()
-    // console.log(predictions)
-
-    testPoints.forEach((d, i) => {
-      ctx.beginPath()
-      ctx.fillStyle = color(predictions[i])
-      ctx.rect(c.x(d[0]), c.y(d[1]), c.x(1/gs), c.x(1/gs))
-      ctx.fill()
-    })
-
-
-    ctx.lineWidth = .2;
-    ctx.strokeStyle = '#000';
-
-    dataset.data?.slice(0, 100).forEach(d => {
-      ctx.beginPath()
-      ctx.arc(c.x(d.x[0]), c.y(d.x[1]), 2, 0, 2*Math.PI, false)
-      ctx.fillStyle = colors[+d.y]
-      ctx.fill()
-      ctx.stroke()
-    })
-
+  // Adds dp noise to training points, exposed to use with dp-slider; 
+  function calcDpNoise(xOrig, dpNoise, modelSettings){
+    return xOrig
+      .map((d, i) => d + (dpNoise[i] - d)*modelSettings.dpNoise/5)
+      .map(d => d3.clamp(pad*2, d, 1 - pad*2))
   }
 
 
-  function logWeights(){
-    return
+  // Private helper functions
+
+  function initWeights(){
+    const weights = (function(){
+      const w1 = tf.variable(tf.randomNormal([2, 4]))
+      const b1 = tf.variable(tf.randomNormal([4]))
+      const w2 = tf.variable(tf.randomNormal([4, 1]))
+      const b2 = tf.variable(tf.randomNormal([1]))
+
+      return [w1, b1, w2, b2]
+    })()
+
+    return weights
+  }
+
+  function weights2model(weights){
+    const [w1, b1, w2, b2] = weights
+
+    function predict(x){
+      return x.matMul(w1).add(b1).tanh().matMul(w2).add(b2).tanh()
+    }
+
+    return {predict, weights: [w1, b1, w2, b2]}
+  }
+
+  function sliceCopy(d){
+    return tf.variable(tf.tensor(d.dataSync().slice(), d.shape))
+  }
+
+  function logWeights(weights){
     model.weights.forEach(w => {
      console.log(w.name, w.shape);
      console.log(w.val.dataSync() + '')
     })
   }
 
-  function sliceCopy(x){
-    return tf.variable(tf.tensor(x.dataSync().slice(), x.shape))
+  function weights2json(weights){
+    return weights.map(d => d.arraySync())
   }
 
-  return {genDataDiagonal, initChart, logWeights, sliceCopy}
+
+
+  // Public functions that operate on all the datasets 
+
+  function initModels(datasets){
+    if (datasets.sharedConfig.initDifferentWeights){
+      datasets.forEach(d => {
+        d.model = weights2model(initWeights())
+      })
+    } else {
+      var initialWeights = datasets.sharedConfig.initialWeights
+      if (initialWeights){
+        initialWeights = initialWeights.map(d => tf.variable(tf.tensor(d)))
+      } else{
+        initialWeights = initWeights()
+        datasets.sharedConfig.initialWeights = initialWeights.map(d => d.arraySync())
+      }
+
+
+      datasets.forEach(d => {
+        d.model = weights2model(initialWeights.map(sliceCopy))
+      })
+      initialWeights.forEach(d => d.dispose())
+    }
+  }
+
+  function localStep(datasets){
+    datasets.forEach(d => {
+      tf.train.sgd(datasets.sharedConfig.learningRate || .1).minimize(() => {
+        const predYs = d.model.predict(d.xTrainTensor)
+        // huberLoss hingeLoss meanSquaredError
+        const loss = tf.losses.meanSquaredError(d.yTrainTensor, predYs)
+        return loss
+      })
+    })
+
+    // above callback is synchronous w/ cpu runtime
+    // test with: 
+    // console.log(datasets[0].model.weights[0].dataSync())
+
+    datasets.counts.local++
+    logStep(datasets)
+  }
+
+  function mergeModels(datasets){
+    var activeDatasets = datasets.filter(d => !d.isDisabled)
+
+    const mergedWeights = ['ijk->jk', 'ij->j', 'ijk->jk', 'ij->j']
+      .map((einsumStr, i) => {
+        const stackedWeights = tf.stack(activeDatasets.map(d => d.model.weights[i]))
+        const rv = tf.einsum(einsumStr, stackedWeights).mul(1/activeDatasets.length)
+        stackedWeights.dispose()
+        return rv
+      })
+
+    activeDatasets.forEach(d => {
+      d.model.weights.forEach(d => d.dispose())
+      d.model = weights2model(mergedWeights.map(sliceCopy))
+    })
+    mergedWeights.forEach(d => d.dispose())
+
+    datasets.counts.merge++
+    logStep(datasets)
+  }
+
+  function logStep(datasets){
+    // TODO save weights to replay?
+    var datasetAccuracy = datasets.filter(d => !d.isDisabled).map(calcAccuracy)
+    var accuracy = d3.mean(datasetAccuracy)
+    datasets.counts.accuracy = accuracy
+
+    var rv = {
+      counts: {...datasets.counts},
+      accuracy,
+      hyperparms: datasets.hyperparms,
+      datasetAccuracy
+    } 
+
+    datasets.sharedConfig.log.push(rv)
+  }
+
+  var calcAccuracy = (function(){
+    var gs = 20
+    var testPoints = d3.cross(d3.range(0, 1 + 1E-9, 1/gs), d3.range(0, 1 + 1E-9, 1/gs))
+    var testPointsTensor = tf.tensor2d(testPoints)
+
+    // Comment out to enable train accuracy instead
+    // return (dataset) => {
+    //   var predictions = dataset.model.predict(dataset.xTrainTensor).dataSync()
+
+    //   return d3.mean(dataset.xTrain, (d, i) => {
+    //     var v = predictions[i]
+    //     return d[1] < d[0] ? v < .5 : v > .5
+    //     // return d[1] < d[0] ? Math.abs(1 - v) : Math.abs(v)
+    //   })
+    // }
+
+
+    return (dataset) => {
+      var predictions = dataset.model.predict(testPointsTensor).dataSync()
+
+      return d3.mean(testPoints, (d, i) => {
+        var v = predictions[i]
+        if (Math.abs(d[1] - d[0]) < .05) return NaN
+        return d[1] < d[0] ? v < .5 : v > .5
+        // return d[1] < d[0] ? Math.abs(1 - v) : Math.abs(v)
+      })
+    }
+  })()
+
+
+  return {genDataDiagonal, calcDpNoise, initModels, localStep, mergeModels, logStep}
 })()
 
 if (window.init) window.init()
 
-
-
-  // function genDataNormal(modelIndex){
-  //   const n = 20
-  //   const isFlip = false // modelIndex % 2
-
-  //   const data = d3.range(n).map(i => {
-  //     let y = i % 2 == 0
-  //     const x = [d3.randomNormal(y ? .2 : .8, .1)(), d3.randomNormal(y ? .2 : .8, .1)()]
-  //       .map(d => d3.clamp(0, d, 1))
-
-  //     if (isFlip) y = !y
-
-  //     return {x, y}
-  //   })
-
-  //   const rv = {
-  //     data, 
-  //     xTrain: data.map(d => d.x), 
-  //     yTrain: data.map(d => d.y), 
-  //   }
-
-  //   rv.xTrainTensor = tf.tensor2d(rv.xTrain, [rv.xTrain.length, 2])
-  //   rv.yTrainTensor = tf.tensor2d(rv.yTrain, [rv.yTrain.length, 1])
-
-  //   return rv
-  // }

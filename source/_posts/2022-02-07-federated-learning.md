@@ -166,17 +166,17 @@ Thanks to Nithum Thain, Alex Ingerman, Brendan McMahan, Hugo Song, Daniel Ramage
 <link rel='stylesheet' href='secure-aggregation/style.css'>
 <script src='secure-aggregation/init.js'></script>
 
-<link rel='stylesheet' href='playground/08-options/style.css'>
+<link rel='stylesheet' href='playground/style.css'>
 
 <script src='../third_party/footnote.js'></script>
-<script src='playground/08-options/tf-util.js'></script>
-<script src='playground/08-options/chart.js'></script>
-<script src='playground/08-options/weights.js'></script>
-<script src='playground/08-options/show-model-training.js'></script>
-<script src='playground/08-options/init-playground.js'></script>
-<script src='playground/08-options/init-playground-custom.js'></script>
+<script src='playground/tf-util.js'></script>
+<script src='playground/chart.js'></script>
+<script src='playground/weights.js'></script>
+<script src='playground/show-model-training.js'></script>
+<script src='playground/init-playground.js'></script>
+<script src='playground/init-playground-custom.js'></script>
 
-<script src='playground/08-options/init.js'></script>
+<script src='playground/init.js'></script>
 
 <script src='mobile-scale.js'></script>
 
