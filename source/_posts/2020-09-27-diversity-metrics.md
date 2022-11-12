@@ -76,16 +76,15 @@ Inferring user preferences is also tricky; you can checkout ways to design for u
 
 Adam Pearce, Dylan Baker, Ellen Jiang, Meg Mitchell\* and Timnit Gebru\* // March 2021
 
-*Work done while at Google
+\*Work done while at Google
 
 Thanks to Alex Hanna, Carey Radebaugh, Emily Denton, Fernanda Viégas, James Wexler, Jess Holbrook, Ludovic Peran, Martin Wattenberg, Michael Terry, Yannick Assogba and Zan Armstrong for their help with this piece.
-
-
-<p id='feedback-form'></p>
 
 <h3>More Explorables</h3>
 
 <p id='recirc'></p>
+
+<div class='recirc-feedback-form'></div>
 
 
 

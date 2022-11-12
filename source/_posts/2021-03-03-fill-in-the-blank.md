@@ -111,11 +111,11 @@ The flat slope of the rightmost chart indicates that the he/she difference has d
 
 This reality-prediction mismatch could be caused by lack of training data, model size or the coarseness of the probing method. There's an immense amount of general knowledge inside of these models — with a little bit of focused training, they can even become expert [trivia](https://t5-trivia.glitch.me/) players. 
 
-<p id='feedback-form'></p>
-
 <h3>More Explorables</h3>
 
 <p id='recirc'></p>
+
+<div class='recirc-feedback-form'></div>
 
 <link rel="stylesheet" href="style.css">
 

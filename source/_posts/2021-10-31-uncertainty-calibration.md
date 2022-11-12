@@ -104,11 +104,11 @@ If a machine learning model tells you that it’s going to rain tomorrow with a 
  
 <p> <a class='footend'></a> In this example, we adjust the model scores by changing the model scores of elements within a bucket to the mean of the bucket.  
   
-<p id='feedback-form'></p>
-
 <h3>More Explorables</h3>
 
 <p id='recirc'></p>
+
+<div class='recirc-feedback-form'></div>
 
 
 

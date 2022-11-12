@@ -114,11 +114,14 @@ Click on one of the models above and you can see how the accuracy gap shifts as 
 Intuitively, adding more training data has diminishing marginal increases to accuracy. Accuracy on the smaller group of rotated digits, which may just be on the cusp of being learned, falls off faster as the effective amount of training data is decreased — a disparate reduction in accuracy.
 
 
-<p id='feedback-form'></p>
-
 <h3>More Explorables</h3>
 
-<p id='recirc'></p><link rel="stylesheet" href="style.css">
+<p id='recirc'></p>
+
+<div class='recirc-feedback-form'></div>
+
+
+<link rel="stylesheet" href="style.css">
 
 
 <script type='module'>

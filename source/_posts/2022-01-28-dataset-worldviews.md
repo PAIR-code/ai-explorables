@@ -176,11 +176,11 @@ date: 2022-01-28
 <div class='preload-dropdown-img' style='display: none;'></div>
 
 
-<p id='feedback-form'></p>
-
 <h3>More Explorables</h3>
 
 <p id='recirc'></p>
+
+<div class='recirc-feedback-form'></div>
 
 
 <p><link rel="stylesheet" href="style.css"></p>
