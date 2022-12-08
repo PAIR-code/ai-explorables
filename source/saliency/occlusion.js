@@ -218,7 +218,7 @@ window.initOcclusion = async function(slug, occlusionState){
 
       for (let cell of grid){
         if (grid != model.activeGrid) break
-        await new Promise(resolve => setTimeout(resolve, 60))
+        await new Promise(resolve => setTimeout(resolve, 1))
         ctx.drawImage(occlusionState.activeImg.img, 0, 0)
         ctx.beginPath()
         ctx.rect(scale(cell[1]), scale(cell[0]), boxHeight, boxHeight)

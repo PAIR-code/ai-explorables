@@ -3,6 +3,7 @@ template: post.html
 title: How Federated Learning Protects Privacy
 socialsummary: Most machine learning models are trained by collecting vast amounts of data on a central server. Federated learning makes it possible to train models without any user's raw data leaving their device.
 shareimg: https://pair.withgoogle.com/explorables/images/federated-learning.png
+shareimgabstract: https://pair.withgoogle.com/explorables/images/federated-learning-abstract.png
 permalink: /federated-learning/
 ---
 
