@@ -66,7 +66,7 @@ window.util = (function(){
     var canvasSel = sel.select('canvas')
       .at({width: 28, height: 28})
       .st({width: 280, height: 280})
-    var ctx = canvasSel.node().getContext('2d')
+    var ctx = canvasSel.node().getContext('2d', {willReadFrequently: true})
 
     var drag = d3.drag()
       .container(canvasSel.node())
