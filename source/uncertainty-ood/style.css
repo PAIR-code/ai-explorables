@@ -11,7 +11,9 @@ svg{
 canvas{
   image-rendering: pixelated;
 }
-
+.headline{
+  max-width: 500px;
+}
 .paint-container{
   display: grid;
   grid-template-columns: 280px 1fr;
