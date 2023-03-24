@@ -1,10 +1,10 @@
 ---
 template: post.html
 title: From Confidently Incorrect Models to Humble Ensembles
-
 socialsummary: ML models sometimes make confidently incorrect predictions when they encounter out of distribution data. Ensembles of models can make better predictions by averaging away mistakes.
 shareimg: https://pair.withgoogle.com/explorables/images/uncertainty-ood.png
 permalink: /uncertainty-ood/
+date: 2023-03-24
 ---
 
 When a machine learning model is trained, it learns patterns from data. When models are deployed in the real world, however, they often encounter data that is different in some way than the data they were trained on. In this Explorable, we'll examine how this phenomenon can cause models to misbehave and what can be done about it.
