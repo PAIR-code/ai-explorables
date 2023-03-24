@@ -15,7 +15,7 @@ limitations under the License.
 
 window.draw_canvas_mnist_ensemble = async function(className, imgList, initialImage){
   // tf.setBackend('cpu')
-  var maxSteps = 50
+  var maxSteps = 200
   var lastIndexRender = 0
 
   var sel = d3.select('#' + className).html(`
@@ -89,8 +89,8 @@ window.draw_canvas_mnist_ensemble = async function(className, imgList, initialIm
     var c = d3.conventions({
       sel: sel.select('.models').append('div'),
       height: 20,
-      width: maxSteps*2,
-      margin: {right: 100, top: 0, bottom: 6, left: 4},
+      width: maxSteps/2,
+      margin: {right: 100, top: 0, bottom: 1, left: 4},
       layers: 'sd'
     })
 
@@ -98,11 +98,11 @@ window.draw_canvas_mnist_ensemble = async function(className, imgList, initialIm
     var area = d3.area()
       .x((d, i) => c.x(i))
       .y0(d => c.y(d[0]))
-      .y1(d => c.y(d[1]))
-      .curve(d3.curveStepAfter)
+      .y1(d => c.y(d[1]) - .3)
+      // .curve(d3.curveStepAfter)
 
     var areaSel = c.svg.appendMany('path', d3.range(10))
-      .at({fill: i => util.digitColor[i], stroke: '#fff', strokeWidth: .2})
+      .at({fill: i => util.digitColor[i], stroke: '#fff', strokeWidth: 0})
 
     var rectWidth = 100
     var rectBgSel = c.svg.append('rect').at({width: rectWidth, height: c.height, x: 130, fillOpacity: .2})

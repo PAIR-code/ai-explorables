@@ -178,5 +178,5 @@ window.initMobileScaling = function(){
   graphics.rescale()
   d3.select(window).on('resize', _.debounce(graphics.rescale, 200))
 }
-window.initMobileScaling()
+// window.initMobileScaling()
 
