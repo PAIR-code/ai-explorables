@@ -33,6 +33,7 @@ window.annotations = [
       "left": -170,
       "width": 180
     },
+    "minWidth": 850,
     "path": "M 63,-10 A 60.632 60.632 0 0 0 151,59"
   },
   {
@@ -43,7 +44,7 @@ window.annotations = [
       "right": -190,
       "width": 180
     },
-    "maxWidth": 950,
+    "minWidth": 900,
     "path": "M 54,-39 A 38.403 38.403 0 0 0 0,-87"
   },
   {
@@ -70,10 +71,10 @@ function initSwoopy(){
       .html('')
       .st(d.st)
 
-    if (d.maxWidth && d.maxWidth > window.innerWidth){
+    if (d.minWidth && d.minWidth > window.screen.width){
       sel.st({display: 'none'})
     }
-    // if (d.mobileSt && 800 > window.innerWidth){
+    // if (d.mobileSt && 800 > window.screen.width){
     //   sel.st(d.mobileSt)
     // }
     
@@ -167,7 +168,7 @@ window.initMobileScaling = function(){
     graphics.forEach(d => {
       if (d.isResponsive) return
 
-      var scale = d3.clamp(0, (window.innerWidth - 10)/d.width, 1)
+      var scale = d3.clamp(0, (window.screen.width - 10)/d.width, 1)
       d.sel.st({
         transform: `scale(${scale})`,
         transformOrigin: 'left top',
