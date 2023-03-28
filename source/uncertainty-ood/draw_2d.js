@@ -161,6 +161,10 @@ window.draw_2d = async function(){
         d.moved = false
         renderFns.renderAll()
       })
+      .on('start.cursor end.cursor', function() {
+        d3.select(this).st({cursor: d3.event.type == 'end' ? 'grab' : 'grabbing'})
+        c.svg.st({cursor: d3.event.type === 'end' ? '' : 'grabbing'})
+      })
       .subject(function(d){ return {x: c.x(d.x), y: c.y(d.y)} })
 
     var circleSel = c.svg.appendMany('circle', points)
