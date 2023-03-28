@@ -22,7 +22,6 @@ var LABEL_NAMES = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven'
 
 window.init = function(){
   console.clear()
-  console.log(window.innerWidth)
 
   var nums = d3.range(10).map(i => 'num_' + i)
   var orgNums = 'img_1 img_2 img_3 img_4 img_5 img_6 img_7'.split(' ')
