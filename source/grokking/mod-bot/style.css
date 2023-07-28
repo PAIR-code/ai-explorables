@@ -1,0 +1,44 @@
+.dimension-dft text{
+  text-shadow: none;
+  font-size: 10px;
+}
+
+.dimension-dft.active circle{
+  fill: var(--color-highlight);
+}
+
+.mod-bot-accuracy > div{
+  width: 1000px;
+  margin-left: -60px;
+}
+.mod-bot-accuracy > div > div{
+  display: inline-block;
+}
+.mod-bot-accuracy > div > div:first-child{
+  margin-right: 30px;
+}
+
+
+
+.small-multiple-seed{
+  cursor: pointer;
+  display: inline-block;
+}
+.small-multiple-seed.active{
+  background: #ffffb0;
+}
+
+.mod-bot-seeds{
+  max-height: 240px;
+  overflow-y: scroll;
+  outline: 1px solid #eee;
+  padding: 2px 25px;
+  padding-right: 5px;
+}
+.mod-bot-seeds text{
+  text-shadow: none;
+}
+
+.mod-bot-freqs-hidden > div, .mod-bot-freqs-out > div, .mod-bot-logits > div{
+  white-space: nowrap;
+}

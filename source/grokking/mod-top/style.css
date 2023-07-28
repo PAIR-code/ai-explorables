@@ -1,0 +1,23 @@
+.wave-path{
+  stroke: #000;
+  opacity: .4;
+  fill: none;
+}
+
+.wave-path.active{
+  stroke: var(--color-highlight);
+  opacity: 1;
+  stroke-width: 3px;
+}
+
+.hidden-step{
+  pointer-events: none;
+}
+
+.hidden-step .step-path{
+  display: none;
+}
+
+.scroll-show div{
+  text-shadow: 0 1px 0 #fff, 1px 0 0 #fff, 0 -1px 0 #fff, -1px 0 0 #fff !important;
+}

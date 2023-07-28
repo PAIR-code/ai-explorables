@@ -1,0 +1,84 @@
+.left-col, .right-col{
+  display: inline-block;
+  vertical-align: top;
+}
+
+svg{
+  overflow: visible;
+}
+
+.axis text{
+  fill: #999;
+  user-select: none;
+  font-size: 9px;
+}
+.axis line{
+  stroke: #999;
+}
+
+.axis .domain{
+  display: none;
+}
+
+.axis-label{
+  fill: #333;
+  font-size: 12px;
+  user-select: none;
+}
+
+
+.line-charts > div.active{
+  outline: 1px solid #afa;
+  background: #efe;
+}
+
+.model-charts > div{
+  display: inline-block;
+  vertical-align: top;
+}
+
+text{
+  text-shadow: 0 1px 0 #fff, 1px 0 0 #fff, 0 -1px 0 #fff, -1px 0 0 #fff;
+  user-select: none;
+}
+
+
+.katex-html{
+  display: none;
+}
+
+.circle-input-hiddenWT, .circle-input-outW, .circle-weights-vis, .circle-input-outW-embed{
+  width: 1000px;
+  margin-left: -100px;
+}
+
+.activation-vis{
+  width: 860px;
+}
+
+.circle-input-outW-embed{
+  text-align: center;
+}
+
+
+h4{
+  font-size: 18px;
+}
+
+.hover-tick path{
+  stroke: #000 !important;
+}
+
+.hover-tick text{
+  fill: #000 !important;
+  font-weight: 500;
+}
+
+.correct-tick path{
+  stroke: #f0f;
+  stroke-width: 0;
+}
+.correct-tick text{
+  fill: #FD4376 !important;
+  font-weight: 800;
+}

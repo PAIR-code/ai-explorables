@@ -1,0 +1,1 @@
+{"task": "sparse_parity", "n": 30, "k": 3, "train_size": 500, "test_size": 5000.0, "hidden_size": 64, "loss_fn": "cross_entropy", "optimizer": "adamw", "regularization": "l2", "weight_decay": 1.0, "learning_rate": 0.003, "b1": 0.99, "b2": 0.98, "log_every": 100, "save_every": 10000000, "max_steps": 20000, "seed": 3, "sweep_slug": "xm_gpu_sparse_parity_v2"}

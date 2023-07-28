@@ -1,0 +1,55 @@
+@media (max-width: 590px){
+  .citeend{
+    margin-left: 0px;
+    width: 10px;
+  }
+}
+
+.citestart, .citeend{
+  text-decoration: none;
+  font-size: 12px;
+}
+
+.citestart{
+  position: relative;
+  top: -5px;
+  cursor: default;
+  color: #999;
+  margin-right: 2px;
+}
+
+.citeend{
+  position: relative;
+}
+
+.citestart-p{
+  position: relative;
+}
+
+@media (min-width: 830px){
+  .citeend{
+    position: absolute;
+    transform: translate(-100%, -1px);
+    margin-left: -10px;
+    width:  auto;
+  }
+}
+
+.citestart{
+  position: relative;
+  height: 8px !important;
+  line-height: 0em;
+}
+
+.paper-title-link{
+  text-decoration: none;
+  font-weight: 400;
+  display: block;
+}
+.paper-title-link:hover{
+  text-decoration: underline;
+}
+
+.citeend-content{
+  opacity: .6;
+}

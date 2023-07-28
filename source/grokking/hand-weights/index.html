@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'>
+<link rel='stylesheet' href='style.css'>
+<link rel='stylesheet' href='sliders.css'>
+<script id='MathJax-script' async src='https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js'></script>
+
+
+<h1>How does a ReLU do modular addition? </h1>
+
+<p>Here's the model we'll use to calculate \(a + b\!\!\!\mod \!41\):
+
+\[
+\text{logits} = \text{ReLU}\left(\mathbf{a}_{\text{one-hot}} \mathbf{W}_{\text{embed}} \mathbf{W}_{\text{hidden}} + \mathbf{b}_{\text{one-hot}} \mathbf{W}_{\text{embed}} \mathbf{W}_{\text{hidden}}\right) \mathbf{W}_{\text{out}} \mathbf{W}_{\text{embed}}^{\top}
+\]
+
+
+<p>When trained from scratch, \(\mathbf{W}_{\text{embed}}\)
+ has periodic patterns. Let's take the simplest version of that — projecting \(a\) and \(b\) around a circle — and give that to the model for "free", freezing \(\mathbf{W}_{\text{embed}}\) to the following: 
+
+<p>
+\[ \left[ \cos\frac{2\pi i}{41}, \; \sin\frac{2\pi i}{41} \right] \]
+
+
+<div class='row'>
+  <div class='circle-embed'></div>
+  <div class='embed'></div>
+</div>
+
+<p>After a bit of training, a 1-layer MLP with a hidden dimension of 5 converges to a solution with perfect accuracy — with just these 20 parameters! 
+
+<div class='row'>
+  <div class='hiddenWT'></div>
+  <div class='outW'></div>
+</div>
+
+<p>The parameters of \(\mathbf{W}_{\text{hidden}}\) are evenly distributed around a circle; we can reorder the hidden dimensions and scale/rotate to cleanly place them on the unit circle.
+
+<div class='row'>
+  <div class='circle-hiddenWT'></div>
+  <div class='circle-outW'></div>
+</div>
+
+When this transformation is applied, \(\mathbf{W}_{\text{out}}\) wraps around the circle twice as fast as \(\mathbf{W}_{\text{hidden}}\).
+
+<br><br>
+
+<p>How, exactly, does this solution work? Like the model does, let's calculate each of the hidden dimensions separately. 
+
+<p>The dot product of the embeded \(a\) and \(b\) are calculated for each hidden dimension, added together and ReLU'd.  
+
+<div class='sliders'></div>
+
+<div class='circle-input-hiddenWT'></div>
+
+<p>Next those 
+
+<div class='circle-input-outW'></div>
+
+<p>To find the final answer, we sum up the cyan points and find the closest point on the embedding circle.
+
+<p>TODO: add sum chart
+
+<br><br><br>
+
+<p>Zooming out and dropping the circular projections, here's what this looks like across all pairs of inputs.
+
+<div class='circle-weights-vis'></div>
+<div class='activation-vis'></div>
+
+<p>TKTK explain norm increase
+
+<p>TKTK explain memorization
+
+<p>TKTK explain constructive interference
+
+<p>
+<div class='sliders-container'></div>
+<div class='left-col'>
+  <div class='model-grid'></div>
+</div>
+
+<div class='right-col'>
+</div>
+
+<script src='../../third_party/d3_.js'></script>
+<script src='../../third_party/d3-scale-chromatic.v1.min.js'></script>
+<script src='../../third_party/tfjsv3.18.0.js'></script>
+<script src='../../third_party/npyjs.js'></script>
+<script src='../../third_party/pca.js'></script>
+ <script src='https://cdn.plot.ly/plotly-2.20.0.min.js' charset='utf-8'></script>
+
+<script src='util.js'></script>
+
+<script src='init-embed-vis.js'></script>
+<script src='init-circle-weights-vis.js'></script>
+<script src='init-sliders.js'></script>
+<script src='init-circle-input-vis.js'></script>
+
+
+<script src='init-activation-vis.js'></script>
+
+
+<script src='init.js'></script>

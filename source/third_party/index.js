@@ -1,4 +1,5 @@
 // https://github.com/1wheel/roadtolarissa Copyright 2018 Adam Pearce
+// https://github.com/linxiaowu66/marked-kaTex Copyright (c) 2011-2014, Christopher Jeffrey
 
 var fs = require('fs')
 var {exec, execSync} = require('child_process')
@@ -12,12 +13,45 @@ function rsyncSource(){
 }
 rsyncSource()
 
-// var hljs = require('highlight.js')
+// https://github.com/markedjs/marked/issues/1538#issuecomment-526189561
+var katex = require('katex')
 var marked = require('marked')
-marked.setOptions({
-  // highlight: (code, lang) => hljs.highlight(lang || 'html', code).value,
-  smartypants: true
-})
+marked.setOptions({smartypants: true})
+
+var renderer = new marked.Renderer()
+function mathsExpression(expr){
+  try {
+    if (expr.match(/^\$\$[\s\S]*\$\$$/)) {
+      expr = expr.substr(2, expr.length - 4)
+      return katex.renderToString(expr, { displayMode: true })
+    } else if (expr.match(/^\$[\s\S]*\$$/)) {
+      expr = expr.substr(1, expr.length - 2)
+      return katex.renderToString(expr, { isplayMode: false })
+    }
+  } catch(e){
+    console.log(e)
+    console.log(expr)
+  }
+}
+
+var rendererCode = renderer.code
+renderer.code = function(code, lang, escaped) {
+  if (!lang) {
+    var math = mathsExpression(code)
+    if (math) return math
+  }
+
+  return rendererCode(code, lang, escaped)
+}
+
+var rendererCodespan = renderer.codespan
+renderer.codespan = function(text) {
+  var math = mathsExpression(text)
+  if (math) return math
+
+  rendererCodespan(text)
+}
+
 
 var templates = {}
 readdirAbs(`${source}/_templates`).forEach(path => {
@@ -42,9 +76,12 @@ function parsePost(path){
     .replace('---\n', '')
     .split('\n---\n')
 
-  console.log(path)
+  var html = body
+  if (!path.includes('.html')){
+    html = path.includes('2022-10-14-llm-tricks-of-the-trade.md') ? marked(body) : marked(body, {renderer})
+  }
 
-  var post = {html: path.includes('.html') ? body : marked(body)}
+  var post = {html}
   top.split('\n').forEach(line => {
     var [key, val] = line.split(/: (.+)/)
     post[key] = val

@@ -2,10 +2,11 @@
   "name": "explorable-ml",
   "dependencies": {
     "chokidar": "^1.7.0",
-    "doc2txt": "^0.0.7",
+    "doc2txt": "^0.0.8",
     "googleapis": "39",
     "highlight.js": "^9.12.0",
     "hot-server": "^0.0.18",
+    "katex": "^0.16.7",
     "marked": "^0.3.6",
     "scrape-stl": "^1.0.3",
     "yarn": "^1.22.19"

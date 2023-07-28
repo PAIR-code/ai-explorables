@@ -1,0 +1,156 @@
+.chart-title{
+  font-size: 12px;
+}
+.axis text.axis-label{
+  font-size: 10px;
+}
+
+body{
+/*  background: red;*/
+}
+
+.headline{
+  max-width: 500px;
+}
+
+.highlight-yellow{
+  background: yellow;
+  margin: 0px auto;
+  text-align: center;
+  width: 320px;
+}
+
+.row{
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.row > div{
+  text-align: left;
+  display: inline-block;
+  vertical-align: top;
+}
+
+
+.tooltip-footnote{
+  width: 450px !important;
+/*  color: red;*/
+}
+
+.sticky-container{
+  position: relative;
+}
+
+.sticky{
+  position: sticky;
+  top: 0px;
+  background: #fff;
+  z-index: 100;
+  margin-bottom: 0px;
+  padding-bottom: 5px;
+}
+
+.sticky::after {
+  content: "";
+  display: block;
+  position: absolute;
+  bottom: -20px;
+  left: 0;
+  right: 0;
+  height: 25px; 
+  background: linear-gradient(to bottom, #fff, transparent);
+  z-index: -100;
+}
+
+.sticky-lower{
+  top: 210px;
+}
+
+digits{
+  font-family: monospace;
+  background: #F1F3F4;
+  padding: 0px 2px;
+}
+
+animate{
+/*  background: red;*/
+  outline: 1px solid #ccc;
+  padding: 0px 2px;
+  cursor: pointer;
+
+
+}
+animate:hover{
+  background: #eee;
+  outline: 1px solid #000;
+}
+
+@keyframes greyOutline{
+  0% {outline: 2px solid #000;}
+  100% {outline: 2px solid #ddd;}
+}
+animate.blink {
+  animation-name: greyOutline;
+  animation-duration: .7s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate; 
+}
+
+@keyframes greyScale {
+  0% {color: #000;}
+  100% {color: #999;}
+}
+animate.blink span {
+  animation-name: greyScale;
+  animation-duration: .7s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate; 
+}
+animate span{
+  margin-right: 2px;
+}
+
+
+
+.annotation-container{
+  position: absolute;
+  pointer-events: none;
+/*  font-size: 12px;*/
+}
+.annotation-container.is-draggable{
+  pointer-events: all;
+}
+
+.annotation-container path{
+  stroke: #000;
+  fill:  none;
+}
+
+.annotation-container div{
+/*  font-style: italic;*/
+  font-family: sans-serif;
+  padding: 2px;
+  padding-right: 5px;
+  line-height: 1.05em;
+  font-size: 14px;
+  /*outline:  1px solid #000;*/
+  /*background: yellow;*/
+}
+
+.annotation-container svg{
+  position: relative;
+}
+
+.annotation-container div ni{
+  display: inline-block;
+  font-family: sans-serif;
+  font-style: normal;
+  font-size: 10px;
+}
+
+
+.annotation-container div, .overlay-chart-label{
+  text-shadow: 0 1px 0 #F1F3F4, 1px 0 0 #F1F3F4, 0 -1px 0 #F1F3F4, -1px 0 0 #F1F3F4;
+  user-select: none;
+}
+

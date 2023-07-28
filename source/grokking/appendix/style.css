@@ -1,0 +1,55 @@
+.caption{
+  font-size: 14px;
+  line-height: 1.1em;
+  margin-top: 5px;
+}
+
+.appendix b{
+  white-space: nowrap;
+}
+
+.appendix.slider-container{
+  padding-top: 10px;
+}
+
+.appendix .slider{
+  width: 160px;
+}
+
+.appendix.circle-vis{
+  margin-top: 20px;
+}
+
+
+.circle-vis > div, .proj-vis > div, .debug-vis > div{
+  display: inline-block;
+  vertical-align: top;
+}
+
+.appendix .active{
+  opacity: 1 !important;
+}
+.appendix .active circle, .appendix .active text{
+  fill: #000;  
+  fill: #f0f;  
+/*  opacity: 1 !important;*/
+}
+
+.appendix{
+  width: 750px;
+  margin: 0px auto;
+/*  margin-left: 30px;*/
+}
+
+
+.appendix.num-inputs{
+  text-align: center;
+
+}
+.appendix.num-inputs span{
+  margin: 0px 10px;
+}
+.appendix.num-inputs input{
+  width: 40px;
+  text-align: center;
+}

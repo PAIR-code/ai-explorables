@@ -1,0 +1,68 @@
+.sparse-parity-sweep{
+  width: 900px;
+}
+
+.left-col, .right-col{
+  display: inline-block;
+  vertical-align: top;
+  text-align: center;
+}
+
+.left-col{
+  margin-right: 10px;
+  width: 530px;
+}
+
+
+circle.is-hovered{
+  stroke-width: 2px;
+}
+
+.graphic{
+  font-family: sans-serif;
+}
+
+
+.chart-div{
+  display: inline-block;
+}
+
+.line-chart-hyper{
+/*  width: 230px;*/
+  margin: 0px auto;
+  margin-bottom: 10px;
+/*  margin-top: 30px;*/
+  position: relative;\
+  left: 10px;
+}
+.line-chart-hyper div{
+  padding-top: 5px;
+  width: 100px;
+  text-align: center;
+}
+
+.slider{
+  width: 200px;
+  display: inline-block;
+}
+.slider > *{
+  display: block;
+  text-align: center;
+}
+
+.sparse-parity-sweep val{
+  margin-top: -20px;
+}
+
+.legend{
+  margin-bottom: -10px;
+  margin-left: 25px;
+/*  margin-top: 10;*/
+}
+.legend div{
+  display: inline-block;
+}
+
+.sliders-container{
+  margin-top: 10px;
+}
