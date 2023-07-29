@@ -1,5 +1,6 @@
 .sparse-parity-sweep{
   width: 900px;
+  position: relative;
 }
 
 .left-col, .right-col{
@@ -66,3 +67,4 @@ circle.is-hovered{
 .sliders-container{
   margin-top: 10px;
 }
+

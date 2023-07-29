@@ -14,7 +14,7 @@ limitations under the License.
 ==============================================================================*/
 
 window.initOpenQMem1 = async function(){
-  console.clear()
+  // console.clear()
 
   var state = {
     slug: '2023_07_22_20_37_01',

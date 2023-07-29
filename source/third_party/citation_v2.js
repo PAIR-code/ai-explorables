@@ -1,5 +1,5 @@
 !(() => {
-  console.clear()
+  // console.clear()
 
   var ttFnSel = d3.select('html').selectAppend('div.tooltip-footnote.tooltip-footnote-hidden')
 

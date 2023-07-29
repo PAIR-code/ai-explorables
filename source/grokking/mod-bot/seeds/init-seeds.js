@@ -19,7 +19,7 @@ d3.loadData(
   'mod-bot/seeds/data__allmetrics_mlp_modular_addition_sweep.csv', 
   (err, res) => {
 
-  console.clear()
+  // console.clear()
   var [hypers, allmetrics] = res
 
   allmetrics.forEach(d => {

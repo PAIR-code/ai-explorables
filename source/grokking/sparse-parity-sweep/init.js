@@ -62,13 +62,15 @@ window.initRenderAll = function(){
 
 
 d3.loadData(`sparse-parity-sweep/data__hypers_${visState.sweepSlug}.csv`, 'sparse-parity-sweep/hyper_shared.json', (err, res) => {
-  console.clear()
+  // console.clear()
+
+  var state = window.visState
 
   window.data = {models: res[0], sharedHyper: res[1]}
 
-  if (!window.visState.hovered) visState.hovered = data.models[0]
+  if (!window.visState.hovered) visState.hovered = data.models[447]
 
-  d3.select('.sparse-parity-sweep').html(`
+  var sel = d3.select('.sparse-parity-sweep').html(`
     <div class='left-col'>
       <div class='legend'></div>
       <div class='model-grid'></div>
@@ -84,7 +86,8 @@ d3.loadData(`sparse-parity-sweep/data__hypers_${visState.sweepSlug}.csv`, 'spars
   window.renderAll = initRenderAll()
   drawSliders()
   drawLineCharts()
-  drawLegend()
+  drawLegend({state, sel})
+  drawAnnotations()
 
   d3.select('.model-grid').html('')
     .appendMany('div.lr-row', d3.nestBy(_.sortBy(data.models, d => +d[visState.key_row]), d => d[visState.key_row]))
@@ -96,7 +99,7 @@ d3.loadData(`sparse-parity-sweep/data__hypers_${visState.sweepSlug}.csv`, 'spars
 })
 
 
-function drawLegend(){
+function drawLegend({state, sel}){
   var items = [
     {text: 'High Test Loss', minEvalLoss: 100},
     {text: 'Grokking', maxRatio: 1e10},
@@ -104,7 +107,7 @@ function drawLegend(){
     {text: 'High Train Loss', minTrainLoss: 100},
   ]
   
-  var itemSel = d3.select('.legend').html('')
+  var itemSel = sel.select('.legend').html('')
     .append('div')//.st({width: '100%'})
     .st({display: 'inline-block', marginTop: 5})
     .appendMany('div', items)
@@ -266,17 +269,54 @@ function drawGridChart(models, i){
     .translate(d => [diam*Math.floor(d.seed/3) + diam, diam*(d.seed % 3) + diam])
     .on('mouseover', d => {
       visState.hovered = d
-
       d3.selectAll('circle').classed('is-hovered', 0)
-      circleSel.classed('is-hovered', isHoveredFn)
+
       renderAll.hover()
     })
 
-  renderAll.colorFns.push(d => {
+  renderAll.hoverFns.push(() => {
+    circleSel.classed('is-hovered', isHoveredFn)
+  })
+
+  renderAll.colorFns.push(() => {
     circleSel.at({fill: circleFillFn})
   })
 }
 
+function drawAnnotations(){
+  var annotations = [
+    {
+      "parent": ".sparse-parity-sweep",
+      "minWidth": 850,
+      "html": "Less constrained model generalize slowly",
+      "st": {
+        "top": 265,
+        "left": 20,
+        "width": 155
+      },
+      "path": "M -7,-59 A 68.42 68.42 0 0 1 -12,-176",
+      "class": "no-shadow"
+    },
+    {
+      "parent": ".sparse-parity-sweep",
+      "minWidth": 850,
+      "html": "Very constrained models aren't able to fit the train data",
+      "st": {
+        "top": 260,
+        "left": 340,
+        "width": 130
+      },
+      "path": "M 127,-48 A 79.984 79.984 0 0 0 182,-171",
+      "class": "no-shadow"
+    }
+  ]  
+
+  window.annotations = annotations
+  annotations.isDraggable = 0
+
+  initSwoopy(annotations)
+
+}
 
 function isHoveredFn(d){
   var h = visState.hovered 

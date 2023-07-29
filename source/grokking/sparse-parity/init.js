@@ -65,7 +65,7 @@ window.initSparseParity = async function(){
     sy: 5,
     maxY: 4,
     type: 'hidden_w',
-    xAxisLabel: 'Input Index',
+    xAxisLabel: 'Digit Index',
   })
   
   window.initEmbedVis({
@@ -102,6 +102,67 @@ window.initSparseParity = async function(){
     minStep: 1200,
     stepTarget: 3008,
   })
+
+
+
+
+  var annotations = [
+    {
+      "parent": ".parity-weights > div > div",
+      "minWidth": 850,
+      "html": "Only the first three digits provide a generalizing signal",
+      "st": {
+        "top": 130,
+        "left": -150,
+        "width": 145
+      },
+      "path": "M 103,-11 A 36.807 36.807 0 0 0 168,-11",
+      "class": "no-shadow"
+    },
+    {
+      "parent": ".parity-weights > div > div",
+      "minWidth": 850,
+      "html": "The rest are distractions",
+      "st": {
+        "top": 195,
+        "left": 200,
+        "width": 200
+      },
+      "path": "M 15,-11 A 37.585 37.585 0 0 1 -48,-21",
+      "class": "no-shadow"
+    },
+    {
+      "parent": ".parity-loss > div",
+      "minWidth": 850,
+      "html": "Train loss gets a bit worse...",
+      "st": {
+        "top": 123,
+        "left": 100,
+        "width": 100,
+        "textAlign": "left"
+      },
+      "path": "M 97,-41 A 23.345 23.345 0 0 0 115.99999237060547,-60"
+    },
+    {
+      "parent": ".parity-weights-trajectory > div",
+      "minWidth": 850,
+      "html": "...while almost all the weights shrink",
+      "st": {
+        "top": -20,
+        "left": 330,
+        "width": 130,
+        "text-align": "right"
+      },
+      "class": "no-shadow",
+      "path": "M -61,-12 A 111.919 111.919 0 0 1 -235,100"
+    }
+  ]
+  window.annotations = annotations
+  // annotations.isDraggable = 1
+
+  initSwoopy(annotations)
+
+
 
 }
 initSparseParity()

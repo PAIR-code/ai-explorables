@@ -14,40 +14,42 @@ limitations under the License.
 ==============================================================================*/
 
 
-window.appendixState = window.appendixState || {
+window.appendixState = window.appendixStatex || {
   n_tokens: 67,
   a: 10,
   b: 20,
   n_neurons: 5,
   rotation: .15,
   // rotation: 0,
-  freq: 1, // not hooked up
+  freq: 1,
 }
 
 
 window.initAppendix = function(){
-  console.clear()
+  // console.clear()
+  
   var state = window.appendixState
-  var {n_tokens, n_neurons, rotation} = state
+  var {n_tokens, n_neurons, rotation, freq} = state
   
   state.renderAll = util.initRenderAll(['model', 'input', 'dim'])
 
   function initModel(){
     
     state.embed = d3.range(n_tokens).map(i => [
-      Math.cos(2*Math.PI*i/n_tokens),
-      Math.sin(2*Math.PI*i/n_tokens),
+      Math.cos(2*Math.PI*freq*i/n_tokens),
+      Math.sin(2*Math.PI*freq*i/n_tokens),
     ])
 
     state.unembed = d3.range(n_tokens*2).map(i => [
-      Math.cos(2*Math.PI*i/n_tokens/2),
-      Math.sin(2*Math.PI*i/n_tokens/2),
+      Math.cos(2*Math.PI*freq*i/n_tokens/2),
+      Math.sin(2*Math.PI*freq*i/n_tokens/2),
     ])
 
     state.neurons = d3.range(n_neurons).map(i => {
       // var rotation = Math.random()
-      var θ = i*Math.PI*2/n_neurons + rotation
+      var θ = i*Math.PI*freq*2/n_neurons + rotation
       var inProj = [Math.cos(θ), Math.sin(θ)]
+      // console.log(θ, inProj)
 
       return {i, inProj, color: d3.schemeCategory10[i], inθ: θ}
     })

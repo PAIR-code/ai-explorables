@@ -34,7 +34,7 @@ window.modTopState = window.modTopStateXX || {
 }
 
 window.initModTop = async function(){
-  console.clear()
+  // console.clear()
 
   var state = modTopState
   state.modelPath = `/mlp_modular/${state.sweepSlug}/${state.slug}`
@@ -148,21 +148,49 @@ window.initModTop = async function(){
         "top": 115,
         "left": 680,
         "width": 130,
-        "opacity": 0,
+        "opacity": 0
       },
       "path": "M 46,-13 A 48.574 48.574 0 0 1 -22.999998092651367,9.000000953674316",
-      "class": "scroll-show"
+      "class": "scroll-show no-shadow"
+    },
+    {
+      "parent": ".mod-top-waves > div:last-child > div > div",
+      "minWidth": 850,
+      "html": "Each line shows a single neuron",
+      "st": {
+        "top": 75,
+        "left": 395,
+        "width": 110
+      },
+      "path": "M 67,-15 A 45.998 45.998 0 0 1 -1,9",
+      "class": "no-shadow",
+      "minWidth": 1000,
+    },
+    {
+      "parent": ".mod-top-waves > div:last-child > div > div",
+      "minWidth": 850,
+      "html": "Neurons repeating 7 times at the end of training are in this row",
+      "st": {
+        "top": 265,
+        "left": 395,
+        "width": 145
+      },
+      "path": "M 64,-70 A 51.92 51.92 0 0 0 9,-124",
+      "class": "no-shadow",
+      "minWidth": 1050,
+
     }
   ]
-  window.annotations = annotations
-  annotations.isDraggable = 0
+
+  // window.annotations = annotations
+  // annotations.isDraggable = 1
 
   initSwoopy(annotations)
 
 
-  var topAccuracySel = d3.select('.mod-top-accuracy').classed('hidden-step', 1)
 
-  let observer = new IntersectionObserver(entries => {
+  var topAccuracySel = d3.select('.mod-top-accuracy').classed('hidden-step', 1)
+  var observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
       if (entry.isIntersecting){
         d3.select('.scroll-show').st({opacity: 1})
@@ -170,7 +198,6 @@ window.initModTop = async function(){
       }
     })
   }, {root: null, rootMargin: '0px', threshold: 1.0})
-
   observer.observe(modWeightSel.node())
 }
 window.initModTop()

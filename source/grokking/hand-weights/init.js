@@ -30,7 +30,7 @@ window.handWeightsState = window.xhandWeightsState || {
 handWeightsState.temp_out_w = d3.range(handWeightsState.hidden_size).map(() => [0, 0])
 
 window.initHandWeights = function(){
-  console.clear()
+  // console.clear()
 
   var state = handWeightsState
   state.renderAll = util.initRenderAll(['model', 'input', 'dim'])
@@ -76,15 +76,15 @@ window.initHandWeights = function(){
   initCircleWeightsFreqs({type: 'hiddenWT', state})
   initCircleWeightsFreqs({type: 'outW', state})
 
-  initInputSliders({
-    sel: d3.select('.circle-input-sliders').html(''),
-    state,
-  })  
+  // initInputSliders({
+  //   sel: d3.select('.circle-input-sliders').html(''),
+  //   state,
+  // })  
   initCircleInputVis({type: 'hiddenWT', state})
   initCircleInputVis({type: 'outW', state})
   initCircleInputVis({type: 'outW-embed', state})
 
-  initActivationVis(state)
+  // initActivationVis(state)
 
 
   state.renderAll.model()
@@ -97,13 +97,11 @@ window.initHandWeights = function(){
 
     var neurons = d3.zip(A, P)
 
-    // https://braintex.goog/project/6405fcef5ee2590082198b2f
     // https://math.stackexchange.com/questions/2849945/sum-of-sin-waves-with-same-frequency-and-different-amplitudes-and-phase2
-
     var top = d3.sum(neurons, ([a, p]) => a*Math.sin(p))
     var bot = d3.sum(neurons, ([a, p]) => a*Math.cos(p))
     var phase = Math.atan2(top, bot)
-    console.log(phase*state.n_tokens/Math.PI) // not sure why this isn't exactly right?
+    // console.log(phase*state.n_tokens/Math.PI) // not sure why this isn't exactly right?
   })
 
   state.renderAll.input()

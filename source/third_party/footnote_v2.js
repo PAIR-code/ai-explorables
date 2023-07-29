@@ -1,5 +1,5 @@
 !(() => {
-  console.clear()
+  // console.clear()
 
   var ttFnSel = d3.select('html').selectAppend('div.tooltip-footnote.tooltip-footnote-hidden')
 
@@ -11,7 +11,6 @@
       var ppIndex = i + 1
       var sel = d3.select(this)
       var key = sel.attr('key')
-      console.log(key)
 
       key2cite[key] = {ppIndex, key, ogHTML: sel.parent().html()}
       sel
@@ -27,7 +26,6 @@
       var sel = d3.select(this)
       var keys = sel.attr('key').split(' ')
       var key = keys[0]
-      console.log(keys)
 
       var cites = keys
         .map(key => key2cite[key] || console.log('missing key', key))
@@ -41,8 +39,6 @@
         .parent().classed('footstart-p', 1)
     })
     .call(addLockedTooltip)
-
-  console.log(key2cite)
 
   function addLockedTooltip(sel, opts={}){
     sel

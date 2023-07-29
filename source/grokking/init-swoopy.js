@@ -28,7 +28,7 @@ window.initSwoopy = function(annotations){
   // d3.selectAll('.annotation-container').remove()
 
   annotations.forEach(d => {
-    var isDraggable = annotations.isDraggable
+    var isDraggable = !!annotations.isDraggable
 
     var sel = d3.select(d.parent)
       .append('div.annotation-container')
@@ -36,7 +36,7 @@ window.initSwoopy = function(annotations){
       .html('')
       .st(d.st)
 
-    if (d.class) sel.classed(d.class, 1)
+    if (d.class) d.class.split(' ').forEach(str => sel.classed(str, 1))
 
     if (d.minWidth && d.minWidth > window.innerWidth){
       sel.st({display: 'none'})
