@@ -59,6 +59,8 @@ d3.loadData(
       window.modBotState.sweepSlug = 'mlp_modular_addition_sweep'
 
       console.log('seed:', d.hyper.slug, '  Freqs:', d.hyper.freqs.join(' '))
+
+      d3.select('.mod-bot-hide-on-sweep-change').st({display: 'none'})
       window.initModBot()
     })
 

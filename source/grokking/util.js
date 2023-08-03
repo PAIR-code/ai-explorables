@@ -59,15 +59,16 @@ window.util = (function(){
   var color = d3.interpolatePuOr
 
   var colors = {
-    train: '#2979FF',
-    test: '#FF6D00',
-    
+    train: '#8920E9',
+    train: '#9730c9',
+    test: '#4CB769',
+
     // aInput: '#2D733D',
     // bInput: '#8920E9',
     aInput: '#2979FF',
     bInput: '#FF6D00',
 
-    highlight: '#3AD45C',
+    highlight: '#b4cc16',
     correct: '#FD4376',
   }
   d3.entries(colors).forEach(({key, value}) => {
@@ -149,15 +150,26 @@ window.util = (function(){
       .replace('dft_out_embed_w', 'dft_W_output')
       .replace('hidden_size', 'num_neurons')
       .replace('train_size', 'num_train')
+      // .replace('w_inproj', 'w_in-projᵀ')
+      .replace('w_inproj', 'w_in-proj')
+      .replace('w_outproj', 'w_out-proj')
+  }
+
+  function keyFmt(str){
+    return str
+      .replace('hidden_size', 'Num Neurons')
+      .replace('train_size', 'Train Examples')
+      .replace('weight_decay', 'Weight Decay')
   }
 
 
-  return {getFile, color, colors, getRoot, addAxisLabel, ggPlot, ggPlotUpdate, sleep, npy2tfSlice, transpose, initRenderAll, titleFmt}
+  return {getFile, color, colors, getRoot, addAxisLabel, ggPlot, ggPlotUpdate, sleep, npy2tfSlice, transpose, initRenderAll, titleFmt, keyFmt}
 
 })()
 
 // window.initHandWeights?.()
-window.initModBot?.()
+// window.initModBot?.()
+window.initModTop?.()
 
 window.initSparseParity?.()
 window.initSparseParitySweep?.()

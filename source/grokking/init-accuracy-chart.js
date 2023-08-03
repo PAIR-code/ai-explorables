@@ -87,12 +87,18 @@ window.initAccuracyChart = async function({sel, state, isBig=true, isLoss, width
     })
 
 
+  if (title?.includes('Sudden Generalization')) return
+
   var labelKey = state.hyper.task + '_' + state.slug + '_' + (!!isLoss)
   var labelOffsets = {
-    // 'modular_addition_2023_07_09_19_38_17_false': [[280, 25], [7, 115]],
-    'modular_addition_2023_07_09_19_38_17_true': [[57, 35], [250, 115]],
+    'modular_addition_2023_07_09_19_38_17_false': [[260, 115], [7, 50]],
+    'modular_addition_2023_07_09_19_38_17_true': [[305, 80], [30, 115]],
     'sparse_parity_2023_07_05_19_45_20_false': [[189, 132], [60, 50]],
     'sparse_parity_2023_07_05_19_45_20_true': [[134, 32], [40, 80]],
+
+    // openQ
+    'modular_addition_2023_07_22_20_25_47_true': [[300, 32], [125, 80]],
+    'modular_addition_2023_07_22_20_37_01_true': [[300, 42], [40, 115]],
   }[labelKey]
 
   if (labelOffsets){
@@ -106,11 +112,12 @@ window.initAccuracyChart = async function({sel, state, isBig=true, isLoss, width
     }
 }
 
-// window.initModTop?.()
+window.initModTop?.()
 // window.initSparseParity?.()
 // window.initModBot?.()
 
 // window.initOpenQMem0()
+window.initOpenQMem1?.()
 
 
 

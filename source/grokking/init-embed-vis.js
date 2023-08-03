@@ -14,10 +14,12 @@ limitations under the License.
 ==============================================================================*/
 
 
-window.initEmbedVis = async function({state, sel, type, sx=3, sy=3, maxY=3, yAxisLabel='Neuron', xAxisLabel='Input Number', isTiny=false}){
+window.initEmbedVis = async function({state, sel, type, sx=3, sy=3, maxY=3, yAxisLabel='Neuron', xAxisLabel='Input Number', isTiny=false, isNoStep=false}){
   var {data, shape} = state[type]
   var isRescale = maxY == 'rescale'
   if (isRescale) maxY = 2
+
+  var isCos = isNoStep
 
   var c = d3.conventions({
     sel: sel.html('').append('div'),
@@ -33,6 +35,8 @@ window.initEmbedVis = async function({state, sel, type, sx=3, sy=3, maxY=3, yAxi
 
   c.xAxis.ticks(5)
   c.yAxis.ticks(5)
+  if (isCos) c.xAxis.tickValues([0, 1]).tickFormat(d => ['Cos', 'Sin'][d])
+
   d3.drawAxis(c)
   c.svg.select('.x').translate([Math.floor(sx/2), c.height])
   c.svg.select('.y').translate(Math.floor(sy/2), 1)
@@ -52,14 +56,18 @@ window.initEmbedVis = async function({state, sel, type, sx=3, sy=3, maxY=3, yAxi
     .text(util.titleFmt(type))
 
   // TODO: frequency ticks
-
   var stepLabelSel = c.svg.append('text')
-    .at({textAnchor: 'end', x: c.width, y: -5, fontSize: 12, opacity: isTiny ? 0 : 1})
+    .at({textAnchor: 'end', x: c.width, y: -5, fontSize: 12, opacity: isTiny || isNoStep ? 0 : 1})
 
   util.addAxisLabel(c, xAxisLabel, yAxisLabel, 26, -25)
+  if (isCos) c.svg.select('.x .axis-label').translate(-10, 0)
 
   if (isTiny) c.svg.selectAll('.tick').remove()
-  c.svg.append('rect').at({fill: '#aaa', width: c.width + .2, height: c.height + .2, x: -.2, y: -.2})
+  if (isCos){
+    c.svg.append('rect').at({width: c.width + .6, height: c.height + .6, x: -.5, y: -.5})
+  } else {
+    c.svg.append('rect').at({fill: '#aaa', width: c.width + .2, height: c.height + .2, x: -.2, y: -.2})
+  }
 
 
   var color = d => d3.interpolateRdBu((-d + maxY)/maxY/2)
@@ -68,19 +76,19 @@ window.initEmbedVis = async function({state, sel, type, sx=3, sy=3, maxY=3, yAxi
     ctx.clearRect(0, 0, c.width, c.height)
 
     if (isRescale){
-      maxY = state.maxY
-      if (type == 'out_embed_t_w') drawLegend(1)
+      maxY = state.maxY*1.2
+      if (type == 'out_embed_t_w' || type == 'w_outproj') drawLegend(1)
     }
     
     var offset = shape[1]*shape[2]*state.stepIndex
-    
+    var pad = isCos ? .5 : .1
     for (var i = 0; i < shape[1]; i++){
       for (var j = 0; j < shape[2]; j++){
         var index = offset + shape[2]*i + j
 
         ctx.beginPath()
         ctx.fillStyle = color(data[index])
-        ctx.rect(i*sx, j*sy, sx - .1, sy -.1)
+        ctx.rect(i*sx, j*sy, sx - pad, sy - pad)
         ctx.fill()
       }
     }
@@ -128,11 +136,12 @@ window.initEmbedVis = async function({state, sel, type, sx=3, sy=3, maxY=3, yAxi
 
   if (type == 'out_embed_t_w') drawLegend()
   if (type == 'out_w') drawLegend()
+  if (type == 'w_outproj') drawLegend()
 
   function drawLegend(isUpdate){
     var nTicks = c.height
     var y = d3.scaleLinear().domain([-maxY, maxY]).range([c.height, 0])
-    var legendSel = topSvg.selectAppend('g.axis.legend').translate(c.width + (type == 'out_w' ? 80 : 20) , 0)
+    var legendSel = topSvg.selectAppend('g.axis.legend').translate(c.width + (type == 'out_w' ? 80 : isCos ? 40 : 20) , 0)
 
     legendSel.selectAll('text').remove()
     legendSel.appendMany('text', y.ticks(5))
@@ -156,3 +165,4 @@ window.initEmbedVis = async function({state, sel, type, sx=3, sy=3, maxY=3, yAxi
 // window.initModBot?.()
 
 // window.initOpenQMem0()
+window.initFiveNeurons?.()

@@ -14,16 +14,15 @@ limitations under the License.
 ==============================================================================*/
 
 
-window.appendixState = window.appendixStatex || {
+window.appendixState = window.appendixStatexxx || {
   n_tokens: 67,
-  a: 10,
+  a: 5,
   b: 20,
   n_neurons: 5,
   rotation: .15,
   // rotation: 0,
   freq: 1,
 }
-
 
 window.initAppendix = function(){
   // console.clear()
@@ -85,36 +84,13 @@ window.initAppendix = function(){
     ]
 
     state.neurons.forEach(d => {
-      d.val = Math.max(0, calcDot(d.inProj, meanPos))
+      var preV = calcDot(d.inProj, meanPos)
+      d.val = Math.max(0, preV)
+      // d.val = preV*preV
       d.outPos = mul(d.outProj, d.val)
     })
 
-    // var theta = Math.atan2(meanPos[1], meanPos[0])
-    // calculate(theta, state.n_neurons)
-    // function calculate(theta, N) {
-    //   let sumNumerator = 0
-    //   let sumDenominator = 0
-
-    //   var vals = d3.range(N).map(i => {
-    //     let cosTerm = Math.cos(theta - 2 * Math.PI * i / N)
-    //     return Math.max(0, cosTerm)
-    //   })
-
-    //   for (let i = 0; i < N; i++) {
-    //     let cosTerm = Math.cos(theta - 2 * Math.PI * i / N)
-    //     let reluCosTerm = Math.max(0, cosTerm)
-
-    //     sumNumerator += reluCosTerm * Math.sin(4 * Math.PI * i / N)
-    //     sumDenominator += reluCosTerm * Math.cos(4 * Math.PI * i / N)
-    //   }
-
-    //   return Math.atan2(sumNumerator, sumDenominator)
-    // }
-
-
     state.outSumPos = sum(state.neurons.map(d => d.outPos))
-
-
 
     Object.assign(state, {aPos, bPos, meanPos})
 
@@ -166,8 +142,8 @@ window.initAppendix = function(){
     if (d.numDiff < -n_tokens/2) d.numDiff = (d.numDiff + state.n_tokens) % d.numDiff
   })
 
-  state.a = 10
-  state.b = 20
+  state.a = 2
+  state.b = 12
 
 
   window.initFullInputSliders({

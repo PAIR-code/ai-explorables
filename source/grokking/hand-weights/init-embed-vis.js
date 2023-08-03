@@ -86,6 +86,28 @@ window.initEmbedCircleVis = async function({type, state, sx=20, sy=20}){
       }
     }
   }
+
+  drawLegend()
+  function drawLegend(isUpdate){
+    var nTicks = c.height*2
+    var y = d3.scaleLinear().domain([-1, 1]).range([nTicks, 0])
+    var legendSel = c.svg.selectAppend('g.axis.legend').translate([c.width + 30, -c.height/2])
+
+    legendSel.selectAll('text').remove()
+    legendSel.appendMany('text', y.ticks(2))
+      .text(d3.format('+'))
+      .at({x: 35, dy: '.33em', y: y, textAnchor: 'end'})
+
+    if (isUpdate) return
+    legendSel.appendMany('rect', d3.range(nTicks).map(y.invert))
+      .at({
+        width: 20,
+        height: 1,
+        y: (d, i) => i,
+        fill: d => color(d)
+      })
+  }
+
 }
 
 

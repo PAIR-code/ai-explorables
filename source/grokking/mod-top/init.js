@@ -109,7 +109,7 @@ window.initModTop = async function(){
     {
       "parent": ".mod-top-accuracy > div",
       "minWidth": 850,
-      "html": "The model quickly hits 100% accuracy on the <b style=\"color:#2979FF\"\">training data</b>...",
+      "html": "The model quickly hits 100% accuracy on the <b style='color:var(--color-train)'>training data</b>...",
       "st": {
         "top": 40,
         "left": 80,
@@ -120,7 +120,7 @@ window.initModTop = async function(){
     {
       "parent": ".mod-top-accuracy > div",
       "minWidth": 850,
-      "html": "...but doesn't do better than random guessing on the <b style=\"color:#FF6D00\"\">test data</b>",
+      "html": "...but doesn't do better than random guessing on the <b style='color:var(--color-test)'>test data</b>",
       "st": {
         "top": 105,
         "left": 110,

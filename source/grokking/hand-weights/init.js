@@ -67,6 +67,9 @@ window.initHandWeights = function(){
   updateModel()
 
   initEmbedCircleVis({type: 'embed', state, sx: 5, sy: 20})
+
+  return state.renderAll.model()
+
   initEmbedCircleVis({type: 'hiddenW', state})
   initEmbedCircleVis({type: 'outWT', state})
   // initCircleWeightsVis({type: 'embed', state})

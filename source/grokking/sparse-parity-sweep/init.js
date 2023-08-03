@@ -78,6 +78,7 @@ d3.loadData(`sparse-parity-sweep/data__hypers_${visState.sweepSlug}.csv`, 'spars
     </div>
 
     <div class='right-col'>
+      <div class='line-legend'></div>
       <div class='line-charts'></div>
       <div class='line-chart-hyper'></div>
     </div>
@@ -89,6 +90,8 @@ d3.loadData(`sparse-parity-sweep/data__hypers_${visState.sweepSlug}.csv`, 'spars
   drawLegend({state, sel})
   drawAnnotations()
 
+  drawLineLegend({sel: sel.select('.line-legend')})
+
   d3.select('.model-grid').html('')
     .appendMany('div.lr-row', d3.nestBy(_.sortBy(data.models, d => +d[visState.key_row]), d => d[visState.key_row]))
     .appendMany('div.chart-div', d => d3.nestBy(_.sortBy(d, d => +d[visState.key_col]), d => d[visState.key_col]))
@@ -97,6 +100,25 @@ d3.loadData(`sparse-parity-sweep/data__hypers_${visState.sweepSlug}.csv`, 'spars
   renderAll.color()
   renderAll.hover()
 })
+
+function drawLineLegend({sel}){
+
+  var width = 330
+  var legendSel = sel.append('svg').at({width, height: 10})
+    .append('g.axis')
+    .translate([width/2 - 20, 10])
+    .appendMany('g', [
+      {str: 'Train Loss', color: util.colors.train},
+      {str: 'Test Loss', color: util.colors.test},
+    ])
+    .translate((d, i) => i ? -50 : 50, 0)
+
+  legendSel.append('path')
+    .at({stroke: d => d.color, d: 'M 0 0 H 20', strokeWidth: 2})
+
+  legendSel.append('text.axis-label').text(d => d.str)
+    .translate(25, 0).at({dy: '.33em'})
+}
 
 
 function drawLegend({state, sel}){
@@ -126,7 +148,7 @@ function drawSliders(){
     {
       scale: d3.scalePow().range([1e-8, 1]).exponent(10),
       sel: sel.append('div.slider'),
-      label: 'Min Test Loss',
+      label: 'Min Loss',
       getVal: d => visState.minEvalLoss,
       setVal: d => visState.minEvalLoss = d,
       fmt: d3.format('.2e')
@@ -177,7 +199,7 @@ function drawLineCharts(){
 
     d3.select('.line-chart-hyper').html('')
       .appendMany('div.chart-title', keys)
-      .html(d => util.titleFmt(d) + ': <b>' + h[d] + '</b>')
+      .html(d => util.keyFmt(d) + ': <b>' + h[d] + '</b>')
       .st({display: 'inline-block', fontSize: 11})
   })
 
@@ -251,14 +273,14 @@ function drawGridChart(models, i){
   c.svg.selectAll('.axis line').remove()
   c.svg.selectAll('.y text').at({x: 0})
   c.svg.selectAll('.x text').at({y: 3})
-  util.addAxisLabel(c, util.titleFmt(visState.key_x), util.titleFmt(visState.key_y), 20, -26)
+  util.addAxisLabel(c, util.keyFmt(visState.key_x), util.keyFmt(visState.key_y), 20, -26)
   if (i) c.svg.select('.y').remove()
 
   // c.svg.append('text.axis-label').text('e: ' + models[0][visState.key_row])
   //   .translate([0, -2])
 
   c.svg.append('text.axis-label')
-    .text(util.titleFmt(visState.key_col) + ': ' + d3.format('.2f')(models[0][visState.key_col]))
+    .text(util.keyFmt(visState.key_col) + ': ' + d3.format('.2f')(models[0][visState.key_col]))
     .translate([c.width/2, -2])
     .at({textAnchor: 'middle'}).st({fontSize: 9.5})
 
@@ -334,7 +356,7 @@ function circleFillFn(d){
   // return '#faec84'
 
 
-  if (d.maxRatio < visState.maxRatio) return '#faec84' // FDD835
-  return '#7B75C2'
+  if (d.maxRatio < visState.maxRatio) return '#7CB9DF' // FDD835
+  return '#faec84'
   return util.colors.highlight
 }

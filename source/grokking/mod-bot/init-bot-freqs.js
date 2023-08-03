@@ -45,7 +45,7 @@ window.initModBotFreqs= async function({state, sel, stepsKey, title}){
       .translate([c.x(.5), c.y(.5)])
       .at({fill: 'none', stroke: '#fff'})
 
-    var prevLineSel = c.svg.appendMany('path', freq)
+    var prevLineSel = c.svg.appendMany('path.dimension-prev', freq)
       .at({stroke: '#000', fill: 'none'})
 
     var dimSel = c.svg.appendMany('g.dimension-dft', freq)
@@ -77,12 +77,13 @@ window.initModBotFreqs= async function({state, sel, stepsKey, title}){
       })
 
       prevLineSel.at({d: d => ['M', d.pos, 'L', d.prev.pos].join(' ')})
-
+      
       dimSel.translate(d => d.pos)
     })
 
     state.renderAll.dim?.fns.push(() => {
       dimSel.classed('active', d => d.index == state.dim)
+      prevLineSel.classed('active', d => d.index == state.dim || d.prev.index == state.dim)
     })
 
   }

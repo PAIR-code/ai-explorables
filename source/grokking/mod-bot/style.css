@@ -7,6 +7,10 @@
   fill: var(--color-highlight);
 }
 
+.dimension-prev.active{
+  stroke: var(--color-highlight);
+}
+
 .mod-bot-accuracy > div{
   width: 1000px;
   margin-left: -60px;

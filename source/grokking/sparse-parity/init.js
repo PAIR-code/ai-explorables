@@ -26,6 +26,7 @@ window.sparseState = window.sparseStateX || {
   slug: '2023_07_05_19_41_05',
   slug: '2023_07_05_19_45_20',
   stepIndex: 125,
+  stepIndex: 230,
 }
 
 window.initSparseParity = async function(){
@@ -105,7 +106,6 @@ window.initSparseParity = async function(){
 
 
 
-
   var annotations = [
     {
       "parent": ".parity-weights > div > div",
@@ -148,16 +148,26 @@ window.initSparseParity = async function(){
       "minWidth": 850,
       "html": "...while almost all the weights shrink",
       "st": {
-        "top": -20,
-        "left": 330,
+        "top": 23,
+        "left": 210,
         "width": 130,
         "text-align": "right"
       },
-      "class": "no-shadow",
-      "path": "M -61,-12 A 111.919 111.919 0 0 1 -235,100"
+      "path": "M -105,-48 A 18.289 18.289 0 0 0 -136,-32"
+    },
+    {
+      "parent": ".parity-weights-trajectory > div",
+      "minWidth": 850,
+      "html": "Distraction digit weights removed",
+      "st": {
+        "top": 137,
+        "left": 264,
+        "width": 130
+      },
+      "path": "M -1,-41 A 28.834 28.834 0 0 1 3,-79"
     }
-  ]
-  window.annotations = annotations
+  ]  
+  // window.annotations = annotations
   // annotations.isDraggable = 1
 
   initSwoopy(annotations)

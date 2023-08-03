@@ -14,7 +14,7 @@ limitations under the License.
 ==============================================================================*/
 
 
-window.initAnimateSteps = async function({state, sel, stepTarget, duration=2000, minStep=Infinity, isBlink}){
+window.initAnimateSteps = async function({state, sel, stepTarget, duration=3000, minStep=Infinity, isBlink}){
 
   var timer = {}
   var nextStep = -1

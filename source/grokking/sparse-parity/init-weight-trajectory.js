@@ -23,7 +23,7 @@ window.initParityWeightsTrajectory = async function({state, sel, type}){
   })
 
   c.x.domain([0, state.hyper.max_steps])
-  c.y.domain([-4.5, 4.5])
+  c.y.domain([-3, 3])
 
   c.xAxis.ticks(10).tickFormat(d3.format(','))
   c.yAxis.ticks(5)
@@ -31,7 +31,7 @@ window.initParityWeightsTrajectory = async function({state, sel, type}){
   d3.drawAxis(c)
   util.ggPlot(c)
 
-  c.svg.append('text.chart-title').at({y: -5, fontSize: 12, x: c.width/2, textAnchor: 'middle'})
+  c.svg.append('text.chart-title').at({y: -5, fontSize: 12, xz: c.width/2, textAnchorz: 'middle'})
     .text(util.titleFmt('hidden_w Over Training'))
 
   util.addAxisLabel(c, 'Training Steps', 'Weight Value', 30, -20)

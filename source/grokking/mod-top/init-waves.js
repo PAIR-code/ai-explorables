@@ -69,6 +69,10 @@ window.initModTopWaves = async function({state, sel, type, xAxisLabel='Input Num
       .x((d, i) => c.x(i))
       .y(c.y)
 
+    var textSel = c.svg.append('g.axis').append('text')
+      .st({fill: util.colors.highlight, fontWeight: 800, fontSize: 12})
+      .at({x: c.width + 2, dy: '.33em'})
+
     state.renderAll.step.fns.push(() => {
       stepLabelSel.text((c.width > 200 ? 'Training Step ' : 'Step ') + d3.format('06,')(state.stepIndex*state.hyper.save_every))
 
@@ -90,6 +94,12 @@ window.initModTopWaves = async function({state, sel, type, xAxisLabel='Input Num
         .filter(d => d.index == state.dim)
         .classed('active', 1)
         .raise()
+
+      var activeFreq = freq.filter(d => d.index == state.dim)[0]
+
+      textSel.text(activeFreq?.index)
+      if (!activeFreq) return
+      textSel.translate(c.y(activeFreq.inputTokenVals.at(-1)), 1)
     })
   }
 }

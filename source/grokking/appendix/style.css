@@ -32,6 +32,7 @@
 .appendix .active circle, .appendix .active text{
   fill: #000;  
   fill: #f0f;  
+/*  fill: var(--color-correct);*/
 /*  opacity: 1 !important;*/
 }
 

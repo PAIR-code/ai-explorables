@@ -1,0 +1,13 @@
+.five-neuron-circle > div, .five-neuron-circle-2 > div{ 
+/*  opacity: .1;*/
+  margin: 0px 20px;
+}
+
+.five-neuron-embed{
+  margin-top: 0px;
+}
+.five-neuron-embed > div{ 
+/*    margin-left: -90px;*/
+/*  opacity: .1;*/
+  margin: 0px 70px;
+}

@@ -154,3 +154,11 @@ animate span{
   user-select: none;
 }
 
+
+
+.inline-train{
+  border-bottom: 2px solid var(--color-train);  
+}
+.inline-test{
+  border-bottom: 2px solid var(--color-test);  
+}
