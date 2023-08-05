@@ -26,7 +26,7 @@ window.initEmbedVis = async function({state, sel, type, sx=3, sy=3, maxY=3, yAxi
     width:  shape[1]*sx,
     height: shape[2]*sy,
     layers: 'scs',
-    margin: {top: 22, bottom: 35},
+    margin: {top: 22, bottom: 32},
   })
 
   var ctx = c.layers[1]
@@ -160,7 +160,7 @@ window.initEmbedVis = async function({state, sel, type, sx=3, sy=3, maxY=3, yAxi
 }
 
 
-// window.initModTop?.()
+window.initModTop?.()
 // window.initSparseParity?.()
 // window.initModBot?.()
 

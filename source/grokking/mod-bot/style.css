@@ -46,3 +46,7 @@
 .mod-bot-freqs-hidden > div, .mod-bot-freqs-out > div, .mod-bot-logits > div{
   white-space: nowrap;
 }
+
+.mod-bot-seeds > div{
+  white-space: nowrap;
+}

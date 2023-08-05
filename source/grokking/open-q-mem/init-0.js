@@ -82,5 +82,28 @@ window.initOpenQMem0 = async function(){
   })
 
   state.renderAll.step()
+
+
+  var annotations = [
+    {
+      "parent": ".open-q-mem-0-accuracy div",
+      "minWidth": 850,
+      "html": "A memorizing model can learn larger weights to reduce loss if there's no weight decay",
+      "st": {
+        "top": 135,
+        "left": 470,
+        "width": 182
+      },
+      "path": "M 167,-56 A 44.3 44.3 0 0 1 178,21",
+      "class": "no-shadow"
+    }
+  ]  
+
+
+  window.annotations = annotations
+  // annotations.isDraggable = 1
+
+  initSwoopy(annotations)
+
 }
 window.initOpenQMem0()

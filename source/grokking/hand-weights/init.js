@@ -100,7 +100,6 @@ window.initHandWeights = function(){
 
     var neurons = d3.zip(A, P)
 
-    // https://math.stackexchange.com/questions/2849945/sum-of-sin-waves-with-same-frequency-and-different-amplitudes-and-phase2
     var top = d3.sum(neurons, ([a, p]) => a*Math.sin(p))
     var bot = d3.sum(neurons, ([a, p]) => a*Math.cos(p))
     var phase = Math.atan2(top, bot)

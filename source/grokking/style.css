@@ -162,3 +162,8 @@ animate span{
 .inline-test{
   border-bottom: 2px solid var(--color-test);  
 }
+
+.tooltip-footnote img{
+  margin: 0px auto;
+  display: block;
+}

@@ -19,7 +19,6 @@ d3.loadData(
   'mod-bot/seeds/data__allmetrics_mlp_modular_addition_sweep.csv', 
   (err, res) => {
 
-  // console.clear()
   var [hypers, allmetrics] = res
 
   allmetrics.forEach(d => {
@@ -34,6 +33,7 @@ d3.loadData(
   var byModel = d3.nestBy(allmetrics, d => d.modelIndex)//.slice(0, 50)
   byModel.forEach((metrics, modelIndex) => {
     metrics.hyper = hypers[modelIndex]
+    metrics.i = modelIndex
   })
   // byModel = _.sortBy(byModel, d => d.hyper.freqs[0])
   // byModel = _.sortBy(byModel, d => d3.sum(d.hyper.freqs))
@@ -50,8 +50,10 @@ d3.loadData(
 
   var totalWidth = 1000
   var sel = d3.select('.mod-bot-seeds').html('')
-    .st({width: totalWidth, marginLeft: -(totalWidth - 880)/2})
-    .appendMany('div.small-multiple-seed', byModel)
+    .st({width: totalWidth, marginLeft: -(totalWidth - 850)/2})
+    .appendMany('div', d3.nestBy(byModel, d => Math.floor(d.i/10)))
+    .st({marginBottom: 0})
+    .appendMany('div.small-multiple-seed', d => d)
     .st({display: 'inline-block'})
     .each(drawLossChart)
     .on('click', d => {

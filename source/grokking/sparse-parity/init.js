@@ -19,15 +19,30 @@ window.sparseState = window.sparseStateX || {
   slug: '2023_06_28_22_46_45',
   slug: '2023_06_29_23_09_07',
   slug: '2023_06_29_23_11_10',
-  slug: '2023_06_29_23_16_47',
-  // slug: '2023_06_30_00_00_48',
-  slug: '2023_06_30_08_15_23',
-  slug: '2023_07_05_13_27_30',
-  slug: '2023_07_05_19_41_05',
+  // slug: '2023_06_29_23_16_47',
+  // // slug: '2023_06_30_00_00_48',
+  // slug: '2023_06_30_08_15_23',
+  // slug: '2023_07_05_13_27_30',
+  // slug: '2023_07_05_19_41_05',
+  
   slug: '2023_07_05_19_45_20',
+
+
+  // L2 weights
+  // slug: '2023_08_03_09_27_44',
+  // slug: '2023_07_11_10_33_35',
+
+  // slug: '2023_08_03_09_26_22',
+  // slug: '2023_08_03_09_43_53',
+  // slug: '2023_08_03_09_43_13',
+  // slug: '2023_08_03_09_42_30', // good L2 d3.selectAll('.annotation-container').remove()
+  // slug: '2023_08_03_09_28_08',
   stepIndex: 125,
   stepIndex: 230,
 }
+
+// d3.selectAll('.annotation-container').remove()
+
 
 window.initSparseParity = async function(){
   // console.clear()
@@ -64,7 +79,7 @@ window.initSparseParity = async function(){
     state,
     sx: 5,
     sy: 5,
-    maxY: 4,
+    maxY: 4.5,
     type: 'hidden_w',
     xAxisLabel: 'Digit Index',
   })
@@ -74,7 +89,7 @@ window.initSparseParity = async function(){
     state,
     sx: 5,
     sy: 5,
-    maxY: 4,
+    maxY: 4.5,
     type: 'out_w',
     xAxisLabel: '',
     yAxisLabel: '',
@@ -101,7 +116,7 @@ window.initSparseParity = async function(){
     sel: d3.select(`animate[data-animate='sp-gen']`),
     state,
     minStep: 1200,
-    stepTarget: 3008,
+    stepTarget: 3750,
   })
 
 

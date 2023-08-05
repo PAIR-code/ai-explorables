@@ -28,6 +28,7 @@ window.initModTopWaves = async function({state, sel, type, xAxisLabel='Input Num
     .each(drawFreqChart)
 
   function drawFreqChart(freq, chartIndex){
+    // if (chartIndex) return
     var sel = d3.select(this)
 
     var c = d3.conventions({
@@ -52,8 +53,9 @@ window.initModTopWaves = async function({state, sel, type, xAxisLabel='Input Num
     util.addAxisLabel(c, xAxisLabel, yAxisLabel, 26, -15)
 
 
+    var valKey = 'inputTokenVals_' + type
     freq.forEach(hiddenDim => {
-      hiddenDim.inputTokenVals = d3.range(state.hyper.n_tokens)
+      hiddenDim[valKey] = d3.range(state.hyper.n_tokens)
     })
 
     var lineSel = c.svg.appendMany('path.wave-path', freq)
@@ -81,11 +83,11 @@ window.initModTopWaves = async function({state, sel, type, xAxisLabel='Input Num
         var offset = shape[1]*shape[2]*state.stepIndex
 
         d3.range(state.hyper.n_tokens).forEach(i => {
-          hiddenDim.inputTokenVals[i] = data[offset + shape[2]*i + j]
+          hiddenDim[valKey][i] = data[offset + shape[2]*i + j]
         })
       })
 
-      lineSel.at({d: d => line(d.inputTokenVals)})
+      lineSel.at({d: d => line(d[valKey])})
     })
 
     state.renderAll.dim?.fns.push(() => {
@@ -99,7 +101,6 @@ window.initModTopWaves = async function({state, sel, type, xAxisLabel='Input Num
 
       textSel.text(activeFreq?.index)
       if (!activeFreq) return
-      textSel.translate(c.y(activeFreq.inputTokenVals.at(-1)), 1)
     })
   }
 }

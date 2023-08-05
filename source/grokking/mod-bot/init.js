@@ -72,6 +72,7 @@ window.modBotState = window.modBotStateXX || {
   // slug: '2023_07_09_19_42_56', // acc ok, stars pretty good (not all finished, but fine?), 
   // slug: '2023_07_09_19_41_30', // acc great, stars fine, 
   slug: '2023_07_09_19_38_17', // acc great, not finished, 
+  slug: '2023_07_09_19_38_17-index',
   // slug: '2023_07_09_19_31_22', // acc great, not finished, 
   // slug: '2023_07_09_19_28_34', // acc slow increase, stars great, 
   // slug: '2023_07_09_19_25_31', // lost freq, 

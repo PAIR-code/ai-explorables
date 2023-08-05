@@ -16,6 +16,7 @@
   cursor: default;
   color: #999;
   margin-right: 2px;
+  white-space: nowrap;
 }
 
 .citeend{

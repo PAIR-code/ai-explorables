@@ -105,17 +105,17 @@ window.initModTop = async function(){
   })
 
 
-  var annotations = [
+  window.annotations = [
     {
       "parent": ".mod-top-accuracy > div",
       "minWidth": 850,
-      "html": "The model quickly hits 100% accuracy on the <b style='color:var(--color-train)'>training data</b>...",
+      "html": "The model quickly fits the <b style='color:var(--color-train)'>training data</b> with 100% accuracy...",
       "st": {
         "top": 40,
         "left": 80,
-        "width": 150
+        "width": 170
       },
-      "path": "M -2,-23 A 39.064 39.064 0 0 1 -46,-51"
+      "path": "M -4,-38 A 34.887 34.887 0 0 1 -45,-66"
     },
     {
       "parent": ".mod-top-accuracy > div",
@@ -155,7 +155,7 @@ window.initModTop = async function(){
     },
     {
       "parent": ".mod-top-waves > div:last-child > div > div",
-      "minWidth": 850,
+      "minWidth": 1000,
       "html": "Each line shows a single neuron",
       "st": {
         "top": 75,
@@ -163,12 +163,11 @@ window.initModTop = async function(){
         "width": 110
       },
       "path": "M 67,-15 A 45.998 45.998 0 0 1 -1,9",
-      "class": "no-shadow",
-      "minWidth": 1000,
+      "class": "no-shadow"
     },
     {
       "parent": ".mod-top-waves > div:last-child > div > div",
-      "minWidth": 850,
+      "minWidth": 1050,
       "html": "Neurons repeating 7 times at the end of training are in this row",
       "st": {
         "top": 265,
@@ -176,12 +175,10 @@ window.initModTop = async function(){
         "width": 145
       },
       "path": "M 64,-70 A 51.92 51.92 0 0 0 9,-124",
-      "class": "no-shadow",
-      "minWidth": 1050,
-
+      "class": "no-shadow"
     }
   ]
-
+  
   // window.annotations = annotations
   // annotations.isDraggable = 1
 

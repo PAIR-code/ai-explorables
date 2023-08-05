@@ -61,7 +61,7 @@ window.fiveNeuronsState = window.fiveNeuronsStateX || {
 }
 
 window.initFiveNeurons = async function(){
-  console.clear()
+  // console.clear()
 
   var state = fiveNeuronsState
   state.modelPath = `/mlp_modular/${state.sweepSlug}/${state.slug}`

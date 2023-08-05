@@ -14,7 +14,7 @@ limitations under the License.
 ==============================================================================*/
 
 
-window.appendixState = window.appendixStatexxx || {
+window.appendixState = window.appendixStatez || {
   n_tokens: 67,
   a: 5,
   b: 20,
