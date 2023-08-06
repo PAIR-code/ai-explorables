@@ -330,12 +330,14 @@ window.initModSweep = async function(){
 window.initModSweep()
 
 function modSweepRenderRight({state, sel}){
+  state.renderAll.hover.fns = state.renderAll.hover.fns.filter(d => !d.isRight)
+  state.renderAll.color.fns = state.renderAll.color.fns.filter(d => !d.isRight)
+
   drawLineCharts({state, sel})
   drawGrid({state, sel})
 
   state.renderAll.color()
   state.renderAll.hover()
-
 
   function drawLineCharts({state, sel}){
     sel.select('.line-charts').html('').st({width: 330, margin: '0px auto'})
@@ -352,6 +354,7 @@ function modSweepRenderRight({state, sel}){
         .html(d => util.keyFmt(d) + ': <b>' + h[d] + '</b>')
         .st({display: 'inline-block', fontSize: 11})
     })
+    state.renderAll.hover.fns.at(-1).isRight = 1
 
     function drawChart(chartIndex){
       var c = d3.conventions({
@@ -361,10 +364,10 @@ function modSweepRenderRight({state, sel}){
         margin: {right: 0, top: 10, bottom: 10}
       })
 
-      c.x.domain([0, data.sharedHyper.max_steps])
-      c.y = d3.scaleLog().domain([1e0, 1e-8]).range([0, c.height])
+      c.x.domain([0, state.sharedHyper.max_steps])
+      c.y = d3.scaleLog().domain([1e4, 1e-8]).range([0, c.height])
 
-      c.xAxis.ticks(3).tickFormat(d => d/1000 + 'k')
+      c.xAxis.ticks(2).tickFormat(d => d/1000 + 'k')
       c.yAxis = d3.axisLeft(c.y).ticks(6)
 
       d3.drawAxis(c)
@@ -391,12 +394,15 @@ function modSweepRenderRight({state, sel}){
 
         var m = state.models.filter(state.isHoveredFn)[chartIndex]
         var root = `${util.getRoot()}/mlp_modular/${state.sweepSlug}`
+        if (!m) return console.log('missing')
         var metrics = await (await fetch(`${root}/${m.slug}/metrics.json`)).json()
 
         clearTimeout(timeoutId)
         trainPathSel.at({d: line.y(d => c.y(d.train_loss))(metrics)})
         testPathSel.at({d: line.y(d => c.y(d.eval_loss))(metrics)})
       })
+      state.renderAll.hover.fns.at(-1).isRight = 1
+
     }
   }
 
@@ -455,10 +461,12 @@ function modSweepRenderRight({state, sel}){
       state.renderAll.hover.fns.push(() => {
         circleSel.classed('is-hovered', state.isHoveredFn)
       })
+      state.renderAll.hover.fns.at(-1).isRight = 1
 
       state.renderAll.color.fns.push(() => {
         circleSel.at({fill: state.circleFillFn})
       })
+      state.renderAll.color.fns.at(-1).isRight = 1
     }
   }
 }
