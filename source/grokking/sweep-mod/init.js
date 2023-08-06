@@ -65,7 +65,7 @@ window.initModSweep = async function(){
   state.modelsL2 = await util.getFile('/mlp_modular/02-sweep-architecture/data__hypers_xm_gpu_full_l2_architecture_v2.csv')
   state.sharedHyper = await util.getFile('/mlp_modular/02-sweep-architecture/hyper_shared.json')
   state.modelsL1.isL1 = true
-
+  
   var sel = d3.select('.sweep-mod').html(`
     <div class='left-col'>
       <div class='legend'></div>
@@ -86,6 +86,13 @@ window.initModSweep = async function(){
   drawLegend({state, sel})
   drawSliders({state, sel})
   // modSweepRenderRight({state, sel})
+
+  state.hovered = state.modelsL1[2000]
+  state.hoveredType = state.modelsL1[2000].type
+
+  state.renderAll.type()
+  state.renderAll.hover()
+  state.renderAll.color()
 
   function drawLegend({state, sel}){
     var items = [
@@ -118,7 +125,7 @@ window.initModSweep = async function(){
       'embed_size': [32, 64, 128, 256, 512],
     }
 
-    var fields = 'embed_config is_tied_hidden is_collapsed_hidden is_collapsed_out'.split(' ')
+    var fields = 'embed_config is_tied_hidden is_collapsed_hidden is_collapsed_out regularization'.split(' ')
     models.forEach(d => {
       d.minEvalLoss = +d.minEvalLoss
       d.minTrainLoss = +d.minTrainLoss
@@ -194,7 +201,7 @@ window.initModSweep = async function(){
           d[0].is_collapsed_out == 'false' ? .5 : rh + pad + .5,
         ])
         .on('mouseover', d => {
-          state.hoveredType = d[0].type
+          state.hoveredType = state.hoveredType
 
           state.hovered = JSON.parse(JSON.stringify(state.hovered))
           state.hovered.type = state.hoveredType
