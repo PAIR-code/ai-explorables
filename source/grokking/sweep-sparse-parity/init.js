@@ -44,7 +44,7 @@ window.initRenderAll = function(){
 }
 
 
-d3.loadData(`sparse-parity-sweep/data__hypers_${spSweepState.sweepSlug}.csv`, 'sparse-parity-sweep/hyper_shared.json', (err, res) => {
+d3.loadData(`sweep-sparse-parity/data__hypers_${spSweepState.sweepSlug}.csv`, 'sweep-sparse-parity/hyper_shared.json', (err, res) => {
   // console.clear()
 
   var state = window.spSweepState
