@@ -3,13 +3,13 @@
   position: relative;
 }
 
-.left-col, .right-col{
+.sparse-parity-sweep .left-col, .sparse-parity-sweep .right-col{
   display: inline-block;
   vertical-align: top;
   text-align: center;
 }
 
-.left-col{
+.sparse-parity-sweep .left-col{
   margin-right: 10px;
   width: 530px;
 }

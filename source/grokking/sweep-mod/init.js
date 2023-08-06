@@ -13,7 +13,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 ==============================================================================*/
 
-window.spSweepState = window.spSweepStatex || {
+window.modSweepState = window.modSweepStatex || {
   maxRatio: 50000,
   minEvalLoss: .00001,
 
@@ -24,6 +24,7 @@ window.spSweepState = window.spSweepStatex || {
   key_col: 'weight_decay',
   key_x: 'hidden_size',
   key_y: 'train_size',
+  is_symmetric_input: true,
   hyper_sweep: {
     "seed": d3.range(9),
     "weight_decay": [1e-2, 3e-2, 1e-1, 3e-1, 1e-0],
@@ -32,24 +33,17 @@ window.spSweepState = window.spSweepStatex || {
   }
 }
 
+window.initModSweep = async function(){
+  console.clear()
 
-window.initRenderAll = function(){
-  var rv = {colorFns: [], hoverFns: []}
+  var state = window.modSweepState
 
-  d3.entries(rv).forEach(({key, value}) => {
-    rv[key.replace('Fns', '')] = () => value.forEach(d => d())
-  })
+  state.fmt = function(str){
+    return str
+      .replace('input_tied', 'untied')
+  }
 
-  return rv
-}
-
-
-d3.loadData(`sweep-sparse-parity/data__hypers_${spSweepState.sweepSlug}.csv`, 'sweep-sparse-parity/hyper_shared.json', (err, res) => {
-  // console.clear()
-
-  var state = window.spSweepState
-  state.renderAll = util.initRenderAll(['color', 'hover'])
-
+  state.renderAll = util.initRenderAll(['color', 'hover', 'type'])
   state.isHoveredFn = d => {
     var h = state.hovered 
     return d[state.key_row] == h[state.key_row] && 
@@ -62,94 +56,36 @@ d3.loadData(`sweep-sparse-parity/data__hypers_${spSweepState.sweepSlug}.csv`, 's
     if (d.minTrainLoss > state.minEvalLoss) return '#aaa'
     if (d.minEvalLoss > state.minEvalLoss) return '#fff'
 
-    // if (d.maxRatio < state.maxRatio) return util.colors.highlight
-    // return '#faec84'
-
-
     if (d.maxRatio < state.maxRatio) return '#7CB9DF' // FDD835
     return '#faec84'
     return util.colors.highlight
   }
 
-  window.data = {models: res[0], sharedHyper: res[1]}
-
-  if (!window.state.hovered) state.hovered = data.models[447]
+  state.modelsL1 = await util.getFile('/mlp_modular/02-sweep-architecture/data__hypers_xm_gpu_full_l1_architecture.csv')
+  state.modelsL2 = await util.getFile('/mlp_modular/02-sweep-architecture/data__hypers_xm_gpu_full_l2_architecture_v2.csv')
+  state.sharedHyper = await util.getFile('/mlp_modular/02-sweep-architecture/hyper_shared.json')
+  state.modelsL1.isL1 = true
 
   var sel = d3.select('.sweep-mod').html(`
     <div class='left-col'>
       <div class='legend'></div>
-      <div class='model-grid'></div>
+      <div class='wd-type-container'></div>
       <div class='sliders-container'></div>
     </div>
 
     <div class='right-col'>
+      <div class='model-grid'></div>
       <div class='line-legend'></div>
       <div class='line-charts'></div>
       <div class='line-chart-hyper'></div>
     </div>
   `)
 
-  drawSliders({state, sel})
-  drawLineCharts({state, sel})
+  drawWdType('modelsL1')
+  drawWdType('modelsL2')
   drawLegend({state, sel})
-  drawLineLegend({sel: sel.select('.line-legend')})
-  drawGrid({state, sel})
-
-  state.renderAll.color()
-  state.renderAll.hover()
-
-
-  var annotations = [
-    {
-      "parent": ".sparse-parity-sweep",
-      "minWidth": 850,
-      "html": "Less constrained model generalize slowly",
-      "st": {
-        "top": 265,
-        "left": 20,
-        "width": 155
-      },
-      "path": "M -7,-59 A 68.42 68.42 0 0 1 -12,-176",
-      "class": "no-shadow"
-    },
-    {
-      "parent": ".sparse-parity-sweep",
-      "minWidth": 850,
-      "html": "Very constrained models aren't able to fit the train data",
-      "st": {
-        "top": 260,
-        "left": 340,
-        "width": 130
-      },
-      "path": "M 127,-48 A 79.984 79.984 0 0 0 182,-171",
-      "class": "no-shadow"
-    }
-  ]  
-
-  window.annotations = annotations
-  annotations.isDraggable = 0
-
-  initSwoopy(annotations)
-
-
-  function drawLineLegend({state, sel}){
-    var width = 330
-    var legendSel = sel.append('svg').at({width, height: 10})
-      .append('g.axis')
-      .translate([width/2 - 20, 10])
-      .appendMany('g', [
-        {str: 'Train Loss', color: util.colors.train},
-        {str: 'Test Loss', color: util.colors.test},
-      ])
-      .translate((d, i) => i ? -50 : 50, 0)
-
-    legendSel.append('path')
-      .at({stroke: d => d.color, d: 'M 0 0 H 20', strokeWidth: 2})
-
-    legendSel.append('text.axis-label').text(d => d.str)
-      .translate(25, 0).at({dy: '.33em'})
-  }
-
+  drawSliders({state, sel})
+  // modSweepRenderRight({state, sel})
 
   function drawLegend({state, sel}){
     var items = [
@@ -170,6 +106,142 @@ d3.loadData(`sweep-sparse-parity/data__hypers_${spSweepState.sweepSlug}.csv`, 's
 
     itemSel.append('div').text(d => d.text).st({marginRight: 15})
   }
+
+  function drawWdType(key){
+    var models = state[key]
+    var isL1 = models.isL1
+    var hyper_sweep = {
+      'seed': [0, 1, 2, 3, 4, 5, 6, 7, 8],
+      'learning_rate': [1e-2, 1e-3, 1e-4],
+      'weight_decay': models.isL1 ? [1e-4, 1e-5, 1e-6, 1e-7, 1e-8] : [1, .3, .1, .03, .01],
+      'weight_decay': models.isL1 ? [1e-7, 1e-8, 1e-9, 1e-10, 1e-11] : [1, .3, .1, .03, .01],
+      'embed_size': [32, 64, 128, 256, 512],
+    }
+
+    var fields = 'embed_config is_tied_hidden is_collapsed_hidden is_collapsed_out'.split(' ')
+    models.forEach(d => {
+      d.minEvalLoss = +d.minEvalLoss
+      d.minTrainLoss = +d.minTrainLoss
+      d.maxRatio = +d.maxRatio
+      d.weight_decay = +d.weight_decay
+
+      d.type = fields.map(key => key + ': ' + d[key]).join(' ')
+      d.typeHTML = fields.map(key => `<span class='key-val'>${key} <b>${d[key]}</b></span>`)
+        .join('')
+        .replaceAll('is_', ' ')
+        .replaceAll('_config', '')
+    })
+
+    state[key] = models = models
+      .filter(d => d.is_symmetric_input == 'true')
+      .filter(d => d.embed_config != 'untied')
+      .filter(d => hyper_sweep.weight_decay.includes(d.weight_decay))
+    models.hyper_sweep = hyper_sweep
+    models.isL1 = isL1
+    state[key] = models
+
+    var typeSel = sel.select('.wd-type-container').append('div')
+    typeSel.append('div').translate([-240, -51])
+      .append('div').st({transform: 'rotate(-90deg)', 'letter-spacing':'2px'})
+      .append('b')
+      .html((models.isL1 ? 'L1' : 'L2') + ' Weight Decay')
+
+    var byType = d3.nestBy(_.sortBy(models, d => d.embed_config == 'tied' ? 'a' + d.type : d.type), d => d.type)
+    typeSel.append('div')
+      .appendMany('div.lr-row', d3.nestBy(byType, d => d[0].embed_config)).st({width: 430, margin: '0px auto'})
+      .append('div.type-label').html(d => `${d[0][0].embed_config == 'tied' ? 'Tied' : 'Untied'} W_embed`).st({marginBottom: 0, marginTop: 0}).parent()
+      .appendMany('div.chart-div', d => d3.nestBy(d, d => d[0].is_tied_hidden))
+      .each(drawTypeGrid)
+
+    function drawTypeGrid(types){
+      var sel = d3.select(this)
+
+      sel.append('div.type-label')
+        .html(types[0][0].is_tied_hidden == 'true' ? 'Tied W_proj-in' : 'Untied W_proj-in')
+
+      var pad = 8
+      var rw = 80
+      var rh = 12
+
+      var c = d3.conventions({
+        sel: sel.append('div'),
+        width: rw*2 + pad,
+        height: rh*2 + pad,
+        layers: 'ds',
+        margin: {top: 5, bottom: 40}
+      })
+
+      c.svg.append('g.x.axis')
+        .translate(c.height + 12, 1)
+        .appendMany('text', ['T', 'F'])
+        .text(d => d)
+        .translate((d, i) => i ? rw/2 : rw + pad + rw/2, 0)
+
+      c.svg.append('g.y.axis')
+        .translate(-8, 0)
+        .appendMany('text', ['T', 'F'])
+        .text(d => d)
+        .translate((d, i) => i ? rh/2 : rh + pad + rh/2, 1)
+        .at({dy: '.33em'})
+
+      util.addAxisLabel(c, 'collapsed_in', 'collapsed_out', 8, -6)
+
+      if (types[0][0].is_tied_hidden == 'true') c.svg.select('.y').remove()
+
+      var typeSel = c.svg.appendMany('g', types)
+        .translate(d => [
+          d[0].is_collapsed_hidden == 'false' ? .5 : rw + pad + .5,
+          d[0].is_collapsed_out == 'false' ? .5 : rh + pad + .5,
+        ])
+        .on('mouseover', d => {
+          state.hoveredType = d[0].type
+
+          state.hovered = JSON.parse(JSON.stringify(state.hovered))
+          state.hovered.type = state.hoveredType
+          state.renderAll.type()
+        })
+
+      types.forEach(type => {
+        var rectData = type.rectData = ['#aaa', '#fff', '#7CB9DF', '#faec84'].map((key, i) => ({key, i, count: 0}))
+        rectData.lookup = {}
+        rectData.forEach(d => rectData.lookup[d.key] = d)
+      })
+
+      var bgRectSel = typeSel.append('rect')
+        .at({width: rw, height: rh, stroke: '#000', fill: '#fff'})
+
+      var rectSel = typeSel.appendMany('rect', d => d.rectData)
+        .at({height: rh, fill: d => d.key, width: 20})
+
+      state.renderAll.type.fns.push(() => {
+        bgRectSel.at({strokeWidth: d => state.hoveredType == d.key ? 3 : 1})
+
+        state.renderAll.hover()
+      })
+
+      state.renderAll.color.fns.push(() => {
+        types.forEach(type => {
+          var rectData = type.rectData
+          rectData.forEach(d => d.count = 0)
+
+          type.forEach(d => {
+            rectData.lookup[state.circleFillFn(d)].count++
+          })
+
+          rectData.forEach(d => d.percent = d.count/d3.sum(rectData, d => d.count))
+
+          var prev = 0
+          rectData.forEach(d => {
+            d.prev = prev
+            prev += d.percent
+          })
+        })
+
+        rectSel.at({width: d => d.percent*rw, x: d => d.prev*rw})
+      })
+    }
+  }
+
 
   function drawSliders({state, sel}){
     var sel = sel.select('.sliders-container').html('')
@@ -215,6 +287,52 @@ d3.loadData(`sweep-sparse-parity/data__hypers_${spSweepState.sweepSlug}.csv`, 's
       function render(){ slider.sel.select('val').text(slider.fmt(slider.getVal())) }
       render()
     })
+  }
+}
+window.initModSweep()
+
+
+function modSweepRenderRight({state, sel}){
+  state.is_l1 = state.sweepSlug.includes('full_l1')
+
+  state.hyper_sweepx = {
+    "sweep_slug": [state.sweepSlug],
+    "seed": [0, 1, 2, 3, 4, 5, 6, 7, 8],
+    "learning_rate": [1e-2, 1e-3, 1e-4],
+    "weight_decay": state.is_l1 ? [1e-4, 1e-5, 1e-6, 1e-7, 1e-8] : [1, .3, .1, .03, .01],
+    "weight_decay": state.is_l1 ? [1e-7, 1e-8, 1e-9, 1e-10, 1e-11] : [1, .3, .1, .03, .01],
+    "embed_size": [32, 64, 128, 256, 512],
+  }
+
+  if (!window.state.hovered) state.hovered = state.data[447]
+
+
+  
+  drawLineCharts({state, sel})
+  
+  drawLineLegend({sel: sel.select('.line-legend')})
+  drawGrid({state, sel})
+
+  state.renderAll.color()
+  state.renderAll.hover()
+
+
+  function drawLineLegend({state, sel}){
+    var width = 330
+    var legendSel = sel.append('svg').at({width, height: 10})
+      .append('g.axis')
+      .translate([width/2 - 20, 10])
+      .appendMany('g', [
+        {str: 'Train Loss', color: util.colors.train},
+        {str: 'Test Loss', color: util.colors.test},
+      ])
+      .translate((d, i) => i ? -50 : 50, 0)
+
+    legendSel.append('path')
+      .at({stroke: d => d.color, d: 'M 0 0 H 20', strokeWidth: 2})
+
+    legendSel.append('text.axis-label').text(d => d.str)
+      .translate(25, 0).at({dy: '.33em'})
   }
 
   function drawLineCharts({state, sel}){
@@ -342,5 +460,5 @@ d3.loadData(`sweep-sparse-parity/data__hypers_${spSweepState.sweepSlug}.csv`, 's
       })
     }
   }
-})
+}
 

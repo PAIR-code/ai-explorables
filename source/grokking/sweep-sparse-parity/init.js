@@ -33,17 +33,6 @@ window.spSweepState = window.spSweepStatex || {
 }
 
 
-window.initRenderAll = function(){
-  var rv = {colorFns: [], hoverFns: []}
-
-  d3.entries(rv).forEach(({key, value}) => {
-    rv[key.replace('Fns', '')] = () => value.forEach(d => d())
-  })
-
-  return rv
-}
-
-
 d3.loadData(`sweep-sparse-parity/data__hypers_${spSweepState.sweepSlug}.csv`, 'sweep-sparse-parity/hyper_shared.json', (err, res) => {
   // console.clear()
 
