@@ -1,5 +1,5 @@
 .sweep-mod{
-  width: 900px;
+  width: 1000px;
   position: relative;
 }
 
@@ -16,4 +16,16 @@
 .sweep-mod .slider{
   width: 200px;
   left: 28px;
+}
+
+.sweep-mod .left-col, .sweep-mod .right-col{
+  display: inline-block;
+}
+
+.sweep-mod .left-col{
+  width: 400px;
+}
+
+.sweep-mod .right-col{
+  width: 500px;
 }

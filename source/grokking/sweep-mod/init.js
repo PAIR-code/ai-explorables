@@ -22,8 +22,8 @@ window.modSweepState = window.modSweepStatex || {
   sweepSlug: 'sparse_parity_v4',
   key_row: '',
   key_col: 'weight_decay',
-  key_x: 'hidden_size',
-  key_y: 'train_size',
+  key_x: 'embed_size',
+  key_y: 'learning_rate',
   is_symmetric_input: true,
   hyper_sweep: {
     "seed": d3.range(9),
@@ -32,6 +32,7 @@ window.modSweepState = window.modSweepStatex || {
     "train_size": [750, 1000, 1250, 1500, 1750],
   }
 }
+window.state = window.modSweepState
 
 window.initModSweep = async function(){
   console.clear()
@@ -83,12 +84,24 @@ window.initModSweep = async function(){
 
   drawWdType('modelsL1')
   drawWdType('modelsL2')
+  state.allModels = state.modelsL1.concat(state.modelsL2)
   drawLegend({state, sel})
+  drawLineLegend({sel: sel.select('.line-legend')})
   drawSliders({state, sel})
-  // modSweepRenderRight({state, sel})
 
-  state.hovered = state.modelsL1[2000]
-  state.hoveredType = state.modelsL1[2000].type
+  state.hovered = state.modelsL1[100]
+  state.hoveredType = state.modelsL1[100].type
+
+  state.renderAll.type.fns.push(() => {
+    // update state with data for rendering rh side
+    state.models = state.allModels.filter(d => d.type == state.hoveredType)
+    
+    var isL1 = state.hovered.regularization == 'l1'
+    state.hyper_sweep = (isL1 ? state.modelsL1 : state.modelsL2).hyper_sweep
+    state.sweepSlug = isL1 ? 'xm_gpu_full_l1_architecture' : 'xm_gpu_full_l2_architecture_v2'
+    console.log(state)
+    modSweepRenderRight({state, sel})
+  })
 
   state.renderAll.type()
   state.renderAll.hover()
@@ -146,6 +159,7 @@ window.initModSweep = async function(){
     models.hyper_sweep = hyper_sweep
     models.isL1 = isL1
     state[key] = models
+    // models.forEach(d => d.models = models)
 
     var typeSel = sel.select('.wd-type-container').append('div')
     typeSel.append('div').translate([-240, -51])
@@ -201,15 +215,15 @@ window.initModSweep = async function(){
           d[0].is_collapsed_out == 'false' ? .5 : rh + pad + .5,
         ])
         .on('mouseover', d => {
-          state.hoveredType = state.hoveredType
-
+          state.hoveredType = d[0].type
           state.hovered = JSON.parse(JSON.stringify(state.hovered))
           state.hovered.type = state.hoveredType
+
           state.renderAll.type()
         })
 
       types.forEach(type => {
-        var rectData = type.rectData = ['#aaa', '#fff', '#7CB9DF', '#faec84'].map((key, i) => ({key, i, count: 0}))
+        var rectData = type.rectData = ['#fff', '#7CB9DF', '#faec84', '#aaa'].map((key, i) => ({key, i, count: 0}))
         rectData.lookup = {}
         rectData.forEach(d => rectData.lookup[d.key] = d)
       })
@@ -249,6 +263,23 @@ window.initModSweep = async function(){
     }
   }
 
+  function drawLineLegend({state, sel}){
+    var width = 330
+    var legendSel = sel.append('svg').at({width, height: 10})
+      .append('g.axis')
+      .translate([width/2 - 20, 10])
+      .appendMany('g', [
+        {str: 'Train Loss', color: util.colors.train},
+        {str: 'Test Loss', color: util.colors.test},
+      ])
+      .translate((d, i) => i ? -50 : 50, 0)
+
+    legendSel.append('path')
+      .at({stroke: d => d.color, d: 'M 0 0 H 20', strokeWidth: 2})
+
+    legendSel.append('text.axis-label').text(d => d.str)
+      .translate(25, 0).at({dy: '.33em'})
+  }
 
   function drawSliders({state, sel}){
     var sel = sel.select('.sliders-container').html('')
@@ -298,49 +329,13 @@ window.initModSweep = async function(){
 }
 window.initModSweep()
 
-
 function modSweepRenderRight({state, sel}){
-  state.is_l1 = state.sweepSlug.includes('full_l1')
-
-  state.hyper_sweepx = {
-    "sweep_slug": [state.sweepSlug],
-    "seed": [0, 1, 2, 3, 4, 5, 6, 7, 8],
-    "learning_rate": [1e-2, 1e-3, 1e-4],
-    "weight_decay": state.is_l1 ? [1e-4, 1e-5, 1e-6, 1e-7, 1e-8] : [1, .3, .1, .03, .01],
-    "weight_decay": state.is_l1 ? [1e-7, 1e-8, 1e-9, 1e-10, 1e-11] : [1, .3, .1, .03, .01],
-    "embed_size": [32, 64, 128, 256, 512],
-  }
-
-  if (!window.state.hovered) state.hovered = state.data[447]
-
-
-  
   drawLineCharts({state, sel})
-  
-  drawLineLegend({sel: sel.select('.line-legend')})
   drawGrid({state, sel})
 
   state.renderAll.color()
   state.renderAll.hover()
 
-
-  function drawLineLegend({state, sel}){
-    var width = 330
-    var legendSel = sel.append('svg').at({width, height: 10})
-      .append('g.axis')
-      .translate([width/2 - 20, 10])
-      .appendMany('g', [
-        {str: 'Train Loss', color: util.colors.train},
-        {str: 'Test Loss', color: util.colors.test},
-      ])
-      .translate((d, i) => i ? -50 : 50, 0)
-
-    legendSel.append('path')
-      .at({stroke: d => d.color, d: 'M 0 0 H 20', strokeWidth: 2})
-
-    legendSel.append('text.axis-label').text(d => d.str)
-      .translate(25, 0).at({dy: '.33em'})
-  }
 
   function drawLineCharts({state, sel}){
     sel.select('.line-charts').html('').st({width: 330, margin: '0px auto'})
@@ -394,8 +389,8 @@ function modSweepRenderRight({state, sel}){
           testPathSel.at({d: 'M 0 0'})
         }, 300)
 
-        var m = data.models.filter(state.isHoveredFn)[chartIndex]
-        var root = `${util.getRoot()}/sparse_parity/${state.sweepSlug}`
+        var m = state.models.filter(state.isHoveredFn)[chartIndex]
+        var root = `${util.getRoot()}/mlp_modular/${state.sweepSlug}`
         var metrics = await (await fetch(`${root}/${m.slug}/metrics.json`)).json()
 
         clearTimeout(timeoutId)
@@ -405,10 +400,9 @@ function modSweepRenderRight({state, sel}){
     }
   }
 
-
   function drawGrid({state, sel}){
     sel.select('.model-grid').html('')
-      .appendMany('div.lr-row', d3.nestBy(_.sortBy(data.models, d => +d[state.key_row]), d => d[state.key_row]))
+      .appendMany('div.lr-row', d3.nestBy(_.sortBy(state.models, d => +d[state.key_row]), d => d[state.key_row]))
       .appendMany('div.chart-div', d => d3.nestBy(_.sortBy(d, d => +d[state.key_col]), d => d[state.key_col]))
       .each(drawGridChart)
 
