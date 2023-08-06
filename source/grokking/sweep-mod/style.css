@@ -1,6 +1,7 @@
 .sweep-mod{
-  width: 1000px;
+  width: 1100px;
   position: relative;
+  margin-left: -100px;
 }
 
 .sweep-mod val{
@@ -23,7 +24,7 @@
 }
 
 .sweep-mod .left-col{
-  width: 400px;
+  width: 500px;
 }
 
 .sweep-mod .right-col{

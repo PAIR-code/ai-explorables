@@ -160,6 +160,8 @@ window.util = (function(){
       .replace('hidden_size', 'Num Neurons')
       .replace('train_size', 'Train Examples')
       .replace('weight_decay', 'Weight Decay')
+      .replace('embed_size', 'Neurons')
+      .replace('learning_rate', 'Learning Rate')
   }
 
 

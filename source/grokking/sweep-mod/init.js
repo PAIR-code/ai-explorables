@@ -21,8 +21,8 @@ window.modSweepState = window.modSweepStatex || {
   sweepSlug: 'sparse_parity_v3',
   sweepSlug: 'sparse_parity_v4',
   key_row: '',
-  key_col: 'weight_decay',
-  key_x: 'embed_size',
+  key_col: 'embed_size',
+  key_x: 'weight_decay',
   key_y: 'learning_rate',
   is_symmetric_input: true,
   hyper_sweep: {
@@ -76,9 +76,9 @@ window.initModSweep = async function(){
 
     <div class='right-col'>
       <div class='model-grid'></div>
-      <div class='line-legend'></div>
-      <div class='line-charts'></div>
       <div class='line-chart-hyper'></div>
+      <div class='line-charts'></div>
+      <div class='line-legend'></div>
     </div>
   `)
 
@@ -89,8 +89,8 @@ window.initModSweep = async function(){
   drawLineLegend({sel: sel.select('.line-legend')})
   drawSliders({state, sel})
 
-  state.hovered = state.modelsL1[100]
-  state.hoveredType = state.modelsL1[100].type
+  state.hovered = state.modelsL2[100]
+  state.hoveredType = state.modelsL2[100].type
 
   state.renderAll.type.fns.push(() => {
     // update state with data for rendering rh side
@@ -99,7 +99,6 @@ window.initModSweep = async function(){
     var isL1 = state.hovered.regularization == 'l1'
     state.hyper_sweep = (isL1 ? state.modelsL1 : state.modelsL2).hyper_sweep
     state.sweepSlug = isL1 ? 'xm_gpu_full_l1_architecture' : 'xm_gpu_full_l2_architecture_v2'
-    console.log(state)
     modSweepRenderRight({state, sel})
   })
 
@@ -153,7 +152,7 @@ window.initModSweep = async function(){
     })
 
     state[key] = models = models
-      .filter(d => d.is_symmetric_input == 'true')
+      .filter(d => d.is_symmetric_input == 'false')
       .filter(d => d.embed_config != 'untied')
       .filter(d => hyper_sweep.weight_decay.includes(d.weight_decay))
     models.hyper_sweep = hyper_sweep
@@ -223,7 +222,7 @@ window.initModSweep = async function(){
         })
 
       types.forEach(type => {
-        var rectData = type.rectData = ['#fff', '#7CB9DF', '#faec84', '#aaa'].map((key, i) => ({key, i, count: 0}))
+        var rectData = type.rectData = ['#fff', '#faec84', '#7CB9DF', '#aaa'].map((key, i) => ({key, i, count: 0}))
         rectData.lookup = {}
         rectData.forEach(d => rectData.lookup[d.key] = d)
       })
@@ -418,7 +417,7 @@ function modSweepRenderRight({state, sel}){
       var c = d3.conventions({
         sel: sel.append('div'),
         width: 90,
-        height: 90,
+        height: 55,
         margin: {left: 10, right: 0}
       })
 
@@ -427,9 +426,9 @@ function modSweepRenderRight({state, sel}){
 
       c.xAxis = d3.axisBottom(c.x).tickValues(state.hyper_sweep[state.key_x])
         .tickFormat(d => d)
-        // .tickFormat(d => d3.format('.0e')(d))
       c.yAxis = d3.axisLeft(c.y).tickValues(state.hyper_sweep[state.key_y])
         .tickFormat(d => d)
+        .tickFormat(d => d3.format('.0e')(d))
       d3.drawAxis(c)
 
       c.svg.selectAll('.axis line').remove()
@@ -442,7 +441,8 @@ function modSweepRenderRight({state, sel}){
       //   .translate([0, -2])
 
       c.svg.append('text.axis-label')
-        .text(util.keyFmt(state.key_col) + ': ' + d3.format('.2f')(models[0][state.key_col]))
+        // .text(util.keyFmt(state.key_col) + ': ' + models[0][state.key_col])
+        .text(util.keyFmt(state.key_col) + ': ' + models[0][state.key_col])
         .translate([c.width/2, -2])
         .at({textAnchor: 'middle'}).st({fontSize: 9.5})
 
