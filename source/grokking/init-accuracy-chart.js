@@ -80,9 +80,12 @@ window.initAccuracyChart = async function({sel, state, isBig=true, isLoss, width
 
   c.svg.append('rect')
     .at({width: c.width, height: c.height + 30, fillOpacity: 0})
-    .on('mousemove', function(){
-      state.stepIndex = Math.floor(c.x.invert(d3.mouse(this)[0])/state.hyper.save_every)
-      state.stepIndex = Math.max(0, state.stepIndex)
+    .on('mousemove touchmove', function(){
+      d3.event.preventDefault()
+
+      // last training run missing on some models
+      var mouseX = d3.clamp(0, d3.mouse(this)[0], c.width - .1)
+      state.stepIndex = Math.floor(c.x.clamp(1).invert(mouseX)/state.hyper.save_every)
       state.renderAll.step()
     })
 
@@ -112,7 +115,7 @@ window.initAccuracyChart = async function({sel, state, isBig=true, isLoss, width
     }
 }
 
-// window.initModTop?.()
+window.initModTop?.()
 // window.initSparseParity?.()
 window.initModBot?.()
 

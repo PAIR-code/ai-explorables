@@ -172,7 +172,7 @@ window.initAppendix = function(){
     state,
     type: 'inProj',
     title: 'embed, in-proj and ReLU ',
-    caption: `First, project the averaged position along ${state.n_neurons} evenly spaced directions and apply a ReLU to keep only the positive components.`,
+    caption: `First, project the averaged position along ${state.n_neurons} evenly spaced directions <span class='directions-caption'></span> and apply a ReLU to keep only the positive components.`,
     sel: projSel.append('div')
   })
   initProjVis({

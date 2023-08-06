@@ -15,7 +15,7 @@ limitations under the License.
 
 
 
-window.modTopState = window.modTopStateXX || {
+window.modTopState = window.modTopStateX || {
   isLocked: false,
   // slug: '2023_06_23_12_29_44',
   // // slug: '2023_06_30_11_20_39',
@@ -49,63 +49,9 @@ window.initModTop = async function(){
     title: "An Example Of Grokking: Memorization Followed By Sudden Generalization"
   })
 
-  if (state.isSorted){
-    state.hidden_embed_w = await util.getFile(state.modelPath + '/hidden_embed_w_sorted.npy')
-    state.out_embed_t_w = await util.getFile(state.modelPath + '/out_embed_t_w_sorted.npy')
-  } else {
-    state.hidden_embed_w = await util.getFile(state.modelPath + '/hidden_embed_w.npy')
-    state.out_embed_t_w = await util.getFile(state.modelPath + '/out_embed_t_w.npy')
-  }
-  
-  var modWeightSel = d3.select('.mod-top-weights').html('')
-  window.initEmbedVis({
-    sel: modWeightSel.append('div'),
-    state,
-    maxY: 5,
-    sx: 5,
-    sy: 4,
-    type: 'hidden_embed_w',
-  })
-  window.initEmbedVis({
-    sel: modWeightSel.append('div'),
-    state,
-    maxY: 5,
-    sx: 5,
-    sy: 4,
-    type: 'out_embed_t_w',
-    xAxisLabel: 'Output Number',
-    yAxisLabel: '',
-  })
 
-  state.dft_max = await util.getFile(state.modelPath + '/dft_max.json')
-
-  var modWaveSel = d3.select('.mod-top-waves').html('')
-  window.initModTopWaves({
-    sel: modWaveSel.append('div'),
-    state,
-    type: 'hidden_embed_w',
-  })
-  window.initModTopWaves({
-    sel: modWaveSel.append('div'),
-    state,
-    type: 'out_embed_t_w',
-    xAxisLabel: 'Output Number',
-    yAxisLabel: '',
-  })
-
-
-  state.renderAll.step()
-
-  initAnimateSteps({
-    sel: d3.select(`animate[data-animate='top-switches']`),
-    state,
-    minStep: 30000,
-    stepTarget: 49500,
-    isBlink: true,
-  })
-
-
-  window.annotations = [
+  // init annotations quickly to avoid pop in
+  var annotations = [
     {
       "parent": ".mod-top-accuracy > div",
       "minWidth": 850,
@@ -178,15 +124,70 @@ window.initModTop = async function(){
       "class": "no-shadow"
     }
   ]
-  
   // window.annotations = annotations
   // annotations.isDraggable = 1
+  initSwoopy(annotations)
+  var topAccuracySel = d3.select('.mod-top-accuracy').classed('hidden-step', 1)
+
+
+
+  if (state.isSorted){
+    state.hidden_embed_w = await util.getFile(state.modelPath + '/hidden_embed_w_sorted.npy')
+    state.out_embed_t_w = await util.getFile(state.modelPath + '/out_embed_t_w_sorted.npy')
+  } else {
+    state.hidden_embed_w = await util.getFile(state.modelPath + '/hidden_embed_w.npy')
+    state.out_embed_t_w = await util.getFile(state.modelPath + '/out_embed_t_w.npy')
+  }
+  
+  var modWeightSel = d3.select('.mod-top-weights').html('')
+  window.initEmbedVis({
+    sel: modWeightSel.append('div'),
+    state,
+    maxY: 5,
+    sx: 5,
+    sy: 4,
+    type: 'hidden_embed_w',
+  })
+  window.initEmbedVis({
+    sel: modWeightSel.append('div'),
+    state,
+    maxY: 5,
+    sx: 5,
+    sy: 4,
+    type: 'out_embed_t_w',
+    xAxisLabel: 'Output Number',
+    yAxisLabel: '',
+  })
+
+  state.dft_max = await util.getFile(state.modelPath + '/dft_max.json')
+
+  var modWaveSel = d3.select('.mod-top-waves').html('')
+  window.initModTopWaves({
+    sel: modWaveSel.append('div'),
+    state,
+    type: 'hidden_embed_w',
+  })
+  window.initModTopWaves({
+    sel: modWaveSel.append('div'),
+    state,
+    type: 'out_embed_t_w',
+    xAxisLabel: 'Output Number',
+    yAxisLabel: '',
+  })
+
+
+  state.renderAll.step()
+
+  initAnimateSteps({
+    sel: d3.select(`animate[data-animate='top-switches']`),
+    state,
+    minStep: 30000,
+    stepTarget: 49500,
+    isBlink: true,
+  })
+
 
   initSwoopy(annotations)
-
-
-
-  var topAccuracySel = d3.select('.mod-top-accuracy').classed('hidden-step', 1)
   var observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
       if (entry.isIntersecting){

@@ -5,6 +5,11 @@
   font-size: 10px;
 }
 
+
+html{
+  min-width: 1000px;
+}
+
 body{
 /*  background: red;*/
 }

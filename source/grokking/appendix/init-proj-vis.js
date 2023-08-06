@@ -25,7 +25,9 @@ window.initProjVis = async function({type, state, sel, title, caption}){
     layers: 's',
     margin: {top: 30, bottom: 0},
   })
-  sel.append('p.caption').text(caption).st({width: 300})
+  sel.append('p.caption').html(caption).st({width: 300})
+  sel.select('.directions-caption').appendMany('span', state.neurons)
+    .st({background: d => d.color, display: 'inline-block', width: 2, marginRight: 1}).html('&nbsp;')
 
   c.svg.append('text').text(title)
     .at({y: -5, fontSize: 14, fontWeight: 600})
