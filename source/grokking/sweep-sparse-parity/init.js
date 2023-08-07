@@ -48,16 +48,11 @@ d3.loadData(`sweep-sparse-parity/data__hypers_${spSweepState.sweepSlug}.csv`, 's
   }
 
   state.circleFillFn = d => {
-    if (d.minTrainLoss > state.minEvalLoss) return '#aaa'
-    if (d.minEvalLoss > state.minEvalLoss) return '#fff'
+    if (d.minTrainLoss > state.minEvalLoss) return util.colors.sweepNoLearn
+    if (d.minEvalLoss > state.minEvalLoss) return util.colors.sweepNoGen
 
-    // if (d.maxRatio < state.maxRatio) return util.colors.highlight
-    // return '#faec84'
-
-
-    if (d.maxRatio < state.maxRatio) return '#7CB9DF' // FDD835
-    return '#faec84'
-    return util.colors.highlight
+    if (d.maxRatio < state.maxRatio) return util.colors.sweepGen
+    return util.colors.sweepGrok
   }
 
   window.data = {models: res[0], sharedHyper: res[1]}

@@ -14,9 +14,12 @@
   width: 530px;
 }
 
+.sparse-parity-sweep circle{
+  stroke-width: .5;
+}
 
-circle.is-hovered{
-  stroke-width: 2px;
+.sparse-parity-sweep circle.is-hovered, .sweep-mod circle.is-hovered{
+  stroke-width: 2px !important;
 }
 
 .graphic{

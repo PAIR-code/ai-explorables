@@ -70,6 +70,11 @@ window.util = (function(){
 
     highlight: '#b4cc16',
     correct: '#FD4376',
+
+    sweepGrok: '#F7DB5C',
+    sweepGen: '#7CB9DF',
+    sweepNoGen: '#fff',
+    sweepNoLearn: '#aaa',
   }
   d3.entries(colors).forEach(({key, value}) => {
     d3.select('html').style('--color-' + key, value)

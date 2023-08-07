@@ -53,12 +53,11 @@ window.initModSweep = async function(){
   }
 
   state.circleFillFn = d => {
-    if (d.minTrainLoss > state.minEvalLoss) return '#aaa'
-    if (d.minEvalLoss > state.minEvalLoss) return '#fff'
+    if (d.minTrainLoss > state.minEvalLoss) return util.colors.sweepNoLearn
+    if (d.minEvalLoss > state.minEvalLoss) return util.colors.sweepNoGen
 
-    if (d.maxRatio < state.maxRatio) return '#7CB9DF' // FDD835
-    return '#faec84'
-    return util.colors.highlight
+    if (d.maxRatio < state.maxRatio) return util.colors.sweepGen
+    return util.colors.sweepGrok
   }
 
   state.modelsL1 = await util.getFile('/mlp_modular/02-sweep-architecture/data__hypers_xm_gpu_full_l1_architecture.csv')
@@ -113,4 +112,5 @@ window.initModSweep = async function(){
   })
   state.renderAll.type()
 }
+
 window.initModSweep()

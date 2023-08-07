@@ -173,14 +173,26 @@ window.sweepModCharts = (function(){
         ])
         .on('mouseover', d => {
           state.hoveredType = d[0].type
-          state.hovered = JSON.parse(JSON.stringify(state.hovered))
-          state.hovered.type = state.hoveredType
+
+          if (state.hovered.regularization == d[0].regularization){
+            state.hovered = JSON.parse(JSON.stringify(state.hovered))
+            state.hovered.type = state.hoveredType
+          } else {
+            state.hovered = d[0]
+          }
 
           state.renderAll.type()
         })
 
       types.forEach(type => {
-        var rectData = type.rectData = ['#fff', '#faec84', '#7CB9DF', '#aaa'].map((key, i) => ({key, i, count: 0}))
+        var rectData = type.rectData = [
+            util.colors.sweepNoGen, 
+            util.colors.sweepGrok, 
+            util.colors.sweepGen, 
+            util.colors.sweepNoLearn, 
+          ]
+          .map((key, i) => ({key, i, count: 0}))
+          
         rectData.lookup = {}
         rectData.forEach(d => rectData.lookup[d.key] = d)
       })

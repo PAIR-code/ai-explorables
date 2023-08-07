@@ -30,3 +30,7 @@
 .sweep-mod .right-col{
   width: 500px;
 }
+
+.sweep-mod circle{
+  stroke-width: .5;
+}
