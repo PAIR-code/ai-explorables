@@ -192,7 +192,7 @@ window.sweepModCharts = (function(){
             util.colors.sweepNoLearn, 
           ]
           .map((key, i) => ({key, i, count: 0}))
-          
+
         rectData.lookup = {}
         rectData.forEach(d => rectData.lookup[d.key] = d)
       })
@@ -287,7 +287,7 @@ window.sweepModCharts = (function(){
 
         var m = state.models.filter(state.isHoveredFn)[chartIndex]
         var root = `${util.getRoot()}/mlp_modular/${state.sweepSlug}`
-        if (!m) return console.log('missing')
+        if (!m) return //console.log('missing')
         var metrics = await (await fetch(`${root}/${m.slug}/metrics.json`)).json()
 
         clearTimeout(timeoutId)
@@ -307,6 +307,7 @@ window.sweepModCharts = (function(){
 
     function drawGridChart(models, i){
       var sel = d3.select(this)
+      var isL1 = models[0].regularization == 'l1'
 
       var c = d3.conventions({
         sel: sel.append('div'),
@@ -319,7 +320,7 @@ window.sweepModCharts = (function(){
       c.y = d3.scaleBand().range([0, c.height]).domain(state.hyper_sweep[state.key_y])
 
       c.xAxis = d3.axisBottom(c.x).tickValues(state.hyper_sweep[state.key_x])
-        .tickFormat(d => d)
+        .tickFormat((d, i) => isL1 ? i % 2 ? '' : d : ('' + d).replace('0.', '.'))
       c.yAxis = d3.axisLeft(c.y).tickValues(state.hyper_sweep[state.key_y])
         .tickFormat(d => d)
         .tickFormat(d => d3.format('.0e')(d))
