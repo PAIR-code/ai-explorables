@@ -45,6 +45,7 @@ window.initAccuracyChart = async function({sel, state, isBig=true, isLoss, width
 
   c.svg.append('text.chart-title')
     .at({y: -7, fontSize: 12, textAnchorz: 'middle', xz: c.width/2})
+    .at({y: -7, fontSize: 12, textAnchor: 'middle', x: c.width/2})
     .text(title || ((isLoss ? 'Loss' : 'Accuracy') + ' Over Training'))
 
   util.addAxisLabel(c, 'Training Step →', isLoss ? 'Loss' : 'Accuracy')

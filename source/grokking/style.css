@@ -184,3 +184,8 @@ animate span{
   width: 1000px;
 /*  background: red;*/
 }
+
+
+p{
+  max-width: 550px;
+}

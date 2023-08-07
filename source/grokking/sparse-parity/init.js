@@ -115,7 +115,7 @@ window.initSparseParity = async function(){
   initAnimateSteps({
     sel: d3.select(`animate[data-animate='sp-gen']`),
     state,
-    minStep: 1200,
+    minStep: 0,
     stepTarget: 3750,
   })
 
