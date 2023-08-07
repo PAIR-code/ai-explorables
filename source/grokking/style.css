@@ -172,3 +172,8 @@ animate span{
   margin: 0px auto;
   display: block;
 }
+
+.inline-equation{
+  max-width: 850px;
+  overflow: hidden;
+}
