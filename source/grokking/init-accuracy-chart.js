@@ -43,7 +43,8 @@ window.initAccuracyChart = async function({sel, state, isBig=true, isLoss, width
   c.svg.select('.y').lower()
   util.ggPlot(c)
 
-  c.svg.append('text.chart-title').at({y: -7, fontSize: 12, textAnchor: 'middle', x: c.width/2})
+  c.svg.append('text.chart-title')
+    .at({y: -7, fontSize: 12, textAnchorz: 'middle', xz: c.width/2})
     .text(title || ((isLoss ? 'Loss' : 'Accuracy') + ' Over Training'))
 
   util.addAxisLabel(c, 'Training Step →', isLoss ? 'Loss' : 'Accuracy')
@@ -116,7 +117,7 @@ window.initAccuracyChart = async function({sel, state, isBig=true, isLoss, width
 }
 
 window.initModTop?.()
-// window.initSparseParity?.()
+window.initSparseParity?.()
 window.initModBot?.()
 
 // window.initOpenQMem0()

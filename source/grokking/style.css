@@ -177,3 +177,10 @@ animate span{
   max-width: 850px;
   overflow: hidden;
 }
+
+
+
+.parity-wrapper{
+  width: 1000px;
+/*  background: red;*/
+}
