@@ -293,7 +293,7 @@ function drawBatch(sel, batchIndex, ct, ct2){
     ctx.clearRect(-c.margin.left, -c.margin.top, c.width + c.margin.left + c.margin.right, c.height + c.margin.top + c.margin.bottom)
     paddedLineData.forEach((d, i) => {
       ctx.beginPath()
-      ctx.lineWidth = .1
+      ctx.lineWidth = state.nMaxRand > 1 ? .4 : 1.5
       ctx.strokeStyle = !ct2 ? '#000' : i < ct.randLines.length ? util.colors[1] : util.colors[0]
       lineGen(d)
       ctx.stroke()
