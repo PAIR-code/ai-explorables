@@ -15,8 +15,9 @@
 }
 
 .sweep-mod .slider{
-  width: 200px;
-  left: 28px;
+  width: 208px;
+  left: 36px;
+/*  margin-top: -10px;*/
 }
 
 .sweep-mod .left-col, .sweep-mod .right-col{
@@ -33,4 +34,14 @@
 
 .sweep-mod circle{
   stroke-width: .5;
+}
+
+.sweep-mod .type-label{
+  margin-top: -10px !important; 
+  margin-bottom: -10px !important; 
+}
+
+.sweep-mod .lr-row > .type-label{
+  margin-bottom: -20px !important;
+/*  background: red;*/
 }

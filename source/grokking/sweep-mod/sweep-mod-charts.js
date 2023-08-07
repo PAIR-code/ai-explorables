@@ -49,28 +49,29 @@ window.sweepModCharts = (function(){
     `
 
     var d = state.actualHovered || state.hovered
-
+    if (d.is_collapsed_hidden == 'true'){
+      str = str.replaceAll('\\mathbf{W}_{\\text{in-proj-a}}', '')
+      str = str.replaceAll('\\mathbf{W}_{\\text{in-proj-b}}', '')
+    }
     if (d.embed_config == 'tied'){
       str = str.replaceAll('in-embed', 'embed')
       str = str.replaceAll('out-embed', 'embed')
     }
-
     if (d.is_tied_hidden == 'true'){
       str = str.replaceAll('in-proj-a', 'in-proj')
       str = str.replaceAll('in-proj-b', 'in-proj')
     }
-    if (d.is_collapsed_hidden == 'true'){
-      str = str.replaceAll('in-embed', 'embed')
-      str = str.replaceAll('out-embed', 'embed')
+    if (d.is_collapsed_out == 'true'){
+      str = str.replaceAll('\\textbf{W}_{\\text{out-proj}}', '')
     }
 
     sel.select('.formula')
       .html(MathJax.tex2chtml(str, {em: 12, ex: 6, display: false}).outerHTML)
 
-    // not sure if this is better
-    // const outputDiv = document.getElementById('output');
-    // outputDiv.innerHTML = `\\(${latex}\\)`; 
-    // MathJax.typesetPromise([outputDiv]);
+    // Not sure if this is better?
+    // 
+    // el.innerHTML = `\\(${latex}\\)`; 
+    // MathJax.typesetPromise([el]);
   }
 
   function drawSliders({state, sel}){
@@ -154,7 +155,7 @@ window.sweepModCharts = (function(){
     // models.forEach(d => d.models = models)
 
     var typeSel = sel.select('.wd-type-container').append('div')
-    typeSel.append('div').translate([-240, -51])
+    typeSel.append('div').translate([-240, -93]).st({height: 20})
       .append('div').st({transform: 'rotate(-90deg)', 'letter-spacing':'2px'})
       .append('b')
       .html((models.isL1 ? 'L1' : 'L2') + ' Weight Decay')
