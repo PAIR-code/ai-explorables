@@ -30,6 +30,7 @@
 
 .sweep-mod .right-col{
   width: 500px;
+  margin-top: 4px;
 }
 
 .sweep-mod circle{
@@ -44,4 +45,23 @@
 .sweep-mod .lr-row > .type-label{
   margin-bottom: -20px !important;
 /*  background: red;*/
+}
+
+.sweep-mod .line-chart-hyper{
+  margin-left: 40px;
+}
+.sweep-mod .line-chart-hyper div{
+  width: 150px;
+}
+
+.sweep-mod .line-chart-hyper div:last-child{
+  margin-left: -10px;
+}
+
+.sweep-mod .formula{
+  text-align: center;
+}
+
+.sweep-mod .line-legend{
+  text-align: center;
 }

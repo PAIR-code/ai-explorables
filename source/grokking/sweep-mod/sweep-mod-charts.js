@@ -270,7 +270,7 @@ window.sweepModCharts = (function(){
   }
 
   function drawLineCharts({state, sel}){
-    sel.select('.line-charts').html('').st({width: 330, margin: '0px auto'})
+    sel.select('.line-charts').html('').st({margin: '0px auto'})
       .appendMany('div', d3.range(9)).st({display: 'inline-block'})
       .each(drawChart)
 
@@ -279,9 +279,10 @@ window.sweepModCharts = (function(){
 
       var keys = [state.key_x, state.key_y, state.key_col] // state.key_row
 
+      var isL1 = state.hovered.regularization == 'l1'
       sel.select('.line-chart-hyper').html('')
         .appendMany('div.chart-title', keys)
-        .html(d => util.keyFmt(d) + ': <b>' + h[d] + '</b>')
+        .html(d => util.keyFmt(d).replace('Weight', isL1 ? 'L1 Weight' : 'L2 Weight') + ': <b>' + h[d] + '</b>')
         .st({display: 'inline-block', fontSize: 11})
     })
     state.renderAll.hover.fns.at(-1).isRight = 1
@@ -289,9 +290,9 @@ window.sweepModCharts = (function(){
     function drawChart(chartIndex){
       var c = d3.conventions({
         sel: d3.select(this).append('div'),
-        width: 80,
-        height: 40,
-        margin: {right: 0, top: 10, bottom: 10}
+        width: 135,
+        height: 55,
+        margin: {right: 0, left: 30, top: 10, bottom: 20}
       })
 
       c.x.domain([0, state.sharedHyper.max_steps])
@@ -307,7 +308,6 @@ window.sweepModCharts = (function(){
 
       util.addAxisLabel(c, 'steps', 'loss', 26, -24)
       if (chartIndex % 3) c.svg.selectAll('.y text').remove()
-
 
       var line = d3.line().x(d => c.x(d.step))
 
