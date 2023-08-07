@@ -34,7 +34,7 @@ window.initParityWeightsTrajectory = async function({state, sel, type}){
   c.svg.append('text.chart-title').at({y: -5, fontSize: 12, xz: c.width/2, textAnchorz: 'middle'})
     .text(util.titleFmt('hidden_w Over Training'))
 
-  util.addAxisLabel(c, 'Training Steps', 'Weight Value', 30, -20)
+  util.addAxisLabel(c, 'Training Steps →', 'Weight Value', 30, -20)
 
 
 
