@@ -94,29 +94,23 @@ window.initModSweep = async function(){
   state.hoveredType = state.modelsL2[100].type
 
   state.renderAll.type.fns.push(() => {
-    modSweepRenderRight({state, sel})
+    // update state with data for rendering rh side
+    state.models = state.allModels.filter(d => d.type == state.hoveredType)
+    
+    var isL1 = state.hovered.regularization == 'l1'
+    state.hyper_sweep = (isL1 ? state.modelsL1 : state.modelsL2).hyper_sweep
+    state.sweepSlug = isL1 ? 'xm_gpu_full_l1_architecture' : 'xm_gpu_full_l2_architecture_v2'
+
+    // remove previous listeners    
+    state.renderAll.hover.fns = state.renderAll.hover.fns.filter(d => !d.isRight)
+    state.renderAll.color.fns = state.renderAll.color.fns.filter(d => !d.isRight)
+
+    chartFn.drawLineCharts({state, sel})
+    chartFn.drawGrid({state, sel})
+
+    state.renderAll.color()
+    state.renderAll.hover()
   })
   state.renderAll.type()
 }
 window.initModSweep()
-
-function modSweepRenderRight({state, sel}){
-  // update state with data for rendering rh side
-  state.models = state.allModels.filter(d => d.type == state.hoveredType)
-  
-  var isL1 = state.hovered.regularization == 'l1'
-  state.hyper_sweep = (isL1 ? state.modelsL1 : state.modelsL2).hyper_sweep
-  state.sweepSlug = isL1 ? 'xm_gpu_full_l1_architecture' : 'xm_gpu_full_l2_architecture_v2'
-
-  // remove previous listeners    
-  state.renderAll.hover.fns = state.renderAll.hover.fns.filter(d => !d.isRight)
-  state.renderAll.color.fns = state.renderAll.color.fns.filter(d => !d.isRight)
-
-  var chartFn = window.sweepModCharts
-  chartFn.drawLineCharts({state, sel})
-  chartFn.drawGrid({state, sel})
-
-  state.renderAll.color()
-  state.renderAll.hover()
-}
-
