@@ -187,6 +187,14 @@ window.initSparseParity = async function(){
 
   initSwoopy(annotations)
 
+  util.addAria([
+    {selector: '.parity-accuracy', label: `Accuracy over training -- there's grokking on this task`},
+    {selector: '.parity-weights', label: `W_input heatmap`},
+    {selector: '.parity-loss', label: `Loss over training`},
+    {selector: '.parity-weights-trajectory', label: `Each of the W_input weights over training. At first all the weights grow, then most start to shrink to 0 except of couple to the first three digit weights.`},
+    {selector: '.sparse-parity-sweep', label: `Grid chart showing how different hyper-parameters can change when and if generalization happens.`},
+    {selector: '.sweep-mod', label: `Grid chart showing how different hyper-parameters and architectures can change when and if generalization happens.`},
+  ])
 
 
 }

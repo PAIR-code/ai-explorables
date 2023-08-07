@@ -156,8 +156,8 @@ window.util = (function(){
       .replace('hidden_size', 'num_neurons')
       .replace('train_size', 'num_train')
       // .replace('w_inproj', 'w_in-projᵀ')
-      .replace('w_inproj', 'w_in-proj')
-      .replace('w_outproj', 'w_out-proj')
+      .replace('w_inproj', 'W_in-proj')
+      .replace('w_outproj', 'W_out-proj')
   }
 
   function keyFmt(str){
@@ -169,8 +169,13 @@ window.util = (function(){
       .replace('learning_rate', 'Learning Rate')
   }
 
+  function addAria(array){
+    array.forEach(d => {
+      d3.select(d.selector).at({role: 'graphics-document', 'aria-label': d.label})
+    })
+  }
 
-  return {getFile, color, colors, getRoot, addAxisLabel, ggPlot, ggPlotUpdate, sleep, npy2tfSlice, transpose, initRenderAll, titleFmt, keyFmt}
+  return {getFile, color, colors, getRoot, addAxisLabel, ggPlot, ggPlotUpdate, sleep, npy2tfSlice, transpose, initRenderAll, titleFmt, keyFmt, addAria}
 
 })()
 

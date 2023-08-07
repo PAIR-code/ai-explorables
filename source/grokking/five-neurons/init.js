@@ -197,6 +197,14 @@ window.initFiveNeurons = async function(){
 
   initSwoopy(annotations)
 
+  util.addAria([
+    {selector: '.five-neuron-accuracy', label: `Accuracy over training. accuracy don't diverage; the model is too small to memorize `},
+    {selector: '.five-neuron-embed', label: `W_in-proj and W_out-proj heatmap`},
+    {selector: '.five-neuron-circle', label: `Neurons W_in-proj and W_out-proj plotted on a circle`},
+    {selector: '.five-neuron-circle-2', label: `W_in-proj and W_out-proj plotted on a circle with connecting lines. They form a star on W_out-proj!`},
+    {selector: '.mod-bot-seeds', label: `Small multiple loss charts showing many training runs.`},
+  ])
+
 }
 window.initFiveNeurons()
 

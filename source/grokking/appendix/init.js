@@ -203,6 +203,13 @@ window.initAppendix = function(){
     sel: debugSel.append('div')
   })
 
+  util.addAria([
+    {selector: '.slider-container', label: `Sliders to pick inputs a and b`},
+    {selector: '.circle-vis', label: `First, project the two input points around a circle and average their positions. Then, double the angle with the unembedding. The answer is the point closest to the averaged position.`},
+    {selector: '.proj-vis', label: `First, project the averaged position along 5 evenly spaced directions and apply a ReLU to keep only the positive components. Then, rotate the 5 directions around the circle twice as fast. The answer is the point on the circle closest to sum of the positive projections.`},
+    {selector: '.debug-vis', label: `The error goes to 0 when the angle aligns with a direction; an odd number of neurons is more accurate. In our sweep of models trained from scratch, 5 is the most common number of neurons in a frequency. Frequencies with 6 neurons are typically closer lopsided pentagons than hexagons.`},
+  ])
+
 
 
 

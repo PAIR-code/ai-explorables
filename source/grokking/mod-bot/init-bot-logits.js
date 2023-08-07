@@ -26,7 +26,7 @@ window.initModBotLogits= async function({state, sel, stepsKey}){
   function drawFreqChart(freq, chartIndex){
     var c = d3.conventions({
       sel: d3.select(this).html('').st({display: 'inline-block'}),
-      width: 150,
+      width: 67*2,
       height: 100,
     })
 

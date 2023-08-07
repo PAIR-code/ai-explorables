@@ -197,5 +197,12 @@ window.initModTop = async function(){
     })
   }, {root: null, rootMargin: '0px', threshold: 1.0})
   observer.observe(modWeightSel.node())
+
+
+  util.addAria([
+    {selector: '.mod-top-accuracy', label: `An Example Of Grokking: Memorization Followed By Sudden Generalization. The model quickly fits the training data with 100% accuracy, but doesn't do better than random guessing on the test data. After more training, accuracy on the test data improves — the model generalizes!'`},
+    {selector: '.mod-top-weights', label: `W_input and W_output heatmaps`},
+    {selector: '.mod-top-waves', label: `W_input and W_output as line charts. They become very wavey at the end of training`},
+  ])
 }
 window.initModTop()

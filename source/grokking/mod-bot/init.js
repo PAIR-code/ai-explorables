@@ -219,6 +219,7 @@ window.initModBot = async function(){
     duration: 1000
   })
 
+
   function calcByFreq(state){
     var {shape} = state.dft_hidden_embed_w
     var {dft_hidden_embed_w, dft_out_embed_w} = state
@@ -268,6 +269,15 @@ window.initModBot = async function(){
 
     return byFreq
   }
+
+  util.addAria([
+    {selector: '.mod-bot-accuracy', label: `Accuracy and loss over training`},
+    {selector: '.mod-bot-waves', label: `W_input and W_output plotted as a line chart`},
+    {selector: '.mod-bot-dft', label: `discrete Fourier transform of W_input and W_output as a heatmap`},
+    {selector: '.mod-bot-freqs-hidden', label: `W_input dft neurons grouped by frequency plotted on a circle`},
+    {selector: '.mod-bot-freqs-hidden', label: `W_output dft neurons plotted on a circle. The connections make a star!`},
+    {selector: '.mod-bot-sliders', label: `Bar chart showing model logits. They form a wave at the end of training.`},
+  ])
 
 }
 window.initModBot()
