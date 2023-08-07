@@ -38,6 +38,41 @@ window.sweepModCharts = (function(){
       .translate(25, 0).at({dy: '.33em'})
   }
 
+  function drawFormula({state, sel}){
+    var element = sel.select('.formula').html('').node()
+    var str = `
+      \\text{ReLU} \\left(
+        a_{\\text{one-hot}} \\mathbf{W}_{\\text{in-embed}} \\mathbf{W}_{\\text{in-proj-a}} + 
+        b_{\\text{one-hot}} \\mathbf{W}_{\\text{in-embed}} \\mathbf{W}_{\\text{in-proj-b}} 
+      \\right) 
+      \\textbf{W}_{\\text{out-proj}} \\textbf{W}_{\\text{out-embed}}^{\\top}
+    `
+
+    var d = state.actualHovered || state.hovered
+
+    if (d.embed_config == 'tied'){
+      str = str.replaceAll('in-embed', 'embed')
+      str = str.replaceAll('out-embed', 'embed')
+    }
+
+    if (d.is_tied_hidden == 'true'){
+      str = str.replaceAll('in-proj-a', 'in-proj')
+      str = str.replaceAll('in-proj-b', 'in-proj')
+    }
+    if (d.is_collapsed_hidden == 'true'){
+      str = str.replaceAll('in-embed', 'embed')
+      str = str.replaceAll('out-embed', 'embed')
+    }
+
+    sel.select('.formula')
+      .html(MathJax.tex2chtml(str, {em: 12, ex: 6, display: false}).outerHTML)
+
+    // not sure if this is better
+    // const outputDiv = document.getElementById('output');
+    // outputDiv.innerHTML = `\\(${latex}\\)`; 
+    // MathJax.typesetPromise([outputDiv]);
+  }
+
   function drawSliders({state, sel}){
     var sel = sel.select('.sliders-container').html('')
 
@@ -171,8 +206,9 @@ window.sweepModCharts = (function(){
           d[0].is_collapsed_hidden == 'false' ? .5 : rw + pad + .5,
           d[0].is_collapsed_out == 'false' ? .5 : rh + pad + .5,
         ])
-        .on('mouseover', d => {
+        .on('mouseenter', d => {
           state.hoveredType = d[0].type
+          state.actualHovered = d[0]
 
           if (state.hovered.regularization == d[0].regularization){
             state.hovered = JSON.parse(JSON.stringify(state.hovered))
@@ -369,6 +405,7 @@ window.sweepModCharts = (function(){
     drawWdType,
     drawLegend,
     drawLineLegend,
+    drawFormula,
     drawSliders,
     drawLineCharts,
     drawGrid,

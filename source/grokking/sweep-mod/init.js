@@ -73,6 +73,7 @@ window.initModSweep = async function(){
     </div>
 
     <div class='right-col'>
+      <div class='formula'></div>
       <div class='model-grid'></div>
       <div class='line-chart-hyper'></div>
       <div class='line-charts'></div>
@@ -104,8 +105,9 @@ window.initModSweep = async function(){
     state.renderAll.hover.fns = state.renderAll.hover.fns.filter(d => !d.isRight)
     state.renderAll.color.fns = state.renderAll.color.fns.filter(d => !d.isRight)
 
-    chartFn.drawLineCharts({state, sel})
+    chartFn.drawFormula({state, sel})
     chartFn.drawGrid({state, sel})
+    chartFn.drawLineCharts({state, sel})
 
     state.renderAll.color()
     state.renderAll.hover()
