@@ -44,7 +44,7 @@ window.initEmbedCircleVis = async function({type, state, sx=20, sy=20}){
     c.xAxis.ticks(5)
 
     d3.drawAxis(c)
-    util.addAxisLabel(c, 'Input Number', '')
+    util.addAxisLabel(c, 'Input Number (i)', '')
   } else {
     c.sel.st({marginTop: -20})
     c.xAxis.tickValues([0, 1]).tickFormat(d => ['Cos', 'Sin'][d])
