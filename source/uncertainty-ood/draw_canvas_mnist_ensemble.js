@@ -88,8 +88,8 @@ window.draw_canvas_mnist_ensemble = async function(className, imgList, initialIm
   function initModelChart(model){
     var c = d3.conventions({
       sel: sel.select('.models').append('div'),
-      height: 20,
-      width: maxSteps*2,
+      height: 40,
+      width: maxSteps*4,
       margin: {right: 100, top: 0, bottom: 6, left: 4},
       layers: 'sd'
     })
@@ -104,7 +104,7 @@ window.draw_canvas_mnist_ensemble = async function(className, imgList, initialIm
     var areaSel = c.svg.appendMany('path', d3.range(10))
       .at({fill: i => util.digitColor[i], stroke: '#fff', strokeWidth: .2})
 
-    var rectWidth = 100
+    var rectWidth = 0
     var rectBgSel = c.svg.append('rect').at({width: rectWidth, height: c.height, x: 130, fillOpacity: .2})
     var rectFgSel = c.svg.append('rect').at({width: rectWidth, height: c.height, x: 130})
 

@@ -134,7 +134,7 @@ window.util = (function(){
     `)
   }
 
-  var digitColor = d3.schemeCategory10
+  var digitColor = d3.schemeGreys[9]
 
   return {reshape_image, reshape_image_mnist, getTopKClasses, initDrawCanvas, initImgPicker, digitColor, renderBigPrediction}
 })()
