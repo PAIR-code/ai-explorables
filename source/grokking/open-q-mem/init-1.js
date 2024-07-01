@@ -13,7 +13,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 ==============================================================================*/
 
-window.initOpenQMem1 = async function(){
+window.initOpenQMem1 = async function () {
   // console.clear()
 
   var state = {
@@ -23,11 +23,11 @@ window.initOpenQMem1 = async function(){
     activeDim: -1,
     isSorted: 1,
     sweepSlug: 'fail-memorize-generalize',
-  }
-  state.modelPath = `/mlp_modular/${state.sweepSlug}/${state.slug}`
-  state.renderAll = util.initRenderAll(['step', 'dim'])
-  
-  state.hyper = await util.getFile(state.modelPath + '/hyper.json')
+  };
+  state.modelPath = `/mlp_modular/${state.sweepSlug}/${state.slug}`;
+  state.renderAll = util.initRenderAll(['step', 'dim']);
+
+  state.hyper = await util.getFile(state.modelPath + '/hyper.json');
   window.initAccuracyChart({
     sel: d3.select('.open-q-mem-1-accuracy'),
     state,
@@ -35,33 +35,44 @@ window.initOpenQMem1 = async function(){
     width: 400,
     yExtent: [1e-1, 1e-8],
     // title: "An Example Of Grokking: Memorization Followed By Sudden Generalization"
-  })
+  });
 
-  if (state.isSorted){
-    state.hidden_embed_w = await util.getFile(state.modelPath + '/hidden_embed_w_sorted.npy')
-    state.out_embed_t_w = await util.getFile(state.modelPath + '/out_embed_t_w_sorted.npy')
+  if (state.isSorted) {
+    state.hidden_embed_w = await util.getFile(
+      state.modelPath + '/hidden_embed_w_sorted.npy',
+    );
+    state.out_embed_t_w = await util.getFile(
+      state.modelPath + '/out_embed_t_w_sorted.npy',
+    );
   } else {
-    state.hidden_embed_w = await util.getFile(state.modelPath + '/hidden_embed_w.npy')
-    state.out_embed_t_w = await util.getFile(state.modelPath + '/out_embed_t_w.npy')
+    state.hidden_embed_w = await util.getFile(
+      state.modelPath + '/hidden_embed_w.npy',
+    );
+    state.out_embed_t_w = await util.getFile(
+      state.modelPath + '/out_embed_t_w.npy',
+    );
   }
-  
+
   // rescale embed chart
   state.renderAll.step.fns.push(() => {
-    var maxY = 2
-    var {shape} = state.hidden_embed_w
-    var offset = shape[1]*shape[2]*state.stepIndex
-    for (var i = 0; i < shape[1]; i++){
-      for (var j = 0; j < shape[2]; j++){
-        var index = offset + shape[2]*i + j
+    var maxY = 2;
+    var {shape} = state.hidden_embed_w;
+    var offset = shape[1] * shape[2] * state.stepIndex;
+    for (var i = 0; i < shape[1]; i++) {
+      for (var j = 0; j < shape[2]; j++) {
+        var index = offset + shape[2] * i + j;
 
-        maxY = Math.max(maxY, Math.abs(state.hidden_embed_w.data[index]))
-        maxY = Math.max(maxY, Math.abs(state.out_embed_t_w.data[index]))
+        maxY = Math.max(maxY, Math.abs(state.hidden_embed_w.data[index]));
+        maxY = Math.max(maxY, Math.abs(state.out_embed_t_w.data[index]));
       }
     }
-    state.maxY = maxY
-  }) 
+    state.maxY = maxY;
+  });
 
-  var modWeightSel = d3.select('.open-q-mem-1-weights').html('').st({pointerEvents: 'none'})
+  var modWeightSel = d3
+    .select('.open-q-mem-1-weights')
+    .html('')
+    .st({pointerEvents: 'none'});
   window.initEmbedVis({
     sel: modWeightSel.append('div'),
     state,
@@ -69,7 +80,7 @@ window.initOpenQMem1 = async function(){
     sx: 5,
     sy: 6,
     type: 'hidden_embed_w',
-  })
+  });
   window.initEmbedVis({
     sel: modWeightSel.append('div'),
     state,
@@ -79,8 +90,8 @@ window.initOpenQMem1 = async function(){
     type: 'out_embed_t_w',
     xAxisLabel: 'Output Number',
     yAxisLabel: '',
-  })
+  });
 
-  state.renderAll.step()
-}
-window.initOpenQMem1()
+  state.renderAll.step();
+};
+window.initOpenQMem1();

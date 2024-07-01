@@ -15,7 +15,6 @@
  * =============================================================================
  */
 
-
 // https://github.com/tensorflow/tfjs-models/blob/master/universal-sentence-encoder/src/tokenizer/trie.ts
 
 class TrieNode {
@@ -89,7 +88,7 @@ const bert = {
     await tokenizer.load();
 
     return tokenizer;
-  }
+  },
 };
 
 class BertTokenizer {
@@ -108,26 +107,28 @@ class BertTokenizer {
       this.trie.insert(word, 1, i);
     }
 
-    this.token2Id = {}
+    this.token2Id = {};
     this.vocab.forEach((d, i) => {
-      this.token2Id[d] = i
-    })
+      this.token2Id[d] = i;
+    });
 
-    this.decode = a => a.map(d => this.vocab[d].replace('▁', ' ')).join('')
+    this.decode = (a) => a.map((d) => this.vocab[d].replace('▁', ' ')).join('');
     // Adds [CLS] and [SEP]
-    this.tokenizeCLS = str => [101, ...this.tokenize(str), 102]
+    this.tokenizeCLS = (str) => [101, ...this.tokenize(str), 102];
   }
 
   async loadVocab() {
-    if (!window.bertProcessedVocab){
-      window.bertProcessedVocab = await (await fetch('data/processed_vocab.json')).json()
+    if (!window.bertProcessedVocab) {
+      window.bertProcessedVocab = await (
+        await fetch('data/processed_vocab.json')
+      ).json();
     }
-    return window.bertProcessedVocab
+    return window.bertProcessedVocab;
   }
 
   processInput(text) {
     const words = text.split(' ');
-    return words.map(word => {
+    return words.map((word) => {
       if (word !== '[CLS]' && word !== '[SEP]') {
         return this.separator + word.toLowerCase().normalize('NFKC');
       }

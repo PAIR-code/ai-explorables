@@ -13,43 +13,46 @@ See the License for the specific language governing permissions and
 limitations under the License.
 ==============================================================================*/
 
+window.initAnimateSteps = async function ({
+  state,
+  sel,
+  stepTarget,
+  duration = 3000,
+  minStep = Infinity,
+  isBlink,
+}) {
+  var timer = {};
+  var nextStep = -1;
 
-window.initAnimateSteps = async function({state, sel, stepTarget, duration=3000, minStep=Infinity, isBlink}){
+  sel.classed('blink', isBlink).selectAppend('span').text(' ⏵');
 
-  var timer = {}
-  var nextStep = -1
+  sel.on('click', function () {
+    sel.classed('blink', 0);
+    timer.stop?.();
 
-  sel.classed('blink', isBlink)
-    .selectAppend('span').text(' ⏵')
+    var s0 = Math.min(state.stepIndex, stepToStepIndex(minStep));
+    var s1 = stepToStepIndex(stepTarget);
+    timer = d3.timer((s) => {
+      var t = d3.clamp(0, s / duration, 1);
 
-  sel.on('click', function(){
-    sel.classed('blink', 0)
-    timer.stop?.()
+      state.stepIndex = nextStep = Math.round(s0 + t * (s1 - s0));
+      state.renderAll.step();
 
-    var s0 = Math.min(state.stepIndex, stepToStepIndex(minStep))
-    var s1 = stepToStepIndex(stepTarget)
-    timer = d3.timer(s => {
-      var t = d3.clamp(0, s/duration, 1)
-
-      state.stepIndex = nextStep = Math.round(s0 + t*(s1 - s0))
-      state.renderAll.step()
-
-      if (t == 1){
-        timer.stop()
+      if (t == 1) {
+        timer.stop();
       }
-    })
-  })
+    });
+  });
 
   state.renderAll.step.fns.push(() => {
-    if (state.stepIndex != nextStep) timer.stop?.()
-  })
+    if (state.stepIndex != nextStep) timer.stop?.();
+  });
 
-  function stepToStepIndex(step){
-    return Math.floor(step/state.hyper.save_every)
+  function stepToStepIndex(step) {
+    return Math.floor(step / state.hyper.save_every);
   }
-}
+};
 
-
-window.initModTop?.()
+window.initModTop?.();
 // window.initSparseParity?.()
 // window.initModBot?.()

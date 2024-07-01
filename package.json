@@ -13,8 +13,13 @@
   },
   "scripts": {
     "start": "mkdir -p public && node source/third_party/index.js --watch & sleep 1 && cd public/ && hot-server --port=2344",
+    "prettier:check": "prettier --check '**/*.{js,ts}'",
+    "prettier:write": "prettier --write '**/*.{js,ts}'",
     "pub": "mkdir -p public && node source/third_party/index.js && gcloud --quiet app deploy --project=google.com:explorable-ml",
     "watch": "bin/watch-doc.sh"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "prettier": "3.2.4"
+  }
 }

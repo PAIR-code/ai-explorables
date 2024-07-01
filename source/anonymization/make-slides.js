@@ -1,11 +1,11 @@
-window.makeSlides = function(){
+window.makeSlides = function () {
   var slides = [
     {
       xKey: 'grid',
-      circleDelayFn: d => axii.ageScale(d.age),
+      circleDelayFn: (d) => axii.ageScale(d.age),
       showFlipRect: 0,
       populationTarget: 144,
-      headsProbTarget: .5,
+      headsProbTarget: 0.5,
     },
     {
       xKey: 'age',
@@ -16,7 +16,7 @@ window.makeSlides = function(){
       showStateAxis: 1,
     },
     {
-      showUniqueBox: 1
+      showUniqueBox: 1,
     },
     {
       xKey: 'ageStateSeason',
@@ -31,7 +31,7 @@ window.makeSlides = function(){
       showSeasonAxis: 0,
       showAgeAxis: 0,
       showStateAxis: 0,
-      showHeadAxis: 1,  
+      showHeadAxis: 1,
     },
     {
       showFlipCircle: 1,
@@ -59,8 +59,8 @@ window.makeSlides = function(){
       animateHeadsProbSlider: 1,
       animatePopulationSlider: 1,
       enterHistogram: 0,
-      name: 'noise', 
-      headsProbTarget: .35,
+      name: 'noise',
+      headsProbTarget: 0.35,
     },
 
     // If we collect information from lots of people, we can have high accuracy and protect everyone's privacy.
@@ -72,27 +72,24 @@ window.makeSlides = function(){
       animatePopulationSlider: 1,
       populationTarget: 400,
     },
+  ];
 
-  ]
-
-  var keys = []
+  var keys = [];
   slides.forEach((d, i) => {
-    keys = keys.concat(d3.keys(d))
-    d.index = i
-  })
-  _.uniq(keys).forEach(str => {
-    var prev = null
-    slides.forEach(d => {
-      if (typeof(d[str]) === 'undefined'){
-        d[str] = prev
+    keys = keys.concat(d3.keys(d));
+    d.index = i;
+  });
+  _.uniq(keys).forEach((str) => {
+    var prev = null;
+    slides.forEach((d) => {
+      if (typeof d[str] === 'undefined') {
+        d[str] = prev;
       }
-      prev = d[str]
-    }) 
-  })
+      prev = d[str];
+    });
+  });
 
-  return slides
-}
+  return slides;
+};
 
-
-
-if (window.init) window.init()
+if (window.init) window.init();

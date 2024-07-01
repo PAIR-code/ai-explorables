@@ -13,16 +13,29 @@ See the License for the specific language governing permissions and
 limitations under the License.
 ==============================================================================*/
 
+var infoSel = d3.select('.info-box').html('').st({
+  border: '1px solid orange',
+  background: 'rgba(255,250,241,.5)',
+  maxWidth: 750,
+  margin: '0 auto',
+  padding: 20,
+  paddingTop: 5,
+  paddingBottom: 5,
+});
+// .st({textAlign: })
 
-var infoSel = d3.select('.info-box').html('')
-  .st({border: '1px solid orange', background: 'rgba(255,250,241,.5)', maxWidth: 750, margin: '0 auto', padding: 20, paddingTop: 5, paddingBottom: 5})
-  // .st({textAlign: })
-
-infoSel.append('p')
+infoSel
+  .append('p')
   .st({marginLeft: 10})
-  .html('Not familiar with how machine learning models are trained or why they might leak data? <br>These interactive articles will get you up to speed.')
-  .html('New to some of these concepts? These interactive articles will get you up to speed.')
-  .html('New to machine learning or differential privacy? These interactive articles will get you up to speed.')
+  .html(
+    'Not familiar with how machine learning models are trained or why they might leak data? <br>These interactive articles will get you up to speed.',
+  )
+  .html(
+    'New to some of these concepts? These interactive articles will get you up to speed.',
+  )
+  .html(
+    'New to machine learning or differential privacy? These interactive articles will get you up to speed.',
+  );
 
 var articles = [
   {
@@ -38,38 +51,39 @@ var articles = [
   {
     img: 'http://playground.tensorflow.org/preview.png',
     title: 'TensorFlow Playground',
-    permalink: 'https://playground.tensorflow.org'
+    permalink: 'https://playground.tensorflow.org',
   },
-]
+];
 
-var postSel = infoSel.appendMany('a.post', articles)
+var postSel = infoSel
+  .appendMany('a.post', articles)
   .st({
     textAlign: 'center',
-    width: '30.5%', 
-    display: 'inline-block', 
+    width: '30.5%',
+    display: 'inline-block',
     verticalAlign: 'top',
     marginLeft: 10,
     marginRight: 10,
     textDecoration: 'none',
   })
-  .at({href: d => d.permalink})
+  .at({href: (d) => d.permalink});
 
-postSel.append('div.img')
-  .st({
-    width: '100%', 
-    height: 80,
-    backgroundImage: d => `url(${d.img})`,
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
-    outline: '1px solid #ccc'
-  })
+postSel.append('div.img').st({
+  width: '100%',
+  height: 80,
+  backgroundImage: (d) => `url(${d.img})`,
+  backgroundSize: 'cover',
+  backgroundPosition: 'center',
+  outline: '1px solid #ccc',
+});
 
-postSel.append('p.title')
-  .text(d => d.title)
+postSel
+  .append('p.title')
+  .text((d) => d.title)
   .st({
     verticalAlign: 'top',
     marginTop: 10,
     textDecoration: 'none',
     fontSize: 15,
     fontWeight: 500,
-  })
+  });

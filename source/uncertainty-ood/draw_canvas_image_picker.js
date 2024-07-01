@@ -13,9 +13,15 @@ See the License for the specific language governing permissions and
 limitations under the License.
 ==============================================================================*/
 
-
-window.draw_canvas_image_picker = async function(className, imgList, initialImage){
-  var sel = d3.select('#' + className).html(`
+window.draw_canvas_image_picker = async function (
+  className,
+  imgList,
+  initialImage,
+) {
+  var sel = d3
+    .select('#' + className)
+    .html(
+      `
     <div class='canvas-container'>
       <div class='title'>Model Input</div>
       <canvas></canvas>
@@ -26,29 +32,30 @@ window.draw_canvas_image_picker = async function(className, imgList, initialImag
       <div class='title'>Model Prediction</div>
       <div class='prediction'></div>
     </div>
-  `).classed('paint-container', true)
+  `,
+    )
+    .classed('paint-container', true);
 
+  var ctx = util.initDrawCanvas({sel, predict});
+  util.initImgPicker({sel, predict, ctx, imgList});
 
-  var ctx = util.initDrawCanvas({sel, predict})
-  util.initImgPicker({sel, predict, ctx, imgList})
+  var root =
+    'https://storage.googleapis.com/uncertainty-over-space/explorables/uncertainty-ood/tfjs_models/overfit-epoch_2000';
+  var model = await tf.loadLayersModel(`${root}/9/model.json`);
 
-  var root = 'https://storage.googleapis.com/uncertainty-over-space/explorables/uncertainty-ood/tfjs_models/overfit-epoch_2000'
-  var model = await tf.loadLayersModel(`${root}/9/model.json`)
+  var img = new Image();
+  img.addEventListener('load', init);
+  img.src = `img/${initialImage}.jpg`; /// Need to add parameter for folder and append here.
 
-  var img = new Image()
-  img.addEventListener('load', init)
-  img.src = `img/${initialImage}.jpg` /// Need to add parameter for folder and append here.
-
-  function init(){
-    ctx.drawImage(img, 0, 0)
-    predict()
+  function init() {
+    ctx.drawImage(img, 0, 0);
+    predict();
   }
 
-  async function predict(){
-    var results = await model.predict(util.reshape_image(ctx)).dataSync()
-    util.renderBigPrediction(sel, results)
+  async function predict() {
+    var results = await model.predict(util.reshape_image(ctx)).dataSync();
+    util.renderBigPrediction(sel, results);
   }
-}
+};
 
-
-if (window.init) window.init()
+if (window.init) window.init();

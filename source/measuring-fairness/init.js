@@ -13,12 +13,9 @@ See the License for the specific language governing permissions and
 limitations under the License.
 ==============================================================================*/
 
+d3.select('body').selectAppend('div.tooltip.tooltip-hidden');
 
-
-
-d3.select('body').selectAppend('div.tooltip.tooltip-hidden')
-
-nCols = 12
+nCols = 12;
 
 window.colors = {
   well: d3.color('#669399') + '',
@@ -53,27 +50,25 @@ window.colors = {
 
   // well: d3.color('orange') + '',
   // sick: d3.color('#012394') + '',
-
-
-}
+};
 
 window.colors = {
-  well: d3.interpolate(colors.well, '#fff')(.5),
-  sick: d3.interpolate(colors.sick, '#fff')(.2),
-}
+  well: d3.interpolate(colors.well, '#fff')(0.5),
+  sick: d3.interpolate(colors.sick, '#fff')(0.2),
+};
 
 window.lcolors = {
-  well: d3.interpolate(colors.well, '#fff')(.5),
-  sick: d3.interpolate(colors.sick, '#fff')(.35)
-}
+  well: d3.interpolate(colors.well, '#fff')(0.5),
+  sick: d3.interpolate(colors.sick, '#fff')(0.35),
+};
 window.llcolors = {
-  well: d3.interpolate(colors.well, '#fff')(.5),
-  sick: d3.interpolate(colors.sick, '#fff')(1)
-}
+  well: d3.interpolate(colors.well, '#fff')(0.5),
+  sick: d3.interpolate(colors.sick, '#fff')(1),
+};
 window.dcolors = {
-  well: d3.interpolate(colors.well, '#000')(.65),
-  sick: d3.interpolate(colors.sick, '#000')(.65)
-}
+  well: d3.interpolate(colors.well, '#000')(0.65),
+  sick: d3.interpolate(colors.sick, '#000')(0.65),
+};
 
 // window.colors = {
 //   well: d3.color('#BEF5FF') + '',
@@ -100,7 +95,7 @@ window.dcolors = {
 // }
 
 // copy(logColors())
-function logColors(){
+function logColors() {
   return `
     body{
       --colors-well: ${d3.rgb(colors.well)};
@@ -110,91 +105,65 @@ function logColors(){
       --dcolors-well: ${d3.rgb(dcolors.well)};
       --dcolors-sick: ${d3.rgb(dcolors.sick)};
     }
-  `
+  `;
 }
 
+window.init = function () {
+  console.clear();
 
-
-window.init = function(){
-  console.clear()
-
-  graphSel = d3.select('#graph').html('').append('div')
-  totalWidth = graphSel.node().offsetWidth
-  totalWidth = 400
+  graphSel = d3.select('#graph').html('').append('div');
+  totalWidth = graphSel.node().offsetWidth;
+  totalWidth = 400;
 
   c = d3.conventions({
     sel: graphSel.st({marginTop: 40}),
     margin: {top: 20},
     totalWidth,
     totalHeight: totalWidth,
-  })
+  });
 
-  students = makeStudents()
-  sel = makeSel()
-  mini = makeMini()
-  slider = makeSlider()
-  slides = makeSlides()
-  gs = makeGS()
+  students = makeStudents();
+  sel = makeSel();
+  mini = makeMini();
+  slider = makeSlider();
+  slides = makeSlides();
+  gs = makeGS();
 
-  function sizeGraphSel(){
-    var scale = (totalWidth + 35)/(innerWidth - 10) // off by one, s is 35
-    scale = d3.clamp(1, scale, 2)
+  function sizeGraphSel() {
+    var scale = (totalWidth + 35) / (innerWidth - 10); // off by one, s is 35
+    scale = d3.clamp(1, scale, 2);
 
     graphSel.st({
-      transform: `scale(${1/scale})`,
+      transform: `scale(${1 / scale})`,
       transformOrigin: '0px 0px',
-
-    })
+    });
   }
-  sizeGraphSel()
-  d3.select(window).on('resize', sizeGraphSel)
+  sizeGraphSel();
+  d3.select(window).on('resize', sizeGraphSel);
+};
+init();
 
-}
-init()
+!(function () {
+  var footnums = '¹²³';
 
-
-
-
-
-!(function(){
-  var footnums = '¹²³'
-
-  d3.selectAll('.footstart').each(function(d, i){
+  d3.selectAll('.footstart').each(function (d, i) {
     d3.select(this)
       .at({
         href: '#footend-' + i,
       })
       .text(footnums[i])
-      .parent().at({id: 'footstart-' + i})
-  })
+      .parent()
+      .at({id: 'footstart-' + i});
+  });
 
-  d3.selectAll('.footend').each(function(d, i){
+  d3.selectAll('.footend').each(function (d, i) {
     d3.select(this)
       .at({
         href: '#footstart-' + i,
         id: 'footend-' + i,
       })
-      .text(footnums[i])
-  })
+      .text(footnums[i]);
+  });
 
-
-  d3.selectAll('#sections wee, #graph .weepeople').attr('aria-hidden', true)
-
-})()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  d3.selectAll('#sections wee, #graph .weepeople').attr('aria-hidden', true);
+})();

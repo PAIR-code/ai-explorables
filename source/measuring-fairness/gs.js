@@ -13,94 +13,88 @@ See the License for the specific language governing permissions and
 limitations under the License.
 ==============================================================================*/
 
+window.makeGS = function () {
+  var gs = {};
 
+  var bodySel = d3.select('body');
 
+  var prevSlideIndex = -1;
+  function updateSlide(i) {
+    var slide = slides[i];
+    if (!slide) return;
 
-window.makeGS = function(){
-  var gs = {}
+    gs.prevSlide = gs.curSlide;
+    gs.curSlide = slide;
 
-  var bodySel = d3.select('body')
+    var dur = gs.prevSlide ? 500 * 1 : 0;
 
-  var prevSlideIndex = -1
-  function updateSlide(i){
-    var slide = slides[i]
-    if (!slide) return
+    sel.personSel
+      .transition()
+      .duration(dur)
+      .translate((d) => d.pos[slide.pos]);
 
-    gs.prevSlide = gs.curSlide
-    gs.curSlide = slide
+    sel.textSel.transition().duration(dur).at({fill: slide.textFill});
 
-    var dur = gs.prevSlide ? 500*1 : 0
+    sel.rectSel
+      .transition('opacity')
+      .duration(dur)
+      .at({opacity: slide.rectOpacity});
 
-    sel.personSel.transition().duration(dur)
-      .translate(d => d.pos[slide.pos])
+    if (!slide.animateThreshold) {
+      sel.rectSel.transition('fill').duration(dur).at({fill: slide.rectFill});
 
-    sel.textSel.transition().duration(dur)
-      .at({fill: slide.textFill})
+      sel.textSel
+        .transition('stroke')
+        .duration(dur)
+        .st({strokeWidth: slide.textStroke});
 
-
-    sel.rectSel.transition('opacity').duration(dur)
-      .at({opacity: slide.rectOpacity})
-
-    if (!slide.animateThreshold){
-      sel.rectSel.transition('fill').duration(dur)
-        .at({fill: slide.rectFill})
-
-      sel.textSel.transition('stroke').duration(dur)
-        .st({strokeWidth: slide.textStroke})
-
-      slider.setSlider(slide.threshold, true)
-      bodySel.transition('gs-tween')
+      slider.setSlider(slide.threshold, true);
+      bodySel.transition('gs-tween');
     } else {
-      sel.rectSel.transition('fill').duration(dur)
-      sel.textSel.transition('stroke').duration(dur)
+      sel.rectSel.transition('fill').duration(dur);
+      sel.textSel.transition('stroke').duration(dur);
 
-      bodySel.transition('gs-tween').duration(dur*2)
+      bodySel
+        .transition('gs-tween')
+        .duration(dur * 2)
         .attrTween('gs-tween', () => {
-          var i = d3.interpolate(slider.threshold, slide.threshold)
+          var i = d3.interpolate(slider.threshold, slide.threshold);
 
-          return t => {
-            slider.setSlider(i(t))
-          }
-        })
+          return (t) => {
+            slider.setSlider(i(t));
+          };
+        });
     }
 
+    sel.truthAxis
+      .transition()
+      .duration(dur)
+      .st({opacity: slide.truthAxisOpacity});
 
-    sel.truthAxis.transition().duration(dur)
-      .st({opacity: slide.truthAxisOpacity})
+    sel.mlAxis.transition().duration(dur).st({opacity: slide.mlAxisOpacity});
 
-    sel.mlAxis.transition().duration(dur)
-      .st({opacity: slide.mlAxisOpacity})
+    sel.fpAxis.transition().duration(dur).st({opacity: slide.fpAxisOpacity});
 
-    sel.fpAxis.transition().duration(dur)
-      .st({opacity: slide.fpAxisOpacity})
+    sel.sexAxis.transition().duration(dur).st({opacity: slide.sexAxisOpacity});
 
-    sel.sexAxis.transition().duration(dur)
-      .st({opacity: slide.sexAxisOpacity})
+    sel.brAxis.transition().duration(dur).st({opacity: slide.brAxisOpacity});
 
-    sel.brAxis.transition().duration(dur)
-      .st({opacity: slide.brAxisOpacity})
+    sel.botAxis.transition().duration(dur).translate(slide.botAxisY, 1);
 
-    sel.botAxis.transition().duration(dur)
-      .translate(slide.botAxisY, 1)
-
-
-    prevSlideIndex = i
-    slides.curSlide = slide
+    prevSlideIndex = i;
+    slides.curSlide = slide;
   }
 
-  gs.graphScroll = d3.graphScroll()
+  gs.graphScroll = d3
+    .graphScroll()
     .container(d3.select('.container-1'))
     .graph(d3.selectAll('container-1 #graph'))
     .eventId('uniqueId1')
     .sections(d3.selectAll('.container-1 #sections > div'))
     .offset(innerWidth < 900 ? 300 : 520)
-    .on('active', updateSlide)
+    .on('active', updateSlide);
 
-  return gs
-}
+  return gs;
+};
 
-
-
-
-
-if (window.init) window.init()
+if (window.init) window.init();

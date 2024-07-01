@@ -13,83 +13,81 @@ See the License for the specific language governing permissions and
 limitations under the License.
 ==============================================================================*/
 
-window.initGradients = async function(){
-
+window.initGradients = async function () {
   var sel = d3.select('.gradients').html(`
   <div class='title-grads'></div>
   <div class='input-and-grads'></div>
   <div class='picker'></div>
   <div class='methods-buttons'></div>
   <div class='viz-title'></div>
-  `)
-  if (!sel.node()) return console.log('missing .gradients')
+  `);
+  if (!sel.node()) return console.log('missing .gradients');
 
-  var titleVizSel = sel.select('div.viz-title').html('')
-    .st({marginBottom: 0})
+  var titleVizSel = sel.select('div.viz-title').html('').st({marginBottom: 0});
 
   var imgsToDraw = [
     {title: `Input Image`, model: 'input'},
     {title: `Normal Model`, model: 'N'},
-    {title: `Watermark Model`, model: 'PC100'}
-  ]
+    {title: `Watermark Model`, model: 'PC100'},
+  ];
 
-  var containerSize = $(".input-and-grads").width()
+  var containerSize = $('.input-and-grads').width();
 
-  var titleSel = sel.select('.title-grads').html('')
+  var titleSel = sel
+    .select('.title-grads')
+    .html('')
     .appendMany('div.title-container', imgsToDraw)
-    .st({width: containerSize/3})
+    .st({width: containerSize / 3})
     .append('div.legend')
-    .html(d => d.title)
-    
-  var imgsContainerSel = sel.select('.input-and-grads').html('')
-    .append('div.imgs-container')
+    .html((d) => d.title);
 
-  var gapBtwImgs = 5
-  var imgSize = (containerSize - gapBtwImgs*2)/3
+  var imgsContainerSel = sel
+    .select('.input-and-grads')
+    .html('')
+    .append('div.imgs-container');
 
-  var imgDivSel = imgsContainerSel.appendMany('div', imgsToDraw)
-    .st({width: imgSize, height: imgSize})
+  var gapBtwImgs = 5;
+  var imgSize = (containerSize - gapBtwImgs * 2) / 3;
 
-  var imgSel = imgDivSel.append('img')
-    .st({width: '100%'})
+  var imgDivSel = imgsContainerSel
+    .appendMany('div', imgsToDraw)
+    .st({width: imgSize, height: imgSize});
 
-  var imgPickerSel = sel.select('.picker').html('')
-    .st({marginTop: 10})
+  var imgSel = imgDivSel.append('img').st({width: '100%'});
 
-  var gapBtwnThum = 2
-  var thumbnailWidth = (containerSize - gapBtwnThum*30)/31
+  var imgPickerSel = sel.select('.picker').html('').st({marginTop: 10});
 
-  var watermarkImgs = window.dataGrad
+  var gapBtwnThum = 2;
+  var thumbnailWidth = (containerSize - gapBtwnThum * 30) / 31;
 
-  var thumbnailSel = imgPickerSel.append('div.img-picker-grad')
+  var watermarkImgs = window.dataGrad;
+
+  var thumbnailSel = imgPickerSel
+    .append('div.img-picker-grad')
     .appendMany('div.container-img', watermarkImgs)
-    .st({width: thumbnailWidth, aspectRatio: 1/1, cursor: 'pointer'})
+    .st({width: thumbnailWidth, aspectRatio: 1 / 1, cursor: 'pointer'})
     .append('img')
-    .at({width: '100%', src: d => d.src})
-    .on('mouseover', d => {
-      activeImg = d
-      renderImgs()
-    })
+    .at({width: '100%', src: (d) => d.src})
+    .on('mouseover', (d) => {
+      activeImg = d;
+      renderImgs();
+    });
 
-  function renderImgs(){
-    imgSel.each(function(d) {
+  function renderImgs() {
+    imgSel.each(function (d) {
       if (d.model == 'input') {
-        activeImg.src = `https://storage.googleapis.com/uncertainty-over-space/explorables/saliency/images/inputs/${activeImg.name}.jpg`
-        d3.select(this).at({src: activeImg.src})
+        activeImg.src = `https://storage.googleapis.com/uncertainty-over-space/explorables/saliency/images/inputs/${activeImg.name}.jpg`;
+        d3.select(this).at({src: activeImg.src});
+      } else {
+        activeImg.srcGrad = `https://storage.googleapis.com/uncertainty-over-space/explorables/saliency/images/saliency_maps/${method}/${d.model}/${activeImg.name}.jpg`;
+        d3.select(this).at({src: activeImg.srcGrad});
       }
-      else {
-        activeImg.srcGrad = `https://storage.googleapis.com/uncertainty-over-space/explorables/saliency/images/saliency_maps/${method}/${d.model}/${activeImg.name}.jpg`
-        d3.select(this).at({src: activeImg.srcGrad})
-      }
-    })
+    });
   }
 
-  var method = 'vanilla_grad'
-  var activeImg = window.dataGrad[1]
-  renderImgs()
+  var method = 'vanilla_grad';
+  var activeImg = window.dataGrad[1];
+  renderImgs();
+};
 
-
-}
-  
-
-if (window.init) window.init()
+if (window.init) window.init();

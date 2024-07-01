@@ -64,7 +64,7 @@ limitations under the License.
   <div class='byline'>
     <div class='authors'>
       By <b>
-      ${d.authors.replaceAll(',', '</b>, <b>').replace(/,(?=[^,]*$)/, ' and')}
+      ${`${d.authors}`.replaceAll(',', '</b>, <b>').replace(/,(?=[^,]*$)/, ' and')}
       </b>
     </div>
     <div class='date'>${d.date}</div>

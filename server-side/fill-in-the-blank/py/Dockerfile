@@ -12,7 +12,7 @@ COPY . ./
 
 # Copy requirements.txt to the docker image and install packages
 COPY requirements.txt /
-RUN pip install -r requirements.txt
+RUN pip install --require-hashes -r requirements.txt
 
 # Download models
 ADD https://storage.googleapis.com/uncertainty-over-space/zari-bert-cda/pytorch_model.bin zari-bert-cda/pytorch_model.bin

@@ -13,31 +13,28 @@ See the License for the specific language governing permissions and
 limitations under the License.
 ==============================================================================*/
 
-
-async function post(route, obj){
-  var body = JSON.stringify(obj)
-  var cacheKey = body + route
+async function post(route, obj) {
+  var body = JSON.stringify(obj);
+  var cacheKey = body + route;
   // if (route == 'embed_zari_cda') return
   // if (route != 'embed_group_top') return
   // route = 'embed_group'
 
-  if (!window.postCache) postCache = {}
-  if (postCache[cacheKey]) return postCache[cacheKey]
+  if (!window.postCache) postCache = {};
+  if (postCache[cacheKey]) return postCache[cacheKey];
 
-
-  if (cacheKey2filename[cacheKey]){
-    var res = await fetch('data/' + cacheKey2filename[cacheKey])
+  if (cacheKey2filename[cacheKey]) {
+    var res = await fetch('data/' + cacheKey2filename[cacheKey]);
   } else {
     // var root = 'http://' + location.hostname + ':5004/'
-    var root = 'https://helloworld-66dm2fxl4a-uk.a.run.app/'
-    var res = await fetch(root + route, {method: 'POST', body})
+    var root = 'https://helloworld-66dm2fxl4a-uk.a.run.app/';
+    var res = await fetch(root + route, {method: 'POST', body});
   }
 
+  var rv = await res.json();
+  postCache[cacheKey] = rv;
 
-  var rv = await res.json()
-  postCache[cacheKey] = rv
-
-  return rv
+  return rv;
 }
 
 // copy(postCache)

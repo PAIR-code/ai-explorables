@@ -13,79 +13,94 @@ See the License for the specific language governing permissions and
 limitations under the License.
 ==============================================================================*/
 
-
-window.initCircleWeightsFreqs= async function({state, type, title}){
-
-  title = type
-  var freq = state.model[type]
+window.initCircleWeightsFreqs = async function ({state, type, title}) {
+  title = type;
+  var freq = state.model[type];
   freq.forEach((d, i) => {
-    d.cos = d[0]
-    d.sin = d[1]
-    d.prev = freq.at(i - 1)
-    d.angleIndex = i
-  })
-  freq.key = 0
+    d.cos = d[0];
+    d.sin = d[1];
+    d.prev = freq.at(i - 1);
+    d.angleIndex = i;
+  });
+  freq.key = 0;
 
-  var freqSel = d3.select('.circle-' + type).html('')
-    .each(drawFreqChart)
+  var freqSel = d3
+    .select('.circle-' + type)
+    .html('')
+    .each(drawFreqChart);
 
-  function drawFreqChart(){
-
+  function drawFreqChart() {
     var c = d3.conventions({
       sel: d3.select(this).html('').st({display: 'inline-block'}),
       width: 150,
       height: 150,
       margin: {bottom: 35},
-    })
+    });
 
-    c.xAxis.ticks(3)
-    c.yAxis.ticks(3)
-    d3.drawAxis(c)
-    util.ggPlot(c)
-    
+    c.xAxis.ticks(3);
+    c.yAxis.ticks(3);
+    d3.drawAxis(c);
+    util.ggPlot(c);
 
-    c.svg.append('text.chart-title').at({y: -5})
-      .text('W_' + type.replace('hidden', 'in-projᵀ').replace('out', 'out-proj').replace('W', '').replace('T', ''))
+    c.svg
+      .append('text.chart-title')
+      .at({y: -5})
+      .text(
+        'W_' +
+          type
+            .replace('hidden', 'in-projᵀ')
+            .replace('out', 'out-proj')
+            .replace('W', '')
+            .replace('T', ''),
+      );
 
-    var axisLabel = type.includes('out') ? 'Output' : 'Input'
-    util.addAxisLabel(c, axisLabel + ' Cos Component', axisLabel + ' Sin Component', 25, -15)
+    var axisLabel = type.includes('out') ? 'Output' : 'Input';
+    util.addAxisLabel(
+      c,
+      axisLabel + ' Cos Component',
+      axisLabel + ' Sin Component',
+      25,
+      -15,
+    );
 
-    var axisCircle = c.svg.append('circle')
-      .translate([c.x(.5), c.y(.5)])
-      .at({fill: 'none', stroke: '#fff'})
+    var axisCircle = c.svg
+      .append('circle')
+      .translate([c.x(0.5), c.y(0.5)])
+      .at({fill: 'none', stroke: '#fff'});
 
-    var prevLineSel = c.svg.appendMany('path', freq)
-      .at({stroke: '#000', fill: 'none'})
+    var prevLineSel = c.svg
+      .appendMany('path', freq)
+      .at({stroke: '#000', fill: 'none'});
 
-    var dimSel = c.svg.appendMany('g.dimension-dft', freq)
-    dimSel.append('circle')
-      .at({r: 6, fill: '#000'})
-    dimSel.append('text').text(d => d.angleIndex)
-      .at({dy: '.33em', textAnchor: 'middle', fill: '#fff'})
+    var dimSel = c.svg.appendMany('g.dimension-dft', freq);
+    dimSel.append('circle').at({r: 6, fill: '#000'});
+    dimSel
+      .append('text')
+      .text((d) => d.angleIndex)
+      .at({dy: '.33em', textAnchor: 'middle', fill: '#fff'});
 
-    function render(){
-      var norm = 1
-      
-      c.x.domain([-norm*1.2, norm*1.2])
-      c.y.domain([-norm*1.2, norm*1.2])
-      c.svg.select('.x').call(c.xAxis)
-      c.svg.select('.y').call(c.yAxis)
-      util.ggPlotUpdate(c)
+    function render() {
+      var norm = 1;
 
-      axisCircle.at({r: c.x(-norm*1.2 + norm)})
+      c.x.domain([-norm * 1.2, norm * 1.2]);
+      c.y.domain([-norm * 1.2, norm * 1.2]);
+      c.svg.select('.x').call(c.xAxis);
+      c.svg.select('.y').call(c.yAxis);
+      util.ggPlotUpdate(c);
 
-      freq.forEach(d => {
-        var {cos, sin} = d
-        d.pos = [c.x(cos), c.y(sin)]
-      })
+      axisCircle.at({r: c.x(-norm * 1.2 + norm)});
 
-      prevLineSel.at({d: d => ['M', d.pos, 'L', d.prev.pos].join(' ')})
+      freq.forEach((d) => {
+        var {cos, sin} = d;
+        d.pos = [c.x(cos), c.y(sin)];
+      });
 
-      dimSel.translate(d => d.pos)
+      prevLineSel.at({d: (d) => ['M', d.pos, 'L', d.prev.pos].join(' ')});
+
+      dimSel.translate((d) => d.pos);
     }
-    render()
+    render();
   }
-}
+};
 
-
-window.initHandWeights?.()
+window.initHandWeights?.();

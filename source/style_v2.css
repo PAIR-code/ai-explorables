@@ -13,93 +13,97 @@ See the License for the specific language governing permissions and
 limitations under the License.
 ==============================================================================*/
 
-
 /* TODO: Delete most of this */
 
-html{
+html {
   background-color: #fff;
   font-weight: normal;
-  font-family: 'Roboto', Helvetica, sans-serif;
+  font-family: "Roboto", Helvetica, sans-serif;
   font-weight: 300;
   line-height: 1.55em;
   font-size: 16px;
 }
 
-
-body{
+body {
   max-width: 850px;
   margin: 0px auto;
   margin-top: 5px;
   margin-bottom: 80px;
-  color: #3C4043;
+  color: #3c4043;
   font-smoothing: antialiased;
 }
 
-@media (max-width: 760px){
-  body{
+@media (max-width: 760px) {
+  body {
     padding: 5px;
   }
 }
 
-.byline{
+.byline {
   text-align: center;
   font-size: 12px;
   line-height: 1.3em;
   margin-bottom: 40px;
   margin-top: -20px;
-
 }
-.byline b{
+.byline b {
   font-weight: 400;
 }
 
-p{
+p {
   line-height: 1.55em;
   font-size: 16px;
   /*line-height: 28px;*/
-  color: #3C4043;
+  color: #3c4043;
   letter-spacing: 0.1px;
 }
 
-a{
+ul {
+  max-width: 750px;
+  margin: 0px auto;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+}
+
+a {
   color: black;
 }
 
-.header{
+.header {
   position: relative;
   color: black;
   font-size: 16px;
   height: 24px;
   overflow: visible;
-  font-family: 'Google Sans', sans-serif;
+  font-family: "Google Sans", sans-serif;
   font-weight: 100;
   font-size: 20px;
   margin: 0px auto;
   margin-top: 15px;
   padding-left: 20px;
 }
-.header-left{
+.header-left {
   vertical-align: middle;
   font-size: 20px;
   margin: 0px auto;
   width: 300px;
 }
-.header-left img{
+.header-left img {
   width: 100px;
   opacity: 1;
   top: 0px;
   position: relative;
 }
-.header-left a:first-child{
+.header-left a:first-child {
   float: left;
 }
-.header-left a:last-child{
+.header-left a:last-child {
   position: relative;
   top: 8px;
   margin-left: 20px;
   float: left;
 }
-.header-left a{
+.header-left a {
   line-height: 20px;
   -webkit-font-smoothing: antialiased;
   letter-spacing: 0.1px;
@@ -107,32 +111,31 @@ a{
   text-transform: uppercase;
   font-family: "Google Sans";
   text-align: right;
-  -webkit-tap-highlight-color: rgba(255,255,255,0);
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
   font-weight: 300;
   text-decoration: none;
   /*margin: 50px 0 0 50px;*/
   display: inline-block;
-  color: #00695C !important;
+  color: #00695c !important;
 }
-.header-left a:hover{
+.header-left a:hover {
   color: #ff4081 !important;
 }
 
-@media (max-width: 750px){
-  .header-right span{
+@media (max-width: 750px) {
+  .header-right span {
     opacity: 0;
   }
 }
-.header a{
+.header a {
   /*opacity: .5;*/
   text-decoration: none;
 }
-.header a:hover{
-  opacity: 1
+.header a:hover {
+  opacity: 1;
 }
 
-
-p{
+p {
   max-width: 750px;
   margin: 0px auto;
   margin-block-start: 1em;
@@ -141,30 +144,38 @@ p{
 
 /*TODO mobile padding?*/
 
-h3, h4{
+h3,
+h4 {
   max-width: 750px;
   margin: 0px auto;
   font-weight: 100;
   line-height: 1.3em;
 }
 
-h1,h2,h3,h4,h5{
-  font-family: 'Google Sans', sans-serif;
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-family: "Google Sans", sans-serif;
   font-weight: 100;
   margin-top: 1.5em;
-  margin-bottom: .5em;
+  margin-bottom: 0.5em;
 }
-h1{
+h1 {
   font-weight: 100;
   font-size: 34px;
-  margin-bottom: .5em;
+  margin-bottom: 0.5em;
   line-height: 1.3em;
   margin-top: 1.4em;
   text-align: center;
   font-family: "Google Sans";
   /*color: #00695C;*/
 }
-h2,h3,h4,h5{
+h2,
+h3,
+h4,
+h5 {
   font-size: 22px;
 }
 
@@ -175,13 +186,11 @@ img.aligncenter {
   max-width: 750px;
 }
 
-
-
-html{
+html {
   overflow-x: hidden;
 }
 
-.full-width{
+.full-width {
   width: 100vw;
   position: relative;
   left: 50%;
@@ -191,91 +200,84 @@ html{
   overflow: hidden;
 }
 
-.full-width img{
+.full-width img {
   max-width: 100%;
   display: block;
   margin: 0 auto;
 }
 
-.full-width.px980 img, .full-width.px980 div{
+.full-width.px980 img,
+.full-width.px980 div {
   max-width: 980px;
 }
-.full-width > div, .full-width > div > div{
+.full-width > div,
+.full-width > div > div {
   margin: 0px auto;
 }
-.full-width.px750 img, .full-width.px750 div{
+.full-width.px750 img,
+.full-width.px750 div {
   max-width: 750px;
 }
 
-draft{
+draft {
   display: none;
   /*visibility: collapse;*/
 }
 
-
-h1, .post-summary{
+h1,
+.post-summary {
   max-width: 750px;
   margin: 0px auto;
 }
-.post-summary{
+.post-summary {
   font-size: 19px;
   margin-bottom: 65px;
   line-height: 1.5em;
 }
 
-h1{
+h1 {
   margin-bottom: 40px;
   margin-top: 50px;
 }
 
-.post-tags{
+.post-tags {
   line-height: 1.55em;
   font-style: italic;
 }
 
-.thumbnail-caption{
+.thumbnail-caption {
   font-style: italic;
 }
 
-
-
-
-
-
 /*graph scroll stuff*/
 
-#container{
+#container {
   position: relative;
   width: 900px;
   margin-left: -25px;
 }
 
-#container h3{
+#container h3 {
   line-height: 1.3em;
 }
-
-
-
-
-
 
 .tooltip {
   top: -1000px;
   position: fixed;
   padding: 10px;
-  background: rgba(255, 255, 255, .90);
+  background: rgba(255, 255, 255, 0.9);
   border: 1px solid lightgray;
   pointer-events: none;
   width: 300px;
 }
-.tooltip-hidden{
+.tooltip-hidden {
   opacity: 0;
-  transition: all .3s;
-  transition-delay: .1s;
+  transition: all 0.3s;
+  transition-delay: 0.1s;
 }
 
-@media (max-width: 590px){
-  div.tooltip{
+@media (max-width: 590px) {
+  div.tooltip {
     bottom: -1px;
     width: calc(100%);
     left: -1px !important;
@@ -285,38 +287,36 @@ h1{
   }
 }
 
-
-
-
-.footend{
+.footend {
   margin-left: -9px;
   width: 10px;
 }
 
-
-.footstart, .footend{
+.footstart,
+.footend {
   text-decoration: none;
+  &.small {
+    font-size: 10px;
+  }
 }
 
-.footstart:hover, .footend:hover{
+.footstart:hover,
+.footend:hover {
   text-decoration: underline;
 }
 
-
-
-
-#recirc{
+#recirc {
 }
 
-#recirc .img{
+#recirc .img {
   outline: 1px solid #ccc;
 }
 
-#recirc .post:hover .img{
+#recirc .post:hover .img {
   outline: 1px solid #333;
 }
 
-#recirc .title{
+#recirc .title {
   /*color: #00695C;*/
   font-size: 18px;
   font-weight: 500;
@@ -325,28 +325,16 @@ h1{
   /*opacity: 0;*/
 }
 
-#recirc .post:hover .title{
+#recirc .post:hover .title {
   text-decoration: underline !important;
 }
 
-#recirc .post{
+#recirc .post {
   margin-bottom: 30px;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
 /*Nav Style*/
-#nav-container{
+#nav-container {
   width: 100vw;
   margin-left: calc(50% - 50vw);
   display: inline-block;
@@ -356,16 +344,15 @@ h1{
   margin: 0 auto;
   max-width: 1260px;
   -webkit-font-smoothing: antialiased;
-  font-family: 'Open Sans', Helvetica, sans-serif;
+  font-family: "Open Sans", Helvetica, sans-serif;
   font-weight: 300;
   letter-spacing: 0.1px;
 
-
-  color: rgba(0,0,0,.87);
+  color: rgba(0, 0, 0, 0.87);
   font-size: 14px;
   line-height: 20px;
   -webkit-font-smoothing: antialiased;
-  font-family: 'Open Sans', Helvetica, sans-serif;
+  font-family: "Open Sans", Helvetica, sans-serif;
   font-weight: 300;
   letter-spacing: 0.1px;
   display: flex;
@@ -405,7 +392,7 @@ h1{
   margin: 42px 0 0 0;
 }
 .nav-links .selected {
-  color: #00695C !important;
+  color: #00695c !important;
 }
 /*.nav-links a:visited {
   color: #4a4a4a;
@@ -421,14 +408,13 @@ a:visited {
   display: inline-block;
 }
 
-
-@media screen and (max-width: 1035px){
+@media screen and (max-width: 1035px) {
   .nav-links {
     font-size: 16px;
   }
 }
 
-.nav-links{
+.nav-links {
   line-height: 20px;
   -webkit-font-smoothing: antialiased;
   font-weight: 300;
@@ -442,4 +428,3 @@ a:visited {
   color: #4a4a4a;
   text-align: right;
 }
-

@@ -13,8 +13,6 @@ See the License for the specific language governing permissions and
 limitations under the License.
 ==============================================================================*/
 
-
-
 /*
 to update arrows:
   1. set isDraggable = true
@@ -26,106 +24,97 @@ to update arrows:
 
 window.annotations = [
   {
-    "parent": "#paint-container-iid",
-    "html": "Scribble to update the model (shift-drag erases)",
-    "st": {
-      "top": 80,
-      "left": -170,
-      "width": 180
+    'parent': '#paint-container-iid',
+    'html': 'Scribble to update the model (shift-drag erases)',
+    'st': {
+      'top': 80,
+      'left': -170,
+      'width': 180,
     },
-    "minWidth": 850,
-    "path": "M 63,-10 A 60.632 60.632 0 0 0 151,59"
+    'minWidth': 850,
+    'path': 'M 63,-10 A 60.632 60.632 0 0 0 151,59',
   },
   {
-    "parent": "#paint-container-ood",
-    "html": "Scrub to replay",
-    "st": {
-      "bottom": -15,
-      "right": -190,
-      "width": 180
+    'parent': '#paint-container-ood',
+    'html': 'Scrub to replay',
+    'st': {
+      'bottom': -15,
+      'right': -190,
+      'width': 180,
     },
-    "minWidth": 900,
-    "path": "M 54,-39 A 38.403 38.403 0 0 0 0,-87"
+    'minWidth': 900,
+    'path': 'M 54,-39 A 38.403 38.403 0 0 0 0,-87',
   },
   {
-    "parent": "#mnist-ensemble",
-    "html": "The ensemble is the average of the confidently incorrect models",
-    "st": {
-      "top": 383,
-      "right": -8,
-      "width": 220
+    'parent': '#mnist-ensemble',
+    'html': 'The ensemble is the average of the confidently incorrect models',
+    'st': {
+      'top': 383,
+      'right': -8,
+      'width': 220,
     },
-    "path": "M 1,-50 A 51.033 51.033 0 0 1 29.999996185302734,-125"
-  }
-]
+    'path': 'M 1,-50 A 51.033 51.033 0 0 1 29.999996185302734,-125',
+  },
+];
 
-function initSwoopy(){
-  d3.selectAll('.annotation-container').remove()
+function initSwoopy() {
+  d3.selectAll('.annotation-container').remove();
 
-  annotations.forEach(d => {
-    var isDraggable = 0
+  annotations.forEach((d) => {
+    var isDraggable = 0;
 
-    var sel = d3.select(d.parent)
+    var sel = d3
+      .select(d.parent)
       .selectAppend('div.annotation-container')
       .classed('is-draggable', isDraggable)
       .html('')
-      .st(d.st)
+      .st(d.st);
 
-    if (d.minWidth && d.minWidth > window.screen.width){
-      sel.st({display: 'none'})
+    if (d.minWidth && d.minWidth > window.screen.width) {
+      sel.st({display: 'none'});
     }
     // if (d.mobileSt && 800 > window.screen.width){
     //   sel.st(d.mobileSt)
     // }
-    
-    sel.append('div').html(d.html)
 
-    var swoopy = d3.swoopyDrag()
-      .x(d => 0).y(d => 0)
+    sel.append('div').html(d.html);
+
+    var swoopy = d3
+      .swoopyDrag()
+      .x((d) => 0)
+      .y((d) => 0)
       .draggable(isDraggable)
-      .annotations([d])
+      .annotations([d]);
 
-    sel.append('svg').at({width: 1, height: 1})
-      .call(swoopy)
-    if (isDraggable){
-      sel.select('svg').append('circle').at({r: 4, fill: '#f0f'})
+    sel.append('svg').at({width: 1, height: 1}).call(swoopy);
+    if (isDraggable) {
+      sel.select('svg').append('circle').at({r: 4, fill: '#f0f'});
     }
-  })
+  });
 
-
-  d3.select('body').selectAppend('svg.arrow-svg').html('')
-      .st({height: 0})
+  d3.select('body')
+    .selectAppend('svg.arrow-svg')
+    .html('')
+    .st({height: 0})
     .append('marker')
-      .attr('id', 'arrow')
-      .attr('viewBox', '-10 -10 20 20')
-      .attr('markerWidth', 20)
-      .attr('markerHeight', 20)
-      .attr('orient', 'auto')
+    .attr('id', 'arrow')
+    .attr('viewBox', '-10 -10 20 20')
+    .attr('markerWidth', 20)
+    .attr('markerHeight', 20)
+    .attr('orient', 'auto')
     .append('path')
-      .attr('d', 'M-10,-10 L 0,0 L -10,10')
-      .st({stroke: '#000', fill: 'none', })
+    .attr('d', 'M-10,-10 L 0,0 L -10,10')
+    .st({stroke: '#000', fill: 'none'});
 
-
-  d3.selectAll('.annotation-container path')
-    .at({
-      markerEnd: 'url(#arrow)',
-      strokeWidth: .5,
-      opacity: d => d.path == 'M 0 0' ? 0 : '',
-    })
+  d3.selectAll('.annotation-container path').at({
+    markerEnd: 'url(#arrow)',
+    strokeWidth: 0.5,
+    opacity: (d) => (d.path == 'M 0 0' ? 0 : ''),
+  });
 }
-initSwoopy()
+initSwoopy();
 
-
-
-
-
-
-
-
-
-
-
-window.initMobileScaling = function(){
+window.initMobileScaling = function () {
   window.graphics = [
     {
       sel: d3.select('#paint-container-iid'),
@@ -149,35 +138,34 @@ window.initMobileScaling = function(){
       ariaLabel: `2d plot of 24 red and blue points, with piecewise linear (jagged) lines separating the points. This time the uncertain purple gradient zone extends into the corners where there aren't many points.`,
       isResponsive: 1,
     },
-  ]
+  ];
 
-  graphics.measure = function(d){
+  graphics.measure = function (d) {
     d.sel
       .st({transform: '', height: ''})
       .st({overflow: 'visible'})
-      .at({role: 'graphics-document', 'aria-label': d.ariaLabel})
+      .at({role: 'graphics-document', 'aria-label': d.ariaLabel});
 
-    d.width = d.sel.node().clientWidth
-    d.height = d.sel.node().clientHeight
-  }
-  graphics.forEach(graphics.measure)
+    d.width = d.sel.node().clientWidth;
+    d.height = d.sel.node().clientHeight;
+  };
+  graphics.forEach(graphics.measure);
 
-  graphics.rescale = function(){
-    window.draw_2d()
+  graphics.rescale = function () {
+    window.draw_2d();
 
-    graphics.forEach(d => {
-      if (d.isResponsive) return
+    graphics.forEach((d) => {
+      if (d.isResponsive) return;
 
-      var scale = d3.clamp(0, (window.screen.width - 10)/d.width, 1)
+      var scale = d3.clamp(0, (window.screen.width - 10) / d.width, 1);
       d.sel.st({
         transform: `scale(${scale})`,
         transformOrigin: 'left top',
-        height: d.height*scale,
-      })
-    })
-  }
-  graphics.rescale()
-  d3.select(window).on('resize', _.debounce(graphics.rescale, 200))
-}
-window.initMobileScaling()
-
+        height: d.height * scale,
+      });
+    });
+  };
+  graphics.rescale();
+  d3.select(window).on('resize', _.debounce(graphics.rescale, 200));
+};
+window.initMobileScaling();

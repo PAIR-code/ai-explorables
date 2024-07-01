@@ -13,78 +13,71 @@ See the License for the specific language governing permissions and
 limitations under the License.
 ==============================================================================*/
 
+window.makeStudents = function () {
+  var seed = new Math.seedrandom('he4a15');
+  var rand = d3.randomUniform.source(seed)(0, 1);
+  var letters = 'abcdefgijlmnopqrsuvwxyz';
+  letters = (letters + letters.toUpperCase()).split('');
 
+  var nSickCols = 6;
+  var mSickCols = 8;
+  var fSickCols = nSickCols * 2 - mSickCols;
 
-window.makeStudents = function(){
-  var seed = new Math.seedrandom('he4a15')
-  var rand = d3.randomUniform.source(seed)(0, 1)
-  var letters = 'abcdefgijlmnopqrsuvwxyz'
-  letters = (letters + letters.toUpperCase()).split('')
+  var students = d3.range(nCols * nCols).map((i) => {
+    var letter = letters[~~d3.randomUniform.source(seed)(0, letters.length)()];
 
-  var nSickCols = 6
-  var mSickCols = 8
-  var fSickCols = nSickCols*2 - mSickCols
+    var isMale = i % 2 == 0;
+    var isSick = i < (isMale ? mSickCols : fSickCols) * nCols;
+    var grade = isSick * 0.5 + rand();
+    var pos = {};
 
-  var students = d3.range(nCols*nCols).map(i => {
-    var letter = letters[~~d3.randomUniform.source(seed)(0, letters.length)()]
+    return {letter, isSick, isMale, grade, pos};
+  });
 
-    var isMale = i % 2 == 0
-    var isSick = i < (isMale ? mSickCols : fSickCols)*nCols
-    var grade = isSick*.5 + rand()
-    var pos = {}
+  students = _.sortBy(students, (d) => -d.grade);
+  d3.nestBy(students, (d) => d.isSick).forEach((group) => {
+    var isSick = group[0].isSick;
 
-    return {letter, isSick, isMale, grade, pos}
-  })
-
-  students = _.sortBy(students, d => -d.grade)
-  d3.nestBy(students, d => d.isSick).forEach(group => {
-    var isSick = group[0].isSick
-
-    var sickCols = nSickCols
-    var cols = isSick ? sickCols : nCols - sickCols
-    var xOffset = isSick ? 0 : sickCols
+    var sickCols = nSickCols;
+    var cols = isSick ? sickCols : nCols - sickCols;
+    var xOffset = isSick ? 0 : sickCols;
 
     group.forEach((d, i) => {
-      d.pos.allIJ = [cols - 1 - (i % cols) + xOffset, ~~(i/cols)]
-      var spreadIJ = d.pos.allIJ.slice()
-      if (!d.isSick) spreadIJ[0] += .1
-      d.pos.all = spreadIJ.map(d => d*c.width/10)
-    })
-  })
+      d.pos.allIJ = [cols - 1 - (i % cols) + xOffset, ~~(i / cols)];
+      var spreadIJ = d.pos.allIJ.slice();
+      if (!d.isSick) spreadIJ[0] += 0.1;
+      d.pos.all = spreadIJ.map((d) => (d * c.width) / 10);
+    });
+  });
 
-  d3.nestBy(students, d => d.isSick + '-' + d.isMale).forEach(group => {
-    var isSick = group[0].isSick
-    var isMale = group[0].isMale
+  d3.nestBy(students, (d) => d.isSick + '-' + d.isMale).forEach((group) => {
+    var isSick = group[0].isSick;
+    var isMale = group[0].isMale;
 
-    var sickCols = isMale ? mSickCols : fSickCols
-    var cols = isSick ? sickCols : nCols - sickCols
-    var xOffset = isSick ? 0 : sickCols
-    var yOffset = isMale ? nCols/2 + 2 : 0
+    var sickCols = isMale ? mSickCols : fSickCols;
+    var cols = isSick ? sickCols : nCols - sickCols;
+    var xOffset = isSick ? 0 : sickCols;
+    var yOffset = isMale ? nCols / 2 + 2 : 0;
 
     group.forEach((d, i) => {
-      d.pos.sexIJ = [cols - 1 - (i % cols) + xOffset, ~~(i/cols) + yOffset]
-      d.pos.sexGroupIJ = [cols - 1 - (i % cols) + xOffset, ~~(i/cols)]
-      var spreadIJ = d.pos.sexIJ.slice()
-      if (!d.isSick) spreadIJ[0] += .1
-      d.pos.sex = spreadIJ.map(d => d*c.width/10)
-    })
-  })
+      d.pos.sexIJ = [cols - 1 - (i % cols) + xOffset, ~~(i / cols) + yOffset];
+      d.pos.sexGroupIJ = [cols - 1 - (i % cols) + xOffset, ~~(i / cols)];
+      var spreadIJ = d.pos.sexIJ.slice();
+      if (!d.isSick) spreadIJ[0] += 0.1;
+      d.pos.sex = spreadIJ.map((d) => (d * c.width) / 10);
+    });
+  });
 
-  students.maleOffsetJ = nCols/2 + 2
-  students.maleOffsetPx= students.maleOffsetJ*c.width/10
+  students.maleOffsetJ = nCols / 2 + 2;
+  students.maleOffsetPx = (students.maleOffsetJ * c.width) / 10;
 
-  students.fSickCols = fSickCols
-  students.mSickCols = mSickCols
+  students.fSickCols = fSickCols;
+  students.mSickCols = mSickCols;
 
-  students.colWidth = c.width/10
+  students.colWidth = c.width / 10;
 
-  students.rand = rand
-  return students
-}
+  students.rand = rand;
+  return students;
+};
 
-
-
-
-
-
-if (window.init) window.init()
+if (window.init) window.init();

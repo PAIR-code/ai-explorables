@@ -13,16 +13,16 @@ See the License for the specific language governing permissions and
 limitations under the License.
 ==============================================================================*/
 
-window.initInputSliders = function({sel, state, hasColor=true}){
+window.initInputSliders = function ({sel, state, hasColor = true}) {
   var sliders = ['a', 'b'].map((key, i) => ({
     sel: sel.append('div.slider'),
     key,
     i,
-    getVal: _ => state[key],
-    setVal: d => state[key] = +d
-  }))
+    getVal: (_) => state[key],
+    setVal: (d) => (state[key] = +d),
+  }));
 
-  sliders.forEach(slider => {
+  sliders.forEach((slider) => {
     slider.sel.html(`
       <div style='color:${hasColor ? util.colors[slider.key + 'Input'] : ''}'>
         ${slider.key}: <val></val>
@@ -30,22 +30,19 @@ window.initInputSliders = function({sel, state, hasColor=true}){
       <div>
         <input type=range min=0 max=${state.n_tokens - 1} step=1 value=${slider.getVal()}></input>
       </div>
-    `)
+    `);
 
-    slider.sel.select('input[type="range"]')
-      .on('input', function () {
-        slider.setVal(this.value)
-        state.renderAll.input()
-      })
+    slider.sel.select('input[type="range"]').on('input', function () {
+      slider.setVal(this.value);
+      state.renderAll.input();
+    });
     state.renderAll.input.fns.push(() => {
-      var value = slider.getVal()
-      slider.sel.select('val').text(value)
-      slider.sel.select('input').node().value = value
-    })
-
-  })
-}
-
+      var value = slider.getVal();
+      slider.sel.select('val').text(value);
+      slider.sel.select('input').node().value = value;
+    });
+  });
+};
 
 // window.initHandWeights?.()
-window.initModBot?.()
+window.initModBot?.();

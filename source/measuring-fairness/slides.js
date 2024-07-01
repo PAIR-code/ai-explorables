@@ -13,17 +13,14 @@ See the License for the specific language governing permissions and
 limitations under the License.
 ==============================================================================*/
 
-
-
-
-window.makeSlides = function(){
+window.makeSlides = function () {
   var slides = [
     {
       textFill: '#aaa',
       textStroke: 0,
-      rectFill: d => d.isSick ? lcolors.sick : lcolors.well,
-      rectOpacity: d => 0,
-      threshold: .8,
+      rectFill: (d) => (d.isSick ? lcolors.sick : lcolors.well),
+      rectOpacity: (d) => 0,
+      threshold: 0.8,
       fpAxisOpacity: 0,
       sexAxisOpacity: 0,
       brAxisOpacity: 0,
@@ -34,29 +31,30 @@ window.makeSlides = function(){
     },
 
     {
-      textFill: d => d.isSick ? colors.sick : colors.well,
+      textFill: (d) => (d.isSick ? colors.sick : colors.well),
       truthAxisOpacity: 1,
     },
 
     {
-      rectOpacity: d => 1,
+      rectOpacity: (d) => 1,
       mlAxisOpacity: 1,
-
     },
 
     {
-      rectFill: d => d.grade > gs.curSlide.threshold ? lcolors.sick : lcolors.well,
-      textStroke: d => d.grade > gs.curSlide.threshold == d.isSick ? 0 : .6,
+      rectFill: (d) =>
+        d.grade > gs.curSlide.threshold ? lcolors.sick : lcolors.well,
+      textStroke: (d) =>
+        d.grade > gs.curSlide.threshold == d.isSick ? 0 : 0.6,
       fpAxisOpacity: 1,
     },
 
     {
-      threshold: .61,
+      threshold: 0.61,
       animateThreshold: true,
     },
 
     {
-      threshold: .89,
+      threshold: 0.89,
       animateThreshold: true,
     },
 
@@ -64,39 +62,32 @@ window.makeSlides = function(){
       pos: 'sex',
       fpAxisOpacity: 0,
       sexAxisOpacity: 1,
-      threshold: .7508,
+      threshold: 0.7508,
       animateThreshold: false,
       botAxisY: c.width + 150,
-
     },
 
     {
       brAxisOpacity: 1,
       sexAxisOpacity: 0,
-
     },
 
-    {
+    {},
+  ];
 
-    }
-
-  ]
-
-  var keys = []
-  slides.forEach(d => keys = keys.concat(d3.keys(d)))
-  _.uniq(keys).forEach(str => {
-    var prev = null
-    slides.forEach(d => {
-      if (typeof(d[str]) === 'undefined'){
-        d[str] = prev
+  var keys = [];
+  slides.forEach((d) => (keys = keys.concat(d3.keys(d))));
+  _.uniq(keys).forEach((str) => {
+    var prev = null;
+    slides.forEach((d) => {
+      if (typeof d[str] === 'undefined') {
+        d[str] = prev;
       }
-      prev = d[str]
-    }) 
-  })
+      prev = d[str];
+    });
+  });
 
-  return slides
-}
+  return slides;
+};
 
-
-
-if (window.init) window.init()
+if (window.init) window.init();

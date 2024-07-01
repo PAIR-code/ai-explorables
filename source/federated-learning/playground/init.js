@@ -13,29 +13,18 @@ See the License for the specific language governing permissions and
 limitations under the License.
 ==============================================================================*/
 
+window.allConfigs = {};
 
-
-
-window.allConfigs = {}
-
-
-
-
-
-window.init = function(){
+window.init = function () {
   // console.clear()
 
-  initPlaygroundTop('top')
-  initPlaygroundStepper('step')
-  initPlaygroundOutlier('outlier')
-  initPlaygroundDp('dp')
-  initPlayground('full')
+  initPlaygroundTop('top');
+  initPlaygroundStepper('step');
+  initPlaygroundOutlier('outlier');
+  initPlaygroundDp('dp');
+  initPlayground('full');
 
   // createPlayground('test')
-}
+};
 
-window.init()
-
-
-
-
+window.init();
