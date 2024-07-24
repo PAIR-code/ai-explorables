@@ -1,0 +1,102 @@
+/**
+ * @license SPDX-License-Identifier: Apache-2.0
+ */
+/**
+ * @fileoverview Styles for the demo countdown vis.
+ */
+
+.probing-vs-patching {
+  width: 900px;
+  cursor: default;
+  display: flex;
+  font-size: 14px;
+  justify-content: space-between;
+  max-height: 385px;
+  &.intro-probing {
+    display: flex;
+    flex-direction: column;
+    .token {
+      margin-right: 2px;
+    }
+  }
+
+  .line {
+    &.intro {
+      width: 600px;
+      height: 50px;
+    }
+  }
+
+  .option-holder {
+    height: 360px;
+  }
+
+  svg {
+    width: 370px;
+    height: 335px;
+    &.intro {
+      width: 600px;
+    }
+  }
+  .table-container {
+    display: flex;
+    flex-direction: column;
+    vertical-align: top;
+    width: 350px;
+    padding: 8px 0 0 0;
+
+    &.intro {
+      width: 100%;
+      align-items: center;
+    }
+  }
+
+  .title {
+    font-weight: bold;
+  }
+  .accuracy-title {
+    text-align: center;
+  }
+
+  .probing {
+    border-color: goldenrod;
+    color: goldenrod;
+  }
+  .patching {
+    border-color: var(--pair-accent-purple-muted-neon);
+    color: var(--pair-accent-purple-muted-neon);
+  }
+
+  .example-config {
+    display: flex;
+    justify-content: space-between;
+  }
+  .example-results {
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+  }
+  .square {
+    stroke: var(--pair-gray-400);
+    z-index: -1;
+  }
+
+  .score-graph {
+    &.intro {
+      height: 60px;
+    }
+  }
+
+  .patching-full-text {
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* number of lines to show */
+    line-clamp: 2;
+  }
+
+  .instructions {
+    font-size: 11px;
+    line-height: 12px;
+    font-style: italic;
+    padding: 4px 0;
+  }
+}

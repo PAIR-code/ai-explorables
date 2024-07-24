@@ -1,0 +1,79 @@
+/**
+ * @license SPDX-License-Identifier: Apache-2.0
+ */
+/**
+ * @fileoverview Entry point for styles.
+ */
+
+/**
+ * Shared imports.
+ */
+@import url("./palette.css");
+@import url("./vis/shared.css");
+
+/**
+ * Imports for specific visualizations.
+ */
+@import url("./vis/countdown/countdown-vis.css");
+@import url("./vis/flat-grid/flat-grid-vis.css");
+@import url("./vis/grid/grid-vis.css");
+@import url("./vis/simple-transformer/simple-transformer-vis.css");
+@import url("./vis/multihop/multihop-vis.css");
+@import url("./vis/multihop/swipe-overlay.css");
+@import url("./vis/probing-vs-patching/probing-vs-patching.css");
+@import url("./vis/entity-description/entity-description.css");
+@import url("./vis/patching-network/patching-network-vis.css");
+@import url("./vis/patching-network/patching-walkthrough-vis.css");
+@import url("./vis/patching-network/transformer-walkthrough-vis.css");
+
+.katex-html {
+  display: none;
+}
+
+html {
+  min-width: 1000px;
+}
+
+h4 {
+  font-size: 18px;
+  color: var(--pair-gray-700);
+}
+
+.annotation-container {
+  position: relative;
+  pointer-events: none;
+  width: 175px;
+  z-index: 1000;
+  line-height: 0;
+}
+.annotation-container.is-draggable {
+  pointer-events: all;
+}
+
+.annotation-container path {
+  stroke: #000;
+  fill: none;
+}
+
+.annotation-container div {
+  position: absolute;
+  font-style: italic;
+  font-family: sans-serif;
+  padding: 2px;
+  padding-right: 5px;
+  line-height: 1.05em;
+  font-size: 14px;
+  /*outline:  1px solid #000;*/
+  /*background: yellow;*/
+}
+
+.annotation-container svg {
+  position: relative;
+}
+
+.annotation-container div ni {
+  display: inline-block;
+  font-family: sans-serif;
+  font-style: normal;
+  font-size: 10px;
+}

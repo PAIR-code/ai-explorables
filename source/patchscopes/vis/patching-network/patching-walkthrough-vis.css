@@ -1,0 +1,319 @@
+/**
+ * @license SPDX-License-Identifier: Apache-2.0
+ */
+/**
+ * @fileoverview Styles for patchig walkthrough vis.
+ */
+
+.patching-walkthrough-vis {
+  /** Ignore usual PAIR-tinted background color. Inherit from body. */
+  background-color: inherit;
+  margin-bottom: 40px;
+
+  --_default-transition: 200ms;
+  --_story-text-column-width: 200px;
+
+  --exp-source-input-token-node-active-fill-color: var(--pair-neutral-300);
+  --exp-source-input-token-node-active-stroke-color: var(--pair-neutral-600);
+
+  --exp-target-input-token-node-active-fill-color: var(
+    --target-network-token-fill-color
+  );
+  --exp-target-input-token-node-active-stroke-color: var(
+    --target-network-token-stroke-color
+  );
+
+  --_patch-highlight-node-fill-color: rgb(241, 229, 252);
+  --_patch-highlight-node-stroke-color: rgba(110, 20, 194, 0.8);
+  --_patch-affected-node-fill-color: var(--_patch-highlight-node-fill-color);
+  --_patch-affected-node-stroke-color: rgb(222, 187, 255);
+  --_patch-output-token-fill-color: rgb(210, 162, 254);
+  --_patch-output-token-stroke-color: rgb(166, 91, 236);
+
+  /** Token styles. */
+  .token {
+    padding: 1px 3px;
+    transition:
+      border-color var(--_default-transition),
+      background-color var(--_default-transition);
+  }
+
+  .label {
+    font-family: var(--exp-layer-label-node-default-font-family);
+  }
+
+  /** Ensure there's a text node between tokens for text wrapping. */
+  .token-wrapper + .token-wrapper::before {
+    content: " ";
+  }
+
+  /** Source and Target network labels. */
+  --exp-network-label-node-default-dominant-baseline: var(
+    --exp-text-node-default-dominant-baseline
+  );
+  --exp-network-label-node-default-font-family: unset;
+  --exp-network-label-node-default-font-size: unset;
+  --exp-network-label-node-default-font-style: italic;
+  --exp-network-label-node-default-text-anchor: start;
+  --exp-network-label-node-default-text-color: var(
+    --exp-text-node-default-text-color
+  );
+  --exp-network-label-node-default-transform: translate(-3.5em, -3.5em);
+
+  /** Apply default transition time to renderables. */
+  --exp-embedding-node-default-transition: var(--_default-transition);
+  --exp-input-token-node-default-transition: var(--_default-transition);
+  --exp-hidden-state-vector-node-default-transition: var(--_default-transition);
+  --exp-skipped-layers-node-default-transition: var(--_default-transition);
+  --exp-unembedding-node-default-transition: var(--_default-transition);
+  --exp-output-token-node-default-transition: var(--_default-transition);
+  --exp-intra-network-connection-default-transition: var(--_default-transition);
+
+  /** Hidden state vector nodes. (dots) */
+  --exp-hidden-state-vector-node-hidden-fill-color: transparent;
+  --exp-hidden-state-vector-node-hidden-stroke-color: var(--pair-gray-800);
+  --exp-hidden-state-vector-node-hidden-stroke-dasharray: 2.8 2;
+  --exp-hidden-state-vector-node-hidden-stroke-width: 2;
+  --exp-hidden-state-vector-node-highlight-fill-color: var(
+    --_patch-highlight-node-fill-color
+  );
+  --exp-hidden-state-vector-node-highlight-stroke-color: var(
+    --_patch-highlight-node-stroke-color
+  );
+  --exp-hidden-state-vector-node-outline-stroke-width: 3px;
+  --exp-skipped-layers-node-outline-stroke-width: 3px;
+
+  /** Patching connections. */
+  --exp-patch-connection-default-arrow-body-stroke-color: var(
+    --exp-hidden-state-vector-node-highlight-stroke-color
+  );
+  --exp-patch-connection-default-arrow-body-stroke-linecap: round;
+  --exp-patch-connection-default-arrow-body-stroke-width: 4;
+  --exp-patch-connection-default-arrow-head-fill-color: var(
+    --exp-patch-connection-default-arrow-body-stroke-color
+  );
+  --exp-patch-connection-default-arrow-head-stroke-width: 3;
+
+  [data-network-index="1"] {
+    /** Target network defaults. */
+    --exp-node-default-fill-color: var(--target-network-node-fill-color);
+    --exp-node-default-stroke-color: var(--target-network-node-stroke-color);
+    --exp-path-default-stroke-color: var(--exp-node-default-stroke-color);
+    --exp-embedding-node-default-fill-color: var(--exp-node-default-fill-color);
+    --exp-embedding-node-default-stroke-color: var(
+      --exp-node-default-stroke-color
+    );
+    --exp-hidden-state-vector-node-default-fill-color: var(
+      --exp-node-default-fill-color
+    );
+    --exp-hidden-state-vector-node-default-stroke-color: var(
+      --exp-node-default-stroke-color
+    );
+    --exp-skipped-layers-node-default-fill-color: var(
+      --exp-node-default-fill-color
+    );
+    --exp-unembedding-node-default-fill-color: var(
+      --exp-node-default-fill-color
+    );
+    --exp-unembedding-node-default-stroke-color: var(
+      --exp-node-default-stroke-color
+    );
+    --exp-connection-part-default-arrow-body-stroke-color: var(
+      --exp-path-default-stroke-color
+    );
+    --exp-connection-part-default-arrow-head-fill-color: var(
+      --exp-connection-part-default-arrow-body-stroke-color
+    );
+    --exp-outgoing-connection-part-default-arrow-body-stroke-color: var(
+      --exp-connection-part-default-arrow-body-stroke-color
+    );
+    --exp-vertical-connection-part-default-arrow-body-stroke-color: var(
+      --exp-connection-part-default-arrow-body-stroke-color
+    );
+    --exp-incoming-connection-part-default-arrow-body-stroke-color: var(
+      --exp-connection-part-default-arrow-body-stroke-color
+    );
+    --exp-incoming-connection-part-default-arrow-head-fill-color: var(
+      --exp-connection-part-default-arrow-head-fill-color
+    );
+
+    /** Affected (post-patch) nodes. */
+    --exp-reused-token-node-default-stroke-color: var(
+      --_patch-affected-node-stroke-color
+    );
+    --exp-embedding-node-affected-fill-color: var(
+      --_patch-affected-node-fill-color
+    );
+    --exp-embedding-node-affected-stroke-color: var(
+      --_patch-affected-node-stroke-color
+    );
+    --exp-hidden-state-vector-node-affected-fill-color: var(
+      --_patch-affected-node-fill-color
+    );
+    --exp-hidden-state-vector-node-affected-stroke-color: var(
+      --_patch-affected-node-stroke-color
+    );
+    --exp-skipped-layers-node-affected-fill-color: var(
+      --_patch-affected-node-fill-color
+    );
+    --exp-unembedding-node-affected-fill-color: var(
+      --_patch-affected-node-fill-color
+    );
+    --exp-unembedding-node-affected-stroke-color: var(
+      --_patch-affected-node-stroke-color
+    );
+
+    /** Affected (post-patch) connections. */
+    --exp-connection-part-affected-arrow-body-stroke-color: var(
+      --_patch-affected-node-stroke-color
+    );
+    --exp-connection-part-affected-arrow-head-fill-color: var(
+      --_patch-affected-node-stroke-color
+    );
+    --exp-outgoing-connection-part-affected-arrow-body-stroke-color: var(
+      --_patch-affected-node-stroke-color
+    );
+    --exp-vertical-connection-part-affected-arrow-body-stroke-color: var(
+      --_patch-affected-node-stroke-color
+    );
+    --exp-incoming-connection-part-affected-arrow-body-stroke-color: var(
+      --_patch-affected-node-stroke-color
+    );
+    --exp-incoming-connection-part-affected-arrow-head-fill-color: var(
+      --_patch-affected-node-stroke-color
+    );
+    --exp-incoming-connection-part-highlight-arrow-body-stroke-color: var(
+      --_patch-affected-node-stroke-color
+    );
+    --exp-outgoing-connection-part-highlight-arrow-body-stroke-color: var(
+      --_patch-affected-node-stroke-color
+    );
+    --exp-vertical-connection-part-highlight-arrow-body-stroke-color: var(
+      --_patch-affected-node-stroke-color
+    );
+  }
+
+  /** Story annotations. */
+  .hidden-representation {
+    border-bottom: 2px solid
+      var(--exp-hidden-state-vector-node-highlight-stroke-color);
+  }
+  .target-location {
+    border-bottom: 2px dashed
+      var(--exp-hidden-state-vector-node-hidden-stroke-color);
+  }
+
+  /** Style specific tokens for specific story steps. */
+  .run-source-prompt-story {
+    --exp-input-token-node-network-0-fill-color: var(
+      --exp-source-input-token-node-active-fill-color
+    );
+    --exp-input-token-node-network-0-stroke-color: var(
+      --exp-source-input-token-node-active-stroke-color
+    );
+
+    .active-step .token-active {
+      background-color: var(--exp-source-input-token-node-active-fill-color);
+      border-color: var(--exp-source-input-token-node-active-stroke-color);
+    }
+  }
+  .run-forward-comp-story {
+    --exp-input-token-node-network-1-fill-color: var(
+      --target-network-token-fill-color
+    );
+    --exp-input-token-node-network-1-stroke-color: var(
+      --target-network-token-stroke-color
+    );
+
+    .active-step .token-active {
+      background-color: var(--target-network-token-fill-color);
+      border-color: var(--target-network-token-stroke-color);
+    }
+  }
+  .generate-output-story {
+    --exp-output-token-node-network-1-fill-color: var(
+      --_patch-output-token-fill-color
+    );
+    --exp-output-token-node-network-1-stroke-color: var(
+      --_patch-output-token-stroke-color
+    );
+
+    .active-step .token-active {
+      background-color: var(--_patch-output-token-fill-color);
+      border-color: var(--_patch-output-token-stroke-color);
+    }
+  }
+
+  .patching-story {
+    --exp-patch-connection-default-arrow-body-stroke-width: 6;
+    --exp-patch-connection-default-arrow-head-stroke-width: 4;
+
+    &.patching-operation {
+      --exp-patch-connection-default-arrow-head-fill-color: none;
+    }
+  }
+
+  /** Two-column layout. */
+  .content {
+    background-color: inherit;
+    display: flex;
+    gap: 1em;
+    flex-direction: row;
+    overflow-x: visible;
+    overflow-y: hidden;
+    padding-top: 20px;
+    position: static;
+
+    &.fixed {
+      position: fixed;
+    }
+
+    /** Story text column. */
+    .story-column {
+      flex-grow: 0;
+      width: var(--_story-text-column-width);
+
+      & > p {
+        --_progress-bar-color: rgba(0 0 0 / 30%);
+        --_progress-bar-margin: 0.5em;
+        --_progress-bar-rail-color: rgba(0 0 0 / 10%);
+        --_progress-bar-width: 2px;
+
+        /** Background forms the progress bar on scroll. */
+        background: linear-gradient(
+          to right,
+          var(--_progress-bar-color) 0,
+          var(--_progress-bar-color) var(--_progress-bar-width),
+          transparent var(--_progress-bar-width),
+          transparent 100%
+        );
+        background-repeat: no-repeat;
+        border-radius: var(--_progress-bar-width);
+        /** Box-shadow forms the progress bar rail. */
+        box-shadow: inset var(--_progress-bar-width) 0
+          var(--_progress-bar-rail-color);
+        font-size: small;
+        line-height: 1.4;
+        padding-left: calc(
+          var(--_progress-bar-width) + var(--_progress-bar-margin)
+        );
+        position: relative;
+        width: inherit;
+      }
+    }
+
+    /** Vis column. **/
+    .vis-column {
+      flex-grow: 1;
+
+      &, [data-key] {
+        opacity: 0;
+        transition: opacity var(--_default-transition);
+
+        &.visible {
+          opacity: 1;
+        }
+      }
+    }
+  }
+}

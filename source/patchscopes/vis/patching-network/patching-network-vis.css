@@ -1,0 +1,150 @@
+/**
+ * @license SPDX-License-Identifier: Apache-2.0
+ */
+/**
+ * @fileoverview Styles for patchig network test vis.
+ */
+
+.patching-network-vis {
+  /** Default text attributes. */
+  --exp-text-node-default-dominant-baseline: middle;
+  --exp-text-node-default-font-family: monospace;
+  --exp-text-node-default-font-size: 12px;
+  --exp-text-node-default-text-color: var(--pair-gray-800);
+
+  /** Default shape attributes. */
+  --exp-node-default-fill-color: var(--pair-neutral-100);
+  --exp-node-default-stroke-color: var(--pair-neutral-300);
+  --exp-node-default-stroke-width: 1px;
+  --exp-path-default-stroke-color: var(--pair-neutral-300);
+  --exp-path-default-stroke-width: 1;
+
+  /** Layer labels. */
+  --exp-layer-label-node-default-dominant-baseline: text-after-edge;
+  --exp-layer-label-node-default-font-family: MJXZERO, MJXTEX;
+  --exp-layer-label-node-default-font-size: 16px;
+  --exp-layer-label-node-default-text-anchor: start;
+  --exp-layer-label-node-default-text-color: var(--pair-gray-700);
+
+  /** Token defaults. */
+  --exp-token-node-default-border-radius: 4px;
+  --exp-token-node-default-fill-color: transparent;
+  --exp-token-node-default-stroke-color: var(--pair-gray-300);
+  --exp-token-node-default-stroke-width: 1;
+
+  /** Input tokens. */
+  --exp-input-token-node-default-border-radius: var(--exp-token-node-default-border-radius);
+  --exp-input-token-node-default-fill-color: var(--exp-token-node-default-fill-color);
+  --exp-input-token-node-default-stroke-color: var(--exp-token-node-default-stroke-color);
+  --exp-input-token-node-default-stroke-width: var(--exp-token-node-default-stroke-width);
+  --exp-input-token-node-default-dominant-baseline: var(--exp-text-node-default-dominant-baseline);
+  --exp-input-token-node-default-font-family: var(--exp-text-node-default-font-family);
+  --exp-input-token-node-default-font-size: var(--exp-text-node-default-font-size);
+  --exp-input-token-node-default-text-anchor: end;
+  --exp-input-token-node-default-text-color: var(--exp-text-node-default-text-color);
+
+  /** Input position ranges. */
+  --exp-position-range-node-default-fill-color: var(--pair-gray-400);
+  --exp-position-range-node-default-stroke-color: none;
+  --exp-position-range-node-default-stroke-width: 0;
+  --exp-position-range-node-default-radius: 2;
+  --exp-position-range-node-default-transform: rotate(90deg);
+
+  /** Reused tokens (previous output used as input). */
+  --exp-reused-token-node-default-fill-color: none;
+  --exp-reused-token-node-default-stroke-color: var(--exp-path-default-stroke-color);
+  --exp-reused-token-node-default-stroke-dasharray: 3 2;
+  --exp-reused-token-node-default-stroke-width: var(--exp-path-default-stroke-width);
+
+  /** Embedding nodes. (trapezoids) */
+  --exp-embedding-node-default-fill-color: var(--exp-node-default-fill-color);
+  --exp-embedding-node-default-stroke-color: var(--exp-node-default-stroke-color);
+  --exp-embedding-node-default-stroke-width: var(--exp-node-default-stroke-width);
+  --exp-embedding-node-default-transform: rotate(90deg);
+
+  /** Hidden state vector nodes. (dots) */
+  --exp-hidden-state-vector-node-default-fill-color: var(--exp-node-default-fill-color);
+  --exp-hidden-state-vector-node-default-stroke-color: var(--exp-node-default-stroke-color);
+  --exp-hidden-state-vector-node-default-stroke-width: var(--exp-node-default-stroke-width);
+  --exp-hidden-state-vector-node-default-corner-radius-x: 8;
+
+  /** Skipped layer nodes. (ellipses) */
+  --exp-skipped-layers-node-default-fill-color: var(--exp-node-default-fill-color);
+  --exp-skipped-layers-node-default-stroke-color: none;
+  --exp-skipped-layers-node-default-stroke-width: 0;
+  --exp-skipped-layers-node-folded-rows-transform: rotate(45deg);
+
+  /** Unembedding nodes. (trapezoids) */
+  --exp-unembedding-node-default-fill-color: var(--exp-node-default-fill-color);
+  --exp-unembedding-node-default-stroke-color: var(--exp-node-default-stroke-color);
+  --exp-unembedding-node-default-stroke-width: var(--exp-node-default-stroke-width);
+  --exp-unembedding-node-default-transform: rotate(-90deg);
+
+  /** Unembedding nodes when there is no output token. **/
+  --exp-unembedding-node-no-output-fill-color: none;
+  --exp-unembedding-node-no-output-stroke-dasharray: 3 3;
+
+  /** Output tokens. */
+  --exp-output-token-node-default-border-radius: var(--exp-token-node-default-border-radius);
+  --exp-output-token-node-default-fill-color: var(--exp-token-node-default-fill-color);
+  --exp-output-token-node-default-stroke-color: var(--exp-token-node-default-stroke-color);
+  --exp-output-token-node-default-stroke-width: var(--exp-token-node-default-stroke-width);
+  --exp-output-token-node-default-dominant-baseline: var(--exp-text-node-default-dominant-baseline);
+  --exp-output-token-node-default-font-family: var(--exp-text-node-default-font-family);
+  --exp-output-token-node-default-font-size: var(--exp-text-node-default-font-size);
+  --exp-output-token-node-default-text-anchor: start;
+  --exp-output-token-node-default-text-color: var(--exp-text-node-default-text-color);
+
+  /** Intra-Network Connections. */
+  --exp-connection-part-default-arrow-body-fill-color: none;
+  --exp-connection-part-default-arrow-body-stroke-color: var(--exp-path-default-stroke-color);
+  --exp-connection-part-default-arrow-body-stroke-dasharray: none;
+  --exp-connection-part-default-arrow-body-stroke-linecap: round;
+  --exp-connection-part-default-arrow-body-stroke-width: var(--exp-path-default-stroke-width);
+  --exp-connection-part-default-arrow-head-fill-color: var(--exp-connection-part-default-arrow-body-stroke-color);
+  --exp-connection-part-default-arrow-head-stroke-width: var(--exp-path-default-stroke-width);
+
+  --exp-outgoing-connection-part-default-arrow-body-fill-color: var(--exp-connection-part-default-arrow-body-fill-color);
+  --exp-outgoing-connection-part-default-arrow-body-stroke-color: var(--exp-connection-part-default-arrow-body-stroke-color);
+  --exp-outgoing-connection-part-default-arrow-body-stroke-dasharray: var(--exp-connection-part-default-arrow-body-stroke-dasharray);
+  --exp-outgoing-connection-part-default-arrow-body-stroke-linecap: var(--exp-connection-part-default-arrow-body-stroke-linecap);
+  --exp-outgoing-connection-part-default-arrow-body-stroke-width: var(--exp-connection-part-default-arrow-body-stroke-width);
+  --exp-outgoing-connection-part-default-arrow-head-fill-color: none;
+  --exp-outgoing-connection-part-default-arrow-head-stroke-width: var(--exp-connection-part-default-arrow-head-stroke-width);
+
+  --exp-vertical-connection-part-default-arrow-body-fill-color: var(--exp-connection-part-default-arrow-body-fill-color);
+  --exp-vertical-connection-part-default-arrow-body-stroke-color: var(--exp-connection-part-default-arrow-body-stroke-color);
+  --exp-vertical-connection-part-default-arrow-body-stroke-dasharray: var(--exp-connection-part-default-arrow-body-stroke-dasharray);
+  --exp-vertical-connection-part-default-arrow-body-stroke-linecap: var(--exp-connection-part-default-arrow-body-stroke-linecap);
+  --exp-vertical-connection-part-default-arrow-body-stroke-width: var(--exp-connection-part-default-arrow-body-stroke-width);
+  --exp-vertical-connection-part-default-arrow-head-fill-color: none;
+  --exp-vertical-connection-part-default-arrow-head-stroke-width: var(--exp-connection-part-default-arrow-head-stroke-width);
+
+  --exp-incoming-connection-part-default-arrow-body-fill-color: var(--exp-connection-part-default-arrow-body-fill-color);
+  --exp-incoming-connection-part-default-arrow-body-stroke-color: var(--exp-connection-part-default-arrow-body-stroke-color);
+  --exp-incoming-connection-part-default-arrow-body-stroke-dasharray: var(--exp-connection-part-default-arrow-body-stroke-dasharray);
+  --exp-incoming-connection-part-default-arrow-body-stroke-linecap: var(--exp-connection-part-default-arrow-body-stroke-linecap);
+  --exp-incoming-connection-part-default-arrow-body-stroke-width: var(--exp-connection-part-default-arrow-body-stroke-width);
+  --exp-incoming-connection-part-default-arrow-head-fill-color: var(--exp-connection-part-default-arrow-head-fill-color);
+  --exp-incoming-connection-part-default-arrow-head-stroke-width: var(--exp-connection-part-default-arrow-head-stroke-width);
+
+  --exp-intra-network-connection-default-arrow-body-fill-color: var(--exp-connection-part-default-arrow-body-fill-color);
+  --exp-intra-network-connection-default-arrow-body-stroke-color: var(--exp-connection-part-default-arrow-body-stroke-color);
+  --exp-intra-network-connection-default-arrow-body-stroke-dasharray: var(--exp-connection-part-default-arrow-body-stroke-dasharray);
+  --exp-intra-network-connection-default-arrow-body-stroke-linecap: var(--exp-connection-part-default-arrow-body-stroke-linecap);
+  --exp-intra-network-connection-default-arrow-body-stroke-width: var(--exp-connection-part-default-arrow-body-stroke-width);
+  --exp-intra-network-connection-default-arrow-head-fill-color: var(--exp-connection-part-default-arrow-head-fill-color);
+  --exp-intra-network-connection-default-arrow-head-stroke-width: var(--exp-connection-part-default-arrow-head-stroke-width);
+
+  /** Intra-Network Connections to unembedding nodes where there is no output token. */
+  --exp-intra-network-connection-to-no-output-arrow-body-stroke-dasharray: 3 3;
+
+  /** Patch Connections between networks. */
+  --exp-patch-connection-default-arrow-body-fill-color: none;
+  --exp-patch-connection-default-arrow-body-stroke-color: var(--exp-node-default-stroke-color);
+  --exp-patch-connection-default-arrow-body-stroke-dasharray: none;
+  --exp-patch-connection-default-arrow-body-stroke-linecap: round;
+  --exp-patch-connection-default-arrow-body-stroke-width: 3;
+  --exp-patch-connection-default-arrow-head-fill-color: var(--exp-node-default-stroke-color);
+  --exp-patch-connection-default-arrow-head-stroke-width: 2;
+}

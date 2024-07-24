@@ -1,0 +1,158 @@
+/**
+ * @license SPDX-License-Identifier: Apache-2.0
+ */
+/**
+ * @fileoverview Styles for the grid vis.
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+
+.grid-vis {
+  * {
+    transition: background-color 100ms;
+  }
+
+  .has-experiments {
+    background-color: rgba(0 0 0 / 10%);
+  }
+
+  .token-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0.5em;
+  }
+
+  [data-token-id] {
+    box-sizing: border-box;
+    border: 1px solid rgba(0 0 0 / 20%);
+    cursor: default;
+    padding: 0 0.5em;
+    white-space: pre;
+  }
+
+  .hovered-token {
+    background-color: rgba(0 0 0 / 5%);
+  }
+
+  .selected-token {
+    background-color: rgba(0 0 0 / 10%);
+  }
+
+  [data-role="table-container"] {
+    margin: 3em 0 2em 1em;
+    position: relative;
+    width: fit-content;
+
+    [data-role$="source-layers-label"] {
+      align-items: center;
+      display: flex;
+      flex-direction: column;
+      height: 0;
+      justify-content: flex-end;
+      overflow: visible;
+      position: absolute;
+      top: 0;
+      left: 50%;
+      width: 0;
+
+      & > * {
+        white-space: nowrap;
+      }
+    }
+
+    [data-role$="target-layers-label"] {
+      align-items: center;
+      display: flex;
+      flex-direction: column;
+      height: 0;
+      justify-content: flex-end;
+      overflow: visible;
+      position: absolute;
+      top: 50%;
+      left: -1em;
+      width: 0;
+
+      & > * {
+        display: block;
+        transform: rotate(-90deg);
+        white-space: nowrap;
+      }
+    }
+  }
+
+  table {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 8px;
+    line-height: 1em;
+
+    td, th {
+      border: 1px solid rgba(0 0 0 / 0%);
+      box-sizing: border-box;
+
+      &:first-child {
+        border-left: none;
+      }
+
+      &:last-child {
+        border-right: none;
+        text-align: left;
+      }
+    }
+
+    thead th {
+      border-top: none;
+      cursor: default;
+      text-align: center;
+      user-select: none;
+    }
+
+    tbody th,
+    td {
+      text-align: center;
+    }
+
+    tfoot th {
+      border-bottom: none;
+      cursor: default;
+      text-align: center;
+      user-select: none;
+    }
+
+    .has-generated-tokens {
+      border-color: rgba(0 0 0 / 20%);
+    }
+
+    .hovered-source-layer,
+    .hovered-target-layer {
+      background-color: rgba(0 0 0 / 5%);
+    }
+
+    .hovered-source-layer.hovered-target-layer {
+      background-color: rgba(0 0 0 / 8%);
+    }
+
+    .selected-source-layer,
+    .selected-target-layer {
+      background-color: rgba(0 0 0 / 10%);
+    }
+
+    .selected-source-layer.selected-target-layer {
+      background-color: rgba(0 0 0 / 20%);
+    }
+
+    tbody > tr > td:last-child > p {
+      display: flex;
+      flex-direction: row;
+      font-family: Roboto, Helvetica, sans-serif;
+      flex-wrap: wrap;
+      font-size: 1.2em;
+      margin: 0;
+
+      span {
+        cursor: default;
+        margin-right: 0.5em;
+      }
+    }
+  }
+}

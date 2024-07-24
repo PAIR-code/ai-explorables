@@ -1,0 +1,52 @@
+/**
+ * @license SPDX-License-Identifier: Apache-2.0
+ */
+/**
+ * @fileoverview Styles for transformer walkthrough vis.
+ */
+
+.transformer-walkthrough-vis {
+  /** Ignore usual PAIR-tinted background color. Inherit from body. */
+  background-color: inherit;
+
+  --_default-transition: 200ms;
+  --_outline-stroke-width: 3px;
+
+  /** Token styles. */
+  .token {
+    transition:
+      border-color var(--_default-transition),
+      background-color var(--_default-transition);
+  }
+
+  /** Apply default transition time to renderables. */
+  --exp-embedding-node-default-transition: var(--_default-transition);
+  --exp-input-token-node-default-transition: var(--_default-transition);
+  --exp-hidden-state-vector-node-default-transition: var(--_default-transition);
+  --exp-skipped-layers-node-default-transition: var(--_default-transition);
+  --exp-unembedding-node-default-transition: var(--_default-transition);
+  --exp-output-token-node-default-transition: var(--_default-transition);
+  --exp-intra-network-connection-default-transition: var(--_default-transition);
+
+
+  /** Layer tags. */
+  --exp-hidden-state-vector-node-outline-stroke-width: var(--_outline-stroke-width);
+
+  /** Story-specific styles. */
+  .initial-embedding {
+    --exp-embedding-node-default-stroke-width: var(--_outline-stroke-width);
+  }
+
+  .content {
+    background-color: inherit;
+
+    [data-key] {
+      opacity: 0;
+      transition: opacity var(--_default-transition);
+
+      &.visible {
+        opacity: 1;
+      }
+    }
+  }
+}

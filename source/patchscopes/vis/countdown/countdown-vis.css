@@ -1,0 +1,31 @@
+/**
+ * @license SPDX-License-Identifier: Apache-2.0
+ */
+/**
+ * @fileoverview Styles for the demo countdown vis.
+ */
+
+.countdown-vis {
+  align-items: center;
+  border: 1px solid gray;
+  box-sizing: border-box;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  font-size: 3em;
+  justify-content: center;
+  padding: 1em;
+  transition: border-color 100ms;
+
+  &[data-counter-state="running"] {
+    border-color: green;
+  }
+
+  &[data-counter-state="paused"] {
+    border-color: khaki;
+  }
+
+  &[data-counter-state="finished"] {
+    border-color: salmon;
+  }
+}

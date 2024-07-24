@@ -1,0 +1,112 @@
+/**
+ * @license SPDX-License-Identifier: Apache-2.0
+ */
+/**
+ * @fileoverview Styles for flat grid vis.
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+
+.flat-grid-vis {
+  .token-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    line-height: 1.2;
+  }
+
+  [data-token-id] {
+    background-color: rgba(0 0 0 / 10%);
+    border: 1px solid rgba(0 0 0 / 1%);
+    box-sizing: border-box;
+    color: rgba(0 0 0);
+    cursor: default;
+    margin: 0 1px 1px 0;
+    padding: 0 0.125em;
+    position: relative;
+    top: 0;
+    transition:
+      background-color 100ms,
+      border 100ms,
+      color 100ms,
+      top 200ms;
+
+    &:first-child {
+      border-top-left-radius: 1em;
+      border-bottom-left-radius: 1em;
+      padding-left: 0.5em;
+    }
+
+    &:last-child {
+      border-top-right-radius: 1em;
+      border-bottom-right-radius: 1em;
+      padding-right: 0.5em;
+    }
+  }
+
+  .hovered-token {
+    border-color: rgba(0 0 0);
+    top: -2px;
+
+    /**
+      * Note: Leave the colors alone for the literal hovered element. Only other
+      * elements that have the same token id should have the special color.
+      */
+    &:not(:hover) {
+      background-color: rgba(0 0 0 / 60%);
+      color: rgba(255 255 255);
+    }
+  }
+
+  [data-selected-token-set] {
+    color: rgba(255 255 255);
+
+    &[data-selected-token-set="0"] {
+      background-color: rgba(0 0 0 / 90%);
+    }
+
+    &[data-selected-token-set="1"] {
+      background-color: #1f77b4;
+    }
+
+    &[data-selected-token-set="2"] {
+      background-color: #ff7f0e;
+    }
+
+    &[data-selected-token-set="3"] {
+      background-color: #2ca02c;
+    }
+
+    &[data-selected-token-set="4"] {
+      background-color: #d62728;
+    }
+
+    &[data-selected-token-set="5"] {
+      background-color: #9467bd;
+    }
+  }
+
+  [data-role="flat-grid-container"] {
+    border-collapse: collapse;
+    display: table;
+    max-width: 750px;
+
+    & > * {
+      display: table-row;
+
+      & > * {
+        display: table-cell;
+        padding-bottom: 0.25em;
+      }
+    }
+  }
+
+  .layer-mapping {
+    white-space: pre;
+
+    .layer-source,
+    .layer-target {
+      font-family: "Roboto Mono", monospace;
+    }
+  }
+}

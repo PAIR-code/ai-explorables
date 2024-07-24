@@ -1,0 +1,77 @@
+/**
+ * @license SPDX-License-Identifier: Apache-2.0
+ */
+/**
+ * @fileoverview Palette of color vars for use in other CSS rules.
+ */
+
+/**
+ * Rudimentary color palette based on Material defaults.
+ * @see https://m3.material.io/styles/color/static/baseline
+ */
+:root {
+  /* TODO(jimbo): Replace with full palette. */
+  --pair-ref-palette--error40: #b3261e;
+  --pair-ref-palette--error100: #ffffff;
+  --pair-sys-color--error: var(--pair-ref-palette--error100);
+  --pair-sys-color--on-error: var(--pair-ref-palette--error40);
+  --pair-green-50: #f1f8ec;
+  --pair-green-100: #dff6cc;
+  --pair-green-200: #b9e7b2;
+  --pair-green-300: #75c286;
+  --pair-green-400: #4cb769;
+  --pair-green-500: #34a853;
+  --pair-green-600: #228e4d;
+  --pair-green-700: #0f8258;
+  --pair-green-800: #2a4c4a;
+  --pair-green-900: #002622;
+  --pair-gray-50: #f8f9fa;
+  --pair-gray-100: #f1f3f4;
+  --pair-gray-200: #e8eaed;
+  --pair-gray-300: #e8eaed;
+  --pair-gray-400: #bdc1c6;
+  --pair-gray-500: #9aa0a6;
+  --pair-gray-600: #80868b;
+  --pair-gray-700: #5f6368;
+  --pair-gray-800: #3c4043;
+  --pair-gray-900: #3c4043;
+  --pair-neutral-50: #f7f9f7;
+  --pair-neutral-100: #edf4ec;
+  --pair-neutral-200: #dfe9e1;
+  --pair-neutral-300: #c6d7ce;
+  --pair-neutral-400: #a6bfb3;
+  --pair-neutral-500: #7ba28d;
+  --pair-neutral-600: #648978;
+  --pair-neutral-700: #476c63;
+  --pair-neutral-800: #2a4c4a;
+  --pair-neutral-900: #162223;
+  --pair-accent-green-light: #dbf8e1;
+  --pair-accent-green-neon: #8affa4;
+  --pair-accent-green-dark: #2d733d;
+  --pair-accent-pink-xlight: #fff6f8;
+  --pair-accent-pink-light: #ffe2ea;
+  --pair-accent-pink-neon-light: #ffafc5;
+  --pair-accent-pink-neon: #fd4376;
+  --pair-accent-pink-dark: #88213e;
+  --pair-accent-purple-xlight: #f6ecff;
+  --pair-accent-purple-light: #eddaff;
+  --pair-accent-purple-neon: #8920e9;
+  --pair-accent-purple-dark: #471d6d;
+  --pair-accent-purple-muted-neon: #6718af;
+  --pair-accent-orange-light: #ffdfdd;
+  --pair-accent-orange-neon: #ff675c;
+  --pair-accent-orange-dark: #89514d;
+  --pair-accent-yellow-light: #fffde0;
+  --pair-accent-yellow-neon: #fff116;
+  --pair-accent-yellow-dark: #806c39;
+  --pair-accent-teal-xlight: #f2fefc;
+  --pair-accent-teal-light: #dafdf5;
+  --pair-accent-teal-neon: #64ffda;
+  --pair-accent-teal-neon-light: #aafae8;
+  --pair-accent-teal-dark: #3fac90;
+
+  --target-network-node-fill-color: #feeddc;
+  --target-network-node-stroke-color: #fbcea1;
+  --target-network-token-fill-color: #ffc285;
+  --target-network-token-stroke-color: #fda54d;
+}
