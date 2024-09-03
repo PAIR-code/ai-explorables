@@ -116,9 +116,9 @@ flask==2.2.5 \
     # via
     #   -r requirements.in
     #   flask-cors
-flask-cors==3.0.10 \
-    --hash=sha256:74efc975af1194fc7891ff5cd85b0f7478be4f7f59fe158102e91abb72bb4438 \
-    --hash=sha256:b60839393f3b84a0f3746f6cdca56c1ad7426aa738b70d6c61375857823181de
+flask-cors==5.0.0 \
+    --hash=sha256:5aadb4b950c4e93745034594d9f3ea6591f734bb3662e16e255ffbf5e89c88ef \
+    --hash=sha256:b9e307d082a9261c100d8fb0ba909eec6a228ed1b60a8315fd85f783d61910bc
     # via -r requirements.in
 fsspec==2023.12.2 \
     --hash=sha256:8548d39e8810b59c38014934f6b31e57f40c1b20f911f4cc2b85389c7e9bf0cb \
