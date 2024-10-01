@@ -26,6 +26,12 @@ const GRID_CELL_SIZE =
   (GRID_WIDTH - HEATMAP_MARGINS.top - HEATMAP_MARGINS.bottom) /
   ACCURACY_GRID_SIZE;
 
+const LEGEND_INFO = {
+  'Unsuccessful Patch': 'none',
+  'Successful Patch': 'rgb(103,24, 175)',
+  'Selected Layer Pair': 'var(--pair-accent-pink-neon)',
+};
+
 const EXAMPLE_INFO = {
   0: {
     'source': "Pizza's",
@@ -202,6 +208,8 @@ class MultihopVis {
      * @see setupVis()
      */
     this.secondQuerySel = undefined;
+
+    this.legendSel = undefined;
 
     /**
      * D3 selection housing the injected `<table>` element for visualizing.
@@ -484,8 +492,10 @@ class MultihopVis {
       .append('div')
       .attr('class', 'sidebar-container queries');
 
-    const sidebar = this.tokenSel.append('div').attr('class', 'sidebar');
+    const sidebar = this.tokenSel.append('div').attr('class', 'sidebar left');
     this.promptsSel = sidebar.append('div').classed('prompts-container', true);
+    this.legendSel = sidebar.append('div').classed('legend', true);
+    this.renderLegend();
 
     const sidebarHeader = this.promptsSel
       .append('div')
@@ -520,6 +530,14 @@ class MultihopVis {
     });
 
     Object.keys(EXAMPLE_INFO).map((idx) => this.renderExample(idx));
+  }
+
+  renderLegend() {
+    Object.entries(LEGEND_INFO).map(([k, v]) => {
+      const entry = this.legendSel.append('div').classed('legend-entry', true);
+      entry.append('div').classed('icon', true).style('background', v);
+      entry.append('div').text(k);
+    });
   }
 
   renderRightSidebar() {

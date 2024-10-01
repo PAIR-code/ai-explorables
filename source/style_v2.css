@@ -39,6 +39,10 @@ body {
   }
 }
 
+.katex-html {
+  display: none;
+}
+
 .byline {
   text-align: center;
   font-size: 12px;
@@ -173,10 +177,14 @@ h1 {
   /*color: #00695C;*/
 }
 h2,
-h3,
+h3 {
+  font-size: 22px;
+}
+
 h4,
 h5 {
-  font-size: 22px;
+  font-size: 18px;
+  color: var(--pair-gray-700);
 }
 
 /*wp classes*/
