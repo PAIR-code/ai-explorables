@@ -687,9 +687,9 @@ tqdm==4.66.3 \
     # via
     #   huggingface-hub
     #   transformers
-transformers==4.36.0 \
-    --hash=sha256:64e120d252db4bdcd355288d19e857dac9d89886f9d0ac20244cb9af3142bb50 \
-    --hash=sha256:e5a9d9424bcbc5008782ddd79ecbc3a50991e168cc730a14c4c89e80c61f419d
+transformers==4.52.1 \
+    --hash=sha256:604b2bb357c480dc5883b7944e8562c967f6b06f63dfb6a1c4665d13d067148f \
+    --hash=sha256:c380d583ed9c7ebe3e30ca5e55ec1249db39eb9ee277f8e74dab1abc6a03c938
     # via -r requirements.in
 typing-extensions==4.9.0 \
     --hash=sha256:23478f88c37f27d76ac8aee6c905017a143b0b1b886c3c9f66bc2fd94f9f5783 \
