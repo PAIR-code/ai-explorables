@@ -48,7 +48,7 @@ python model_bert_large_export.py
 ```
 cd ../py
 
-gsutil -o "GSUtil:parallel_process_count=1" -m rsync -r zari-bert-cda gs://uncertainty-over-space/zari-bert-cda
+gcloud storage rsync --recursive zari-bert-cda gs://uncertainty-over-space/zari-bert-cda
 ```
 
 https://storage.googleapis.com/uncertainty-over-space/zari/zari-bert-cda/vocab.txt
